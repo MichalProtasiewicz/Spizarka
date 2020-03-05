@@ -1,2 +1,2 @@
 # StarMovie
- Django + React 
+ Django + React application with films
