@@ -5,15 +5,15 @@
   Wypożyczalnia książek.
 
 # Zakres projektu
-  1. Aktorzy:
+  ### Aktorzy:
     - Uzytkownik,
     - Bibliotekarz,
     - Admin
 
-  2. Funkcjonalności:
+  ### Funkcjonalności:
     - Rezerwacja książek w bibliotece
 
-  3. Opis bazy:
+  ### Opis bazy:
     - User(id, login, haslo, imie, nazwisko, adres, kod_pocztowy, miasto, email, telefon)
     - Zamowienie(id, id_user, id_ksiazka, data_zamowienai, data_odbioru, data_zwrotu)
     - Kategoria(id, name)
@@ -21,7 +21,7 @@
     - Bibliotekarz(id, login, password)
     - Admin(id, login, password)
 
-  4. Modelowana część świata:
+  ### Modelowana część świata:
     - Biblioteka
 
 # Wykonali
