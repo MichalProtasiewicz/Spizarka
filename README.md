@@ -6,9 +6,9 @@
 
 # Zakres projektu
   ### Aktorzy:
-    ⋅⋅* Uzytkownik,
-    ⋅⋅* Bibliotekarz,
-    ⋅⋅* Admin
+    * Uzytkownik,
+    ⋅⋅ Bibliotekarz,
+    ⋅⋅ Admin
 
   ### Funkcjonalności:
     ⋅⋅* Rezerwacja książek w bibliotece
@@ -22,8 +22,8 @@
     ⋅⋅*Admin(id, login, password)
 
   ### Modelowana część świata:
-    ⋅⋅*Biblioteka
+    ⋅⋅* Biblioteka
 
 # Wykonali
-  ⋅⋅*Michał Protasiewicz
-  ⋅⋅*Mateusz Sowiński
+  ⋅⋅* Michał Protasiewicz
+  ⋅⋅* Mateusz Sowiński
