@@ -6,7 +6,7 @@
 
 # Zakres projektu
   ### Aktorzy:
-    - Uzytkownik,
+    - Użytkownik,
     - Bibliotekarz,
     - Admin
 
