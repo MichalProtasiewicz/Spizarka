@@ -10,3 +10,10 @@ class User(models.Model):
   city = models.CharField(max_length=100)
   email = models.EmailField(max_length=100, unique=True)
   phone = models.CharField(max_length=100)
+
+class Order(models.Model):
+  id_user = models.ForeignKey(User, on_delete=models.CASCADE)
+  id_user = models.ForeignKey(Book, on_delete=models.CASCADE)
+  data_order = 
+  data_receipt =
+  data_return =
