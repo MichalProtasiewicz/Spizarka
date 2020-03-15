@@ -11,18 +11,18 @@
     - Admin
 
   ## Funkcjonalności:
-  ### Gość:
+  #### Gość:
     - Rejestracja użytkownika
     - Wyświetlanie filmów
     - Wyszukiwanie filmów
     - Wyświetlanie filmów w zależności od kategorii
-  ### Użytkownik:
+  #### Użytkownik:
     - Logowanie
     - Wylogowanie
     - Możliwość oceniania filmów
     - Możliwość pisania komentarzy do filmów, jak i usuwanie oraz edytowanie
     - Możliwość zmiany avatara
-  ### Admin:
+  #### Admin:
     - Usuwanie i edytowanie wszystkich komentarzy
     - Zarządzanie użytkownikami
 

@@ -5,34 +5,34 @@
   Przeglądanie i ocenianie filmów.
 
 # Zakres projektu
-  ### Aktorzy:
+  ## Aktorzy:
     - Gość,
     - Użytkownik,
     - Admin
 
-  ### Funkcjonalności:
-  Gość:
+  ## Funkcjonalności:
+  #### Gość:
     - Rejestracja użytkownika
     - Wyświetlanie filmów
     - Wyszukiwanie filmów
     - Wyświetlanie filmów w zależności od kategorii
-  Użytkownik:
+  #### Użytkownik:
     - Logowanie
     - Wylogowanie
     - Możliwość oceniania filmów
     - Możliwość pisania komentarzy do filmów, jak i usuwanie oraz edytowanie
     - Możliwość zmiany avatara
-  Admin:
+  #### Admin:
     - Usuwanie i edytowanie wszystkich komentarzy
     - Zarządzanie użytkownikami
 
-  ### Opis bazy:
+  ## Opis bazy:
     - Film (id, categoryId, name, description, votes, rate)
     - User (id, email, login, password, permissions)
     - Comments (id, filmId, userId, commentText, createdAt, updatedAt)
     - Category (id, name)
 
-  ### Modelowana część świata:
+  ## Modelowana część świata:
     - Filmy
 
 # Wykonali
