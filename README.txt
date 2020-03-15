@@ -1,29 +1,40 @@
-# BookBoking
+# StarMovie
   Django + React application.
 
 # Cel aplikacji
-  Wypożyczalnia książek.
+  Przeglądanie i ocenianie filmów.
 
 # Zakres projektu
-  Aktorzy:
-    Uzytkownik,
-    Bibliotekarz,
-    Admin
+  ### Aktorzy:
+    - Gość,
+    - Użytkownik,
+    - Admin
 
-  Funkcjonalności:
-    Rezerwacja książek w bibliotece
+  ### Funkcjonalności:
+  Gość:
+    - Rejestracja użytkownika
+    - Wyświetlanie filmów
+    - Wyszukiwanie filmów
+    - Wyświetlanie filmów w zależności od kategorii
+  Użytkownik:
+    - Logowanie
+    - Wylogowanie
+    - Możliwość oceniania filmów
+    - Możliwość pisania komentarzy do filmów, jak i usuwanie oraz edytowanie
+    - Możliwość zmiany avatara
+  Admin:
+    - Usuwanie i edytowanie wszystkich komentarzy
+    - Zarządzanie użytkownikami
 
-  Opis bazy:
-    User(id, login, haslo, imie, nazwisko, adres, kod_pocztowy, miasto, email, telefon)
-    Zamowienie(id, id_user, id_ksiazka, data_zamowienai, data_odbioru, data_zwrotu)
-    Kategoria(id, name)
-    Ksiazka(id, id_kategoria, isbn, tytul, autor, wydawnictwo, rok_wydania, opis)
-    Bibliotekarz(id, login, password)
-    Admin(id, login, password)
+  ### Opis bazy:
+    - Film (id, categoryId, name, description, votes, rate)
+    - User (id, email, login, password, permissions)
+    - Comments (id, filmId, userId, commentText, createdAt, updatedAt)
+    - Category (id, name)
 
-  Modelowana część świata:
-    Biblioteka
+  ### Modelowana część świata:
+    - Filmy
 
 # Wykonali
-  Michał Protasiewicz
-  Mateusz Sowiński
+  - Michał Protasiewicz
+  - Mateusz Sowiński
