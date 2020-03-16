@@ -35,6 +35,9 @@
   ## Modelowana część świata:
     - Filmy
 
+# Model bazy danych
+![db_schema](db_schema.png "Schemat bazy danych")
+
 # Wykonali
   - Michał Protasiewicz
   - Mateusz Sowiński
