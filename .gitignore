@@ -234,3 +234,4 @@ sketch
 
 # End of https://www.gitignore.io/api/react,django,pycharm,visualstudiocode
 .vscode/settings.json
+Zadania na ćwiczenia/.idea/workspace.xml
