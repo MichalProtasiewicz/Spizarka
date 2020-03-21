@@ -106,8 +106,17 @@ text = str(text)
 print(odTylu(text))
 
 
-# zad8
+# zad8 w pliku file_manager
+
 
 # zad9
+import file_manager
+file = file_manager.FileManager("plik.txt")
+print(file.read_file())
+print(file.update_file("Piszę nowy tekst w pliku"))
+print(file.read_file())
 
 # zad10
+import chuck_norris
+print(chuck_norris.Chuck())
+
