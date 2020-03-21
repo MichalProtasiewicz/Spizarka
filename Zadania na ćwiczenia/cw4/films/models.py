@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 
 class Category(models.Model):
@@ -20,9 +21,9 @@ class User(models.Model):
   permissions = models.FloatField(default = 1)
 
 
-class Comments(models.Model):
+class Comment(models.Model):
   filmId = models.ForeignKey(Film, on_delete=models.CASCADE)
   userId = models.ForeignKey(User, on_delete=models.CASCADE)
-  commentBody = models.TextField()
-  createdAt = models.DateField()
-  updatedAt = models.DateField()
+  content = models.TextField()
+  createdAt = datetime.now()
+  updatedAt = models.DateTimeField()
