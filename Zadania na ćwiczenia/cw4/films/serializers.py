@@ -1,10 +1,11 @@
 from rest_framework import serializers
 from .models import Film, Category, User, Comment
 
-
+#OLD FILMSERIALIZER
+'''
 class FilmSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100)
-    description = serializers.TextField()
+    description = serializers.CharField()
     votes = serializers.FloatField(default=0)
     rate = serializers.FloatField(default=0)
 
@@ -31,7 +32,12 @@ class FilmSerializer(serializers.Serializer):
         instance.votes = validated_data.get('votes', instance.votes)
         instance.rate = validated_data.get('rate', instance.rate)
         return instance
+'''
 
+class FilmSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Film
+    fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
   class Meta:
