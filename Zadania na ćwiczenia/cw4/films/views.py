@@ -6,7 +6,7 @@ from rest_framework import generics, permissions
 class FilmList(generics.ListCreateAPIView):
     queryset = Film.objects.all()
     permission_classes = [
-        permissions.IsAuthenticated
+        permissions.AllowAny
     ]
     serializer_class = FilmSerializer
 
