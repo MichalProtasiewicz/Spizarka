@@ -10,15 +10,15 @@ class Film(models.Model):
   categoryId = models.ForeignKey(Category, on_delete=models.CASCADE)
   name = models.CharField(max_length=100)
   description = models.TextField()
-  votes = models.FloatField(default = 0)
-  rate = models.FloatField(default = 0)
+  votes = models.FloatField(default=0)
+  rate = models.FloatField(default=0)
 
 
 class User(models.Model):
   email = models.EmailField()
   login = models.CharField(max_length=100)
   password = models.CharField(max_length=100)
-  permissions = models.FloatField(default = 1)
+  permissions = models.FloatField(default=1)
 
 
 class Comment(models.Model):
