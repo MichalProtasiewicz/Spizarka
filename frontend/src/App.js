@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class App extends Component {
   state = {
-    todos: []
+    todos: [],
   };
 
   async componentDidMount() {
@@ -10,7 +10,7 @@ class App extends Component {
       const res = await fetch('http://127.0.0.1:8000/api/films'); // fetching the data from api, before the page loaded
       const todos = await res.json();
       this.setState({
-        todos
+        todos,
       });
     } catch (e) {
       console.log(e);
@@ -20,7 +20,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        {this.state.todos.map(item => (
+        {this.state.todos.map((item) => (
           <div key={item.id}>
             <h1>{item.title}</h1>
             <span>{item.description}</span>
