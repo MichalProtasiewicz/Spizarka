@@ -1,19 +1,16 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import GlobalStyle from 'theme/GlobalStyle';
-import { theme } from 'theme/mainTheme';
-import List from 'components/organisms/toRework';
-import Button from 'components/atoms/Button/Button';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { routes } from 'routes';
+import MainTemplate from 'templates/MainTemplate';
+import MainPage from 'views/MainPage';
 
 const Root = () => (
-  <div>
-    <GlobalStyle />
-    <ThemeProvider theme={theme}>
-      <>
-        <List />
-        <Button>Hello</Button>
-      </>
-    </ThemeProvider>
-  </div>
+  <BrowserRouter>
+    <MainTemplate>
+      <Switch>
+        <Route exact path={routes.home} component={MainPage} />
+      </Switch>
+    </MainTemplate>
+  </BrowserRouter>
 );
 export default Root;
