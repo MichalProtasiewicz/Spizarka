@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class App extends Component {
+class List extends Component {
   state = {
     todos: [],
   };
@@ -31,4 +31,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default List;
