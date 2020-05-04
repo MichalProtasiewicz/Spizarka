@@ -15,14 +15,11 @@ const StyledWrapper = styled.div`
 
 const Card = () => (
   <StyledWrapper>
-    <Heading>
-      Name <button>X</button>
-    </Heading>
-    <div>
-      <button>-</button>
-      <div>3</div>
-      <button>+</button>
-    </div>
+    <Heading>Name</Heading>
+    <button>X</button>
+    <button>-</button>
+    <div>3</div>
+    <button>+</button>
   </StyledWrapper>
 );
 
