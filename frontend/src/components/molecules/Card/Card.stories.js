@@ -3,5 +3,5 @@ import { storiesOf } from '@storybook/react';
 import Card from './Card';
 
 storiesOf('Molecules/Card', module)
-  .add('ProductItem', () => <Card />)
+  .add('Card', () => <Card />)
 
