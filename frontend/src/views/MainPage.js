@@ -1,7 +1,5 @@
 import React from 'react';
-import List from 'components/organisms/toRework';
-import Button from 'components/atoms/Button/Button';
-import Logo from 'components/atoms/Logo/Logo';
+import Navbar from 'components/organisms/Navbar/Navbar';
 import CardsList from 'components/organisms/CardsList/CardsList';
 
 const Cards = [
@@ -81,9 +79,7 @@ const Cards = [
 
 const MainPage = () => (
   <>
-    <Logo />
-    <List />
-    <Button>Hello</Button>
+    <Navbar />
     <CardsList items={Cards}/>
   </>
 );

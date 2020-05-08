@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { routes } from 'routes';
 import logoIcon from 'assets/logo.svg';
 
 const StyledLogoLink = styled(NavLink)`
@@ -14,6 +15,6 @@ const StyledLogoLink = styled(NavLink)`
   border: none;
 `;
 
-const Logo = () => <StyledLogoLink to="/" />;
+const Logo = () => <StyledLogoLink to={routes.home} />;
 
 export default Logo;
