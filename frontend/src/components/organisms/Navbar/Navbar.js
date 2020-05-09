@@ -23,6 +23,10 @@ const StyledLinksList = styled.ul`
   padding: 0;
   list-style: none;
   display: flex;
+
+  &.active{
+    background-color: white;
+  }
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -36,10 +40,14 @@ const Navbar = () => (
     <Logo />
     <StyledLinksList>
       <li>
-        <StyledNavLink to={routes.home}>Lista Produktów</StyledNavLink>
+        <StyledNavLink to={routes.products} activeclass="active">
+          Lista Produktów
+        </StyledNavLink>
       </li>
       <li>
-        <StyledNavLink to={routes.shopping}>Lista Zakupów</StyledNavLink>
+        <StyledNavLink to={routes.shopping} activeclass="active">
+          Lista Zakupów
+        </StyledNavLink>
       </li>
     </StyledLinksList>
   </NavbarWrapper>

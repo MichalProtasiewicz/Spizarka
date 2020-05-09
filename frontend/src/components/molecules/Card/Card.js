@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { removeItem as removeItemAction } from 'actions';
 import CloseIcon from '@material-ui/icons/Close';
 import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
@@ -42,7 +44,7 @@ const StyledCloseIcon = styled(CloseIcon)`
   border: 2px solid black;
 `;
 
-const Card = ({ name, quantity, minQuantity }) => {
+const Card = ({ id, name, quantity, minQuantity, removeItem }) => {
   const [count, setCount] = useState(quantity);
 
   const IncrementQuantity = () => {
@@ -57,7 +59,7 @@ const Card = ({ name, quantity, minQuantity }) => {
   return (
     <StyledWrapper>
       <StyledSpan>{name}</StyledSpan>
-      <StyledCloseIcon fontSize="large" />
+      <StyledCloseIcon fontSize="large" onClick={() => removeItem(id)} />
       <QuantityWrapper>
         <MinusIcon style={{ fontSize: 40, color: 'red' }} onClick={() => DecreaseQuantity()} />
         {count < minQuantity ? (
@@ -74,9 +76,11 @@ const Card = ({ name, quantity, minQuantity }) => {
 };
 
 Card.propTypes = {
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   quantity: PropTypes.number,
   minQuantity: PropTypes.number,
+  removeItem: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {
@@ -84,4 +88,8 @@ Card.defaultProps = {
   minQuantity: 0,
 };
 
-export default Card;
+const mapDispatchToProps = (dispatch) => ({
+  removeItem: (id) => dispatch(removeItemAction(id)),
+});
+
+export default connect(null, mapDispatchToProps)(Card);
