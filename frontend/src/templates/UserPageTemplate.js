@@ -34,7 +34,7 @@ const UserPageTemplate = ({ children }) => {
       <Navbar />
       {children}
       <StyledButtonIcon onClick={toggleNewItemBar} icon={plusIcon} />
-      <NewItemBar isVisible={isNewItemBarVisible}/>
+      <NewItemBar isVisible={isNewItemBarVisible} handleClose={toggleNewItemBar}/>
     </StyledWrapper>
   );
 };

@@ -76,7 +76,7 @@ const Card = ({ id, name, quantity, minQuantity, removeItem }) => {
 };
 
 Card.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   quantity: PropTypes.number,
   minQuantity: PropTypes.number,
