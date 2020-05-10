@@ -23,16 +23,16 @@ const StyledLinksList = styled.ul`
   padding: 0;
   list-style: none;
   display: flex;
-
-  &.active {
-    background-color: ${({ theme }) => theme.white};
-  }
 `;
 
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
-  color: ${({ theme }) => theme.black};
-  padding: 2vw;
+  color: ${({ theme }) => theme.white};
+  font-size: ${({ theme }) => theme.fontSize.l};
+  padding: 12px;
+  margin: 15px;
+  border-left: 1px ${({ theme }) => theme.raisinBlack} solid;
+  border-right: 1px ${({ theme }) => theme.raisinBlack} solid;
 `;
 
 const Navbar = () => (
