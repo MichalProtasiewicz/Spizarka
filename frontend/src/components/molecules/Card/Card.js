@@ -39,9 +39,9 @@ const StyledCloseIcon = styled(CloseIcon)`
   left: 190px;
   top: -10px;
   border-radius: 6px;
-  color: red;
-  background-color: white;
-  border: 2px solid black;
+  color: ${({ theme }) => theme.danger};
+  background-color: ${({ theme }) => theme.white};
+  border: 2px solid ${({ theme }) => theme.black};
 `;
 
 const Card = ({ id, name, quantity, minQuantity, removeItem }) => {
@@ -59,17 +59,30 @@ const Card = ({ id, name, quantity, minQuantity, removeItem }) => {
   return (
     <StyledWrapper>
       <StyledSpan>{name}</StyledSpan>
-      <StyledCloseIcon fontSize="large" onClick={() => removeItem(id)} />
+      <StyledCloseIcon
+        fontSize="large"
+        onClick={() => {
+          if (window.confirm('Usunąć produkt z listy?')) {
+            removeItem(id);
+          }
+        }}
+      />
       <QuantityWrapper>
-        <MinusIcon style={{ fontSize: 40, color: 'red' }} onClick={() => DecreaseQuantity()} />
+        <MinusIcon
+          style={{ fontSize: 40, color: 'hsl(0, 100%, 63%)' }}
+          onClick={() => DecreaseQuantity()}
+        />
         {count < minQuantity ? (
-          <StyledSpan big style={{ color: 'red' }}>
+          <StyledSpan big style={{ color: 'hsl(0, 100%, 63%)' }}>
             {count}
           </StyledSpan>
         ) : (
           <StyledSpan big>{count}</StyledSpan>
         )}
-        <PlusIcon style={{ fontSize: 40, color: 'green' }} onClick={() => IncrementQuantity()} />
+        <PlusIcon
+          style={{ fontSize: 40, color: 'hsl(144, 100%, 39%)' }}
+          onClick={() => IncrementQuantity()}
+        />
       </QuantityWrapper>
     </StyledWrapper>
   );

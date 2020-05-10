@@ -80,13 +80,11 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.REMOVE_ITEM:
-      console.log(action.payload.id);
       return {
         ...state,
         products: [...state.products.filter((item) => item.id !== action.payload.id)],
       };
     case actionTypes.ADD_ITEM:
-      console.log(action.payload);
       return {
         ...state,
         products: [...state.products, action.payload.item],

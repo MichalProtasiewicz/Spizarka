@@ -4,10 +4,10 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: black;
+  color: ${({ theme }) => theme.white};
   text-decoration: none;
   padding: 0;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.blue};
   width: 220px;
   height: 47px;
   border: none;

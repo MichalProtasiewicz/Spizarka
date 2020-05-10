@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { addItem as addItemAction } from 'actions';
 
 const StyledWrapper = styled.div`
-  border-left: 10px solid black;
+  border-left: 10px solid ${({ theme }) => theme.blue};
   z-index: 9999;
   position: fixed;
   display: flex;
@@ -20,7 +20,7 @@ const StyledWrapper = styled.div`
   height: 100vh;
   width: 550px;
   background-color: white;
-  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
   transform: translate(${({ isVisible }) => (isVisible ? '0' : '100%')});
   transition: transform 0.25s ease-in-out;
 `;
@@ -28,10 +28,16 @@ const StyledWrapper = styled.div`
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
 `;
 
 const StyledInput = styled(Input)`
   margin-bottom: 30px;
+`;
+
+const StyledButton = styled(Button)`
+  align-self: center;
+  margin-top: 40px;
 `;
 
 const NewItemBar = ({ isVisible, addItem, handleClose }) => (
@@ -82,7 +88,7 @@ const NewItemBar = ({ isVisible, addItem, handleClose }) => (
             onBlur={handleBlur}
             value={values.minQuantity}
           />
-          <Button type="submit">Add product</Button>
+          <StyledButton type="submit">Add product</StyledButton>
         </StyledForm>
       )}
     </Formik>

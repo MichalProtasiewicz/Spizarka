@@ -10,11 +10,11 @@ const NavbarWrapper = styled.div`
   top: 0;
   padding: 25px 0;
   width: 100vw;
-  height: 70px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: yellow;
+  background-color: ${({theme}) => theme.blue};
   z-index: 1;
 `;
 
@@ -24,14 +24,14 @@ const StyledLinksList = styled.ul`
   list-style: none;
   display: flex;
 
-  &.active{
-    background-color: white;
+  &.active {
+    background-color: ${({ theme }) => theme.white};
   }
 `;
 
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
-  color: black;
+  color: ${({ theme }) => theme.black};
   padding: 2vw;
 `;
 

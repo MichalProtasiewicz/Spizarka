@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Navbar from 'components/organisms/Navbar/Navbar';
 import NewItemBar from 'components/organisms/NewItemBar/NewItemBar';
 import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
-import plusIcon from 'assets/icons/plus.svg';
+import PlusIcon from '@material-ui/icons/Add';
 
 const StyledWrapper = styled.div`
   position: relative;
@@ -15,14 +15,11 @@ const StyledButtonIcon = styled(ButtonIcon)`
   position: fixed;
   bottom: 40px;
   right: 40px;
-  background-color: yellow;
-  background-size: 35%;
-  border-radius: 50px;
+
   z-index: 10000;
 `;
 
 const UserPageTemplate = ({ children }) => {
-
   const [isNewItemBarVisible, setIsNewItemBarVisible] = useState(false);
 
   const toggleNewItemBar = () => {
@@ -33,8 +30,10 @@ const UserPageTemplate = ({ children }) => {
     <StyledWrapper>
       <Navbar />
       {children}
-      <StyledButtonIcon onClick={toggleNewItemBar} icon={plusIcon} />
-      <NewItemBar isVisible={isNewItemBarVisible} handleClose={toggleNewItemBar}/>
+      <StyledButtonIcon onClick={toggleNewItemBar}>
+        <PlusIcon style={{ fontSize: 40, color: 'hsl(156, 100%, 99%)' }} />
+      </StyledButtonIcon>
+      <NewItemBar isVisible={isNewItemBarVisible} handleClose={toggleNewItemBar} />
     </StyledWrapper>
   );
 };
