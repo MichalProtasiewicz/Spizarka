@@ -50,6 +50,7 @@ const NewItemBar = ({ isVisible, addItem, handleClose }) => (
             type="text"
             name="name"
             placeholder="name"
+            autocomplete="off"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.name}
@@ -58,6 +59,7 @@ const NewItemBar = ({ isVisible, addItem, handleClose }) => (
             type="text"
             name="category"
             placeholder="category"
+            autocomplete="off"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.category}
@@ -66,6 +68,7 @@ const NewItemBar = ({ isVisible, addItem, handleClose }) => (
             type="number"
             name="quantity"
             placeholder="quantity"
+            autocomplete="off"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.quantity}
@@ -74,6 +77,7 @@ const NewItemBar = ({ isVisible, addItem, handleClose }) => (
             type="number"
             name="minQuantity"
             placeholder="min quantity"
+            autocomplete="off"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.minQuantity}
@@ -95,7 +99,7 @@ NewItemBar.defaultProps = {
   isVisible: false,
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   addItem: (itemContent) => dispatch(addItemAction(itemContent)),
 });
 
