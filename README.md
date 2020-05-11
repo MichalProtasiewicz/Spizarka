@@ -1,8 +1,8 @@
-# StarMovie
+# Spizarka
   Django + React application.
 
 # Cel aplikacji
-  Przeglądanie i ocenianie filmów.
+  Zdarzyło Ci się pójść do sklepu i kupić mąkę, mimo, że czekają na Ciebie trzy nieotwarte paczki w domu? Żeby walczyć z nadmiernym magazynowaniem żywności stworzono aplikację, dzięki której w łatwy sposób zapiszesz stan swojej domowej spiżarni, aby potem w sklepie nie mieć wątpliwości co faktycznie Ci się przyda.
 
 # Zakres projektu
   ## Aktorzy:
@@ -13,27 +13,39 @@
   ## Funkcjonalności:
   #### Gość:
     - Rejestracja użytkownika
-    - Wyświetlanie filmów
-    - Wyszukiwanie filmów
-    - Wyświetlanie filmów w zależności od kategorii
   #### Użytkownik:
     - Logowanie
-    - Wylogowanie
-    - Możliwość oceniania filmów
-    - Możliwość pisania komentarzy do filmów, jak i usuwanie oraz edytowanie
-    - Możliwość zmiany avatara
-  #### Admin:
-    - Usuwanie i edytowanie wszystkich komentarzy
-    - Zarządzanie użytkownikami
+    - Wyświetlanie listy produktów
+    - Podgląd generowanej listy zakupów w zależności od obecnego stanu spiżarni
+    - Możliwość dodawania nowych produktów
+    - Możliwość edytowania wybranego produktu
+    - Możliwość usuwania wybranego produktu
 
   ## Opis bazy:
-    - Film (id, categoryId, name, description, votes, rate)
-    - User (id, email, login, password, permissions)
-    - Comments (id, filmId, userId, commentText, createdAt, updatedAt)
+    - Product (id, userId, name, categoryId, quantity, minQuantity)
+    - User (id, email, password)
     - Category (id, name)
 
   ## Modelowana część świata:
-    - Filmy
+    - Robienie zakupów i zarządzanie aktualnym stanem
+
+  ## Widoki:
+  #### Widok logowania:
+    - Użytkownik loguje sie na swoje konto użytkownika ze swoją listą produktów
+  #### Widok rejestracji:
+    - Użytkownik aby uzyskać kożystania z aplikacji, ma możliwość rejestracji
+  #### Widok główny:
+    - Każdy element można łatwo usunąć z listy, alert przy usuwaniu
+    - Stan produktów ma wartość numeryczną i można go w wygodny sposób modyfikować
+  #### Widok edycji:
+    - Zmiana nazwy i kategorii
+    - Możliwość usunięcia z listy
+    - Zmiana ilości stanu i minimalnego stanu listy produktów
+  #### Widok dodawania:
+    - Dodanie nowego produktu po wypełnieniu formularza
+  #### Widok listy zakupów:
+    - Lista zakupów generuje się automatycznie jeśli poziom jakiegoś produktu przekroczy określone minimum
+
 
 # Model bazy danych
 ![db_schema](db_schema.png "Schemat bazy danych")
