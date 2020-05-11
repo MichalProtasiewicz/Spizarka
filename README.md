@@ -7,8 +7,7 @@
 # Zakres projektu
   ## Aktorzy:
     - Gość,
-    - Użytkownik,
-    - Admin
+    - Użytkownik
 
   ## Funkcjonalności:
   #### Gość:
