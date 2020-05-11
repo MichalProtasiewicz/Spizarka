@@ -56,7 +56,7 @@ const NewItemBar = ({ isVisible, addItem, handleClose }) => (
             type="text"
             name="name"
             placeholder="name"
-            autocomplete="off"
+            autoComplete="off"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.name}
@@ -65,7 +65,7 @@ const NewItemBar = ({ isVisible, addItem, handleClose }) => (
             type="text"
             name="category"
             placeholder="category"
-            autocomplete="off"
+            autoComplete="off"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.category}
@@ -74,7 +74,7 @@ const NewItemBar = ({ isVisible, addItem, handleClose }) => (
             type="number"
             name="quantity"
             placeholder="quantity"
-            autocomplete="off"
+            autoComplete="off"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.quantity}
@@ -83,7 +83,7 @@ const NewItemBar = ({ isVisible, addItem, handleClose }) => (
             type="number"
             name="minQuantity"
             placeholder="min quantity"
-            autocomplete="off"
+            autoComplete="off"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.minQuantity}
