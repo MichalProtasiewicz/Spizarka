@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { removeItem as removeItemAction } from 'actions';
+import {
+  removeItem as removeItemAction,
+  changeItemQuantity as changeItemQuantityAction,
+} from 'actions';
 import CloseIcon from '@material-ui/icons/Close';
 import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+import Modal from 'components/organisms/Modal/Modal';
 
 const StyledWrapper = styled.div`
   width: 200px;
@@ -44,16 +49,32 @@ const StyledCloseIcon = styled(CloseIcon)`
   border: 2px solid ${({ theme }) => theme.black};
 `;
 
-const Card = ({ id, name, quantity, minQuantity, removeItem }) => {
+const StyledEdit = styled(EditIcon)`
+  position: absolute;
+  left: 190px;
+  top: 20px;
+  border-radius: 6px;
+  background-color: ${({ theme }) => theme.white};
+  border: 2px solid ${({ theme }) => theme.black};
+`;
+
+const Card = ({ id, name, category, quantity, minQuantity, removeItem, changeItemQuantity }) => {
   const [count, setCount] = useState(quantity);
+  const [isEditItemBarVisible, setIsEditItemBarVisible] = useState(false);
 
   const IncrementQuantity = () => {
+    changeItemQuantity(id, quantity + 1);
     return setCount(count + 1);
   };
   const DecreaseQuantity = () => {
-    if (count > 0) return setCount(count - 1);
-
+    if (count > 0) {
+      changeItemQuantity(id, quantity - 1);
+      return setCount(count - 1);
+    }
     return null;
+  };
+  const toggleEditItemBar = () => {
+    return setIsEditItemBarVisible(!isEditItemBarVisible);
   };
 
   return (
@@ -67,6 +88,7 @@ const Card = ({ id, name, quantity, minQuantity, removeItem }) => {
           }
         }}
       />
+      <StyledEdit fontSize="large" onClick={toggleEditItemBar} />
       <QuantityWrapper>
         <MinusIcon
           style={{ fontSize: 40, color: 'hsl(0, 100%, 63%)' }}
@@ -84,6 +106,7 @@ const Card = ({ id, name, quantity, minQuantity, removeItem }) => {
           onClick={() => IncrementQuantity()}
         />
       </QuantityWrapper>
+      <Modal isVisible={isEditItemBarVisible} handleClose={toggleEditItemBar} />
     </StyledWrapper>
   );
 };
@@ -91,9 +114,11 @@ const Card = ({ id, name, quantity, minQuantity, removeItem }) => {
 Card.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   quantity: PropTypes.number,
   minQuantity: PropTypes.number,
   removeItem: PropTypes.func.isRequired,
+  changeItemQuantity: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {
@@ -103,6 +128,7 @@ Card.defaultProps = {
 
 const mapDispatchToProps = (dispatch) => ({
   removeItem: (id) => dispatch(removeItemAction(id)),
+  changeItemQuantity: (id, quantity) => dispatch(changeItemQuantityAction(id, quantity)),
 });
 
 export default connect(null, mapDispatchToProps)(Card);

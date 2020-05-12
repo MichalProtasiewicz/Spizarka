@@ -11,7 +11,7 @@ export const removeItem = (id) => {
 
 export const addItem = (itemContent) => {
   const getId = () => `_${Math.random().toString(36).substr(2, 9)}`;
-  
+
   return {
     type: actionTypes.ADD_ITEM,
     payload: {
@@ -22,3 +22,26 @@ export const addItem = (itemContent) => {
     },
   };
 };
+
+export const editItem = (id, itemContent) => {
+  return {
+    type: actionTypes.EDIT_ITEM,
+    payload: {
+      item: {
+        id,
+        ...itemContent,
+      },
+    },
+  };
+};
+
+export const changeItemQuantity = (id, itemQuantity) => {
+  return {
+    type: actionTypes.CHANGE_ITEM_QUANTITY,
+    payload: {
+      id,
+      itemQuantity,
+    },
+  };
+};
+
