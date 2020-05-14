@@ -62,6 +62,14 @@ const Card = ({ id, name, category, quantity, minQuantity, removeItem, changeIte
   const [count, setCount] = useState(quantity);
   const [isEditItemBarVisible, setIsEditItemBarVisible] = useState(false);
 
+  const product = {
+    id,
+    name,
+    category,
+    quantity,
+    minQuantity,
+  }
+
   const IncrementQuantity = () => {
     changeItemQuantity(id, quantity + 1);
     return setCount(count + 1);
@@ -106,7 +114,7 @@ const Card = ({ id, name, category, quantity, minQuantity, removeItem, changeIte
           onClick={() => IncrementQuantity()}
         />
       </QuantityWrapper>
-      <Modal isVisible={isEditItemBarVisible} handleClose={toggleEditItemBar} />
+      <Modal isVisible={isEditItemBarVisible} handleClose={toggleEditItemBar} editedProduct={product}/>
     </StyledWrapper>
   );
 };

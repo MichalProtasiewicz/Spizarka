@@ -6,7 +6,7 @@ import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import Heading from 'components/atoms/Heading/Heading';
 import { connect } from 'react-redux';
-import { addItem as addItemAction } from 'actions';
+import { addItem as addItemAction, editItem as editItemAction } from 'actions';
 
 const StyledWrapper = styled.div`
   border-left: 10px solid ${({ theme }) => theme.blue};
@@ -40,16 +40,18 @@ const StyledButton = styled(Button)`
   margin-top: 40px;
 `;
 
-const Modal = ({ isVisible, addItem, handleClose }) => {
-
+const Modal = ({ isVisible, addItem, handleClose, editedProduct, editItem }) => {
   return (
     <StyledWrapper isVisible={isVisible}>
-      <Heading big>Add new product</Heading>
-
+      <Heading big>{editedProduct ? 'Edytuj' : 'Dodaj nowy'} produkt</Heading>
       <Formik
-        initialValues={{ name: '', category: '', quantity: 0, minQuantity: 0 }}
+        initialValues={{ ...editedProduct }}
         onSubmit={(values) => {
-          addItem(values);
+          if (editedProduct) {
+            editItem(values);
+          } else {
+            addItem(values);
+          }
           handleClose();
         }}
       >
@@ -91,7 +93,12 @@ const Modal = ({ isVisible, addItem, handleClose }) => {
               onBlur={handleBlur}
               value={values.minQuantity}
             />
-            <StyledButton type="submit">Add product</StyledButton>
+            <StyledInput
+              type="hidden"
+              name="id"
+              value={values.id}
+            />
+            <StyledButton type="submit">{editedProduct ? 'Edytuj' : 'Dodaj'} produkt</StyledButton>
           </StyledForm>
         )}
       </Formik>
@@ -103,14 +110,18 @@ Modal.propTypes = {
   isVisible: PropTypes.bool,
   addItem: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
+  editedProduct: PropTypes.object,
+  editItem: PropTypes.func.isRequired,
 };
 
 Modal.defaultProps = {
   isVisible: false,
+  editedProduct: null,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (itemContent) => dispatch(addItemAction(itemContent)),
+  editItem: (itemContent) => dispatch(editItemAction(itemContent))
 });
 
 export default connect(null, mapDispatchToProps)(Modal);

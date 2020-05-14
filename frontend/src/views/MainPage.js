@@ -12,8 +12,10 @@ const StyledHeading = styled(Heading)`
 
 const MainPage = ({ products }) => (
   <UserPageTemplate>
+    <>
     <StyledHeading big>Lista produktów</StyledHeading>
     <CardsList items={products} />
+    </>
   </UserPageTemplate>
 );
 

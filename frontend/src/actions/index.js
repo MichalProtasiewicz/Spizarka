@@ -23,12 +23,12 @@ export const addItem = (itemContent) => {
   };
 };
 
-export const editItem = (id, itemContent) => {
+export const editItem = ( itemContent) => {
   return {
     type: actionTypes.EDIT_ITEM,
     payload: {
       item: {
-        id,
+ 
         ...itemContent,
       },
     },
