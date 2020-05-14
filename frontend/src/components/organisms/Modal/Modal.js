@@ -40,12 +40,18 @@ const StyledButton = styled(Button)`
   margin-top: 40px;
 `;
 
+
+
 const Modal = ({ isVisible, addItem, handleClose, editedProduct, editItem }) => {
+  let item = { name: '', category: '', quantity: '', minQuantity: '' };
+  if(editedProduct){
+    item = editedProduct
+  }
   return (
     <StyledWrapper isVisible={isVisible}>
       <Heading big>{editedProduct ? 'Edytuj' : 'Dodaj nowy'} produkt</Heading>
       <Formik
-        initialValues={{ ...editedProduct }}
+        initialValues={{ ...item }}
         onSubmit={(values) => {
           if (editedProduct) {
             editItem(values);
@@ -93,11 +99,6 @@ const Modal = ({ isVisible, addItem, handleClose, editedProduct, editItem }) => 
               onBlur={handleBlur}
               value={values.minQuantity}
             />
-            <StyledInput
-              type="hidden"
-              name="id"
-              value={values.id}
-            />
             <StyledButton type="submit">{editedProduct ? 'Edytuj' : 'Dodaj'} produkt</StyledButton>
           </StyledForm>
         )}
@@ -121,7 +122,7 @@ Modal.defaultProps = {
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (itemContent) => dispatch(addItemAction(itemContent)),
-  editItem: (itemContent) => dispatch(editItemAction(itemContent))
+  editItem: (itemContent) => dispatch(editItemAction(itemContent)),
 });
 
 export default connect(null, mapDispatchToProps)(Modal);
