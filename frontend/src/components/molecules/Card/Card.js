@@ -10,7 +10,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
-import Modal from 'components/organisms/Modal/Modal';
+import withContext from 'hoc/withContext';
 
 const StyledWrapper = styled.div`
   width: 200px;
@@ -58,17 +58,8 @@ const StyledEdit = styled(EditIcon)`
   border: 2px solid ${({ theme }) => theme.black};
 `;
 
-const Card = ({ id, name, category, quantity, minQuantity, removeItem, changeItemQuantity }) => {
+const Card = ({ id, name, category, quantity, minQuantity, removeItem, modalContext, changeItemQuantity }) => {
   const [count, setCount] = useState(quantity);
-  const [isEditItemBarVisible, setIsEditItemBarVisible] = useState(false);
-
-  const product = {
-    id,
-    name,
-    category,
-    quantity,
-    minQuantity,
-  }
 
   const IncrementQuantity = () => {
     changeItemQuantity(id, quantity + 1);
@@ -80,9 +71,6 @@ const Card = ({ id, name, category, quantity, minQuantity, removeItem, changeIte
       return setCount(count - 1);
     }
     return null;
-  };
-  const toggleEditItemBar = () => {
-    return setIsEditItemBarVisible(!isEditItemBarVisible);
   };
 
   return (
@@ -96,7 +84,7 @@ const Card = ({ id, name, category, quantity, minQuantity, removeItem, changeIte
           }
         }}
       />
-      <StyledEdit fontSize="large" onClick={toggleEditItemBar} />
+      <StyledEdit fontSize="large" onClick={modalContext} />
       <QuantityWrapper>
         <MinusIcon
           style={{ fontSize: 40, color: 'hsl(0, 100%, 63%)' }}
@@ -114,7 +102,6 @@ const Card = ({ id, name, category, quantity, minQuantity, removeItem, changeIte
           onClick={() => IncrementQuantity()}
         />
       </QuantityWrapper>
-      <Modal isVisible={isEditItemBarVisible} handleClose={toggleEditItemBar} editedProduct={product}/>
     </StyledWrapper>
   );
 };
@@ -127,6 +114,7 @@ Card.propTypes = {
   minQuantity: PropTypes.number,
   removeItem: PropTypes.func.isRequired,
   changeItemQuantity: PropTypes.func.isRequired,
+  modalContext: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {
@@ -139,4 +127,4 @@ const mapDispatchToProps = (dispatch) => ({
   changeItemQuantity: (id, quantity) => dispatch(changeItemQuantityAction(id, quantity)),
 });
 
-export default connect(null, mapDispatchToProps)(Card);
+export default withContext(connect(null, mapDispatchToProps)(Card));

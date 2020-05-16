@@ -13,3 +13,4 @@ const ShopListPage = () => (
   </UserPageTemplate>
 );
 export default ShopListPage;
+
