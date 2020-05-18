@@ -30,9 +30,9 @@
 
   ## Widoki:
   #### Widok logowania:
-    - Użytkownik loguje sie na swoje konto użytkownika ze swoją listą produktów
+    - Użytkownik loguje sie na swoje konto
   #### Widok rejestracji:
-    - Użytkownik aby uzyskać kożystania z aplikacji, ma możliwość rejestracji
+    - Użytkownik rejestruje nowe konto
   #### Widok główny:
     - Każdy element można łatwo usunąć z listy, alert przy usuwaniu
     - Stan produktów ma wartość numeryczną i można go w wygodny sposób modyfikować
