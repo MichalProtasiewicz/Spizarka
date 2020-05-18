@@ -25,33 +25,43 @@ const StyledButtonIcon = styled(ButtonIcon)`
 
 const MainPage = ({ products }) => {
   const [isNewItemBarVisible, setIsNewItemBarVisible] = useState(false);
+  const [itemEdited, setItemEdited] = useState(null);
 
-/*  API CONTEXT itemEdited={product} // itemEdited=null     useContext??
-  const addItem = () => {
-    itemEdited: null,
-  }
 
-  const editItem = e => {
-    const id = e.target.value;
 
-    const itemEdited = products.filter(item => {
-      return item.id === id;
-    });
-  };
-*/
   const toggleNewItemBar = () => {
     return setIsNewItemBarVisible(!isNewItemBarVisible);
   };
+
+    const addItem = () => {
+      setItemEdited(null);
+      toggleNewItemBar();
+    };
+
+    const editItem = (e) => {
+      const id = e.target.value;
+      const itemEditedTmp = products.filter((item) => {
+        return item.id === id;
+      });
+      setItemEdited(itemEditedTmp[0]);
+      toggleNewItemBar();
+    };
+
+  const contextElements = {
+    editItem,
+    toggleNewItemBar,
+  };
+
   return (
     <UserPageTemplate>
-      <ModalContext.Provider value={toggleNewItemBar}>
+      <ModalContext.Provider value={contextElements}>
         <StyledHeading big>Lista produktów</StyledHeading>
         <CardsList items={products} />
-        <StyledButtonIcon onClick={toggleNewItemBar}>
+        <StyledButtonIcon onClick={addItem}>
           <PlusIcon style={{ fontSize: 40, color: 'hsl(156, 100%, 99%)' }} />
         </StyledButtonIcon>
         <Modal isVisible={isNewItemBarVisible}>
-          <ModalForm handleClose={toggleNewItemBar} />
+          <ModalForm handleClose={toggleNewItemBar} editedProduct={itemEdited} />
         </Modal>
       </ModalContext.Provider>
     </UserPageTemplate>

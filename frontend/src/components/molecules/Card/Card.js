@@ -9,7 +9,7 @@ import {
 import CloseIcon from '@material-ui/icons/Close';
 import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
+import EditIcon from 'assets/icons/edit.svg';
 import withContext from 'hoc/withContext';
 
 const StyledWrapper = styled.div`
@@ -49,16 +49,33 @@ const StyledCloseIcon = styled(CloseIcon)`
   border: 2px solid ${({ theme }) => theme.black};
 `;
 
-const StyledEdit = styled(EditIcon)`
+const StyledEditButton = styled.button`
   position: absolute;
   left: 190px;
   top: 20px;
   border-radius: 6px;
   background-color: ${({ theme }) => theme.white};
   border: 2px solid ${({ theme }) => theme.black};
+
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background-image: url(${ EditIcon });
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 75% 75%;
 `;
 
-const Card = ({ id, name, category, quantity, minQuantity, removeItem, modalContext, changeItemQuantity }) => {
+const Card = ({
+  id,
+  name,
+  category,
+  quantity,
+  minQuantity,
+  removeItem,
+  modalContext,
+  changeItemQuantity,
+}) => {
   const [count, setCount] = useState(quantity);
 
   const IncrementQuantity = () => {
@@ -84,7 +101,7 @@ const Card = ({ id, name, category, quantity, minQuantity, removeItem, modalCont
           }
         }}
       />
-      <StyledEdit fontSize="large" onClick={modalContext} />
+      <StyledEditButton addEventListener onClick={modalContext.editItem} value={id} />
       <QuantityWrapper>
         <MinusIcon
           style={{ fontSize: 40, color: 'hsl(0, 100%, 63%)' }}
@@ -114,7 +131,7 @@ Card.propTypes = {
   minQuantity: PropTypes.number,
   removeItem: PropTypes.func.isRequired,
   changeItemQuantity: PropTypes.func.isRequired,
-  modalContext: PropTypes.func.isRequired,
+  modalContext: PropTypes.object.isRequired,
 };
 
 Card.defaultProps = {

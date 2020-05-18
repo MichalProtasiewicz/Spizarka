@@ -27,14 +27,17 @@ const StyledButton = styled(Button)`
 `;
 
 const ModalForm = ({ addItem, editedProduct, editItem, handleClose }) => {
+
   let item = { name: '', category: '', quantity: '', minQuantity: '' };
   if (editedProduct) {
     item = editedProduct;
   }
+
   return (
     <StyledWrapper>
       <Heading big>{editedProduct ? 'Edytuj' : 'Dodaj nowy'} produkt</Heading>
       <Formik
+        enableReinitialize
         initialValues={{ ...item }}
         onSubmit={(values) => {
           if (editedProduct) {
