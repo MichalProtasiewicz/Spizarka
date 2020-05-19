@@ -28,7 +28,7 @@ export const editItem = ( itemContent) => {
     type: actionTypes.EDIT_ITEM,
     payload: {
       item: {
- 
+
         ...itemContent,
       },
     },
@@ -44,4 +44,5 @@ export const changeItemQuantity = (id, itemQuantity) => {
     },
   };
 };
+
 
