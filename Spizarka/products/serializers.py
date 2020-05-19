@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from films.models import Film, Category
+from products.models import Product, Category
 
-class FilmSerializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
   class Meta:
-    model = Film
+    model = Product
     fields = '__all__'
 
 class CategorySerializer(serializers.ModelSerializer):

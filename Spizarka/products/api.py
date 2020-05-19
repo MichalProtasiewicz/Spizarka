@@ -1,14 +1,14 @@
-from films.models import Film
-from films.models import Category
+from products.models import Product
+from products.models import Category
 from rest_framework import viewsets, permissions
-from .serializers import FilmSerializer, CategorySerializer
+from .serializers import ProductSerializer, CategorySerializer
 
-class FilmViewSet(viewsets.ModelViewSet):
-  queryset = Film.objects.all()
+class ProductViewSet(viewsets.ModelViewSet):
+  queryset = Product.objects.all()
   permission_classes = [
     permissions.AllowAny
   ]
-  serializer_class = FilmSerializer
+  serializer_class = ProductSerializer
 
 class CategoryViewSet(viewsets.ModelViewSet):
   queryset = Category.objects.all()
