@@ -28,7 +28,7 @@ const StyledButton = styled(Button)`
 
 const ModalForm = ({ addItem, editedProduct, editItem, handleClose }) => {
 
-  let item = { name: '', category: '', quantity: '', minQuantity: '' };
+  let item = { name: '', category: '', quantity: 0, minQuantity: 0 };
   if (editedProduct) {
     item = editedProduct;
   }
