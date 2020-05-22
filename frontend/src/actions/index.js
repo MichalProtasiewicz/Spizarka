@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as actionTypes from 'actions/actionTypes';
 
 export const removeItem = (id) => {
@@ -44,8 +45,17 @@ export const changeItemQuantity = (id, itemQuantity) => {
   };
 };
 
-export const authenticate = () => {
-  return {
-    
-  };
+export const authenticate = (email, password) => (dispatch) => {
+  dispatch({ type: actionTypes.AUTH_REQUEST });
+
+  return axios
+    .post('http://127.0.0.1:8000/api/user/login', {
+      email,
+      password,
+    })
+    .then((payload) => dispatch({ type: actionTypes.AUTH_SUCCESS, payload }))
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: actionTypes.AUTH_FAILURE });
+    });
 };

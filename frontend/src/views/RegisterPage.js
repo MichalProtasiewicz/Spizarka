@@ -42,7 +42,7 @@ const RegisterPage = ({ userID, authenticate }) => (
     <Formik
       initialValues={{ email: '', password: '' }}
       onSubmit={({ email, password }) => {
-        authenticate(email, password);
+        console.log('hello');
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => {

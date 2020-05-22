@@ -91,15 +91,20 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.REMOVE_ITEM:
+    case actionTypes.AUTH_SUCCESS:
       return {
         ...state,
-        products: [...state.products.filter((item) => item.id !== action.payload.id)],
+        userID: action.payload.data._id,
       };
     case actionTypes.ADD_ITEM:
       return {
         ...state,
         products: [...state.products, action.payload.item],
+      };
+    case actionTypes.REMOVE_ITEM:
+      return {
+        ...state,
+        products: [...state.products.filter((item) => item.id !== action.payload.id)],
       };
     case actionTypes.EDIT_ITEM:
       return {
@@ -117,13 +122,15 @@ const rootReducer = (state = initialState, action) => {
     case actionTypes.CHANGE_ITEM_QUANTITY:
       return {
         ...state,
-        products: [...state.products.map((item) => {
-          if(item.id === action.payload.id){
-            item.quantity = action.payload.itemQuantity;
+        products: [
+          ...state.products.map((item) => {
+            if (item.id === action.payload.id) {
+              item.quantity = action.payload.itemQuantity;
+              return item;
+            }
             return item;
-          }
-          return item;
-        })],
+          }),
+        ],
       };
     default:
       return state;

@@ -93,7 +93,7 @@ const mapStateToProps = ({ userID = null }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  authenticate: (username, password) => dispatch(authenticateAction(username, password)),
+  authenticate: (email, password) => dispatch(authenticateAction(email, password)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
