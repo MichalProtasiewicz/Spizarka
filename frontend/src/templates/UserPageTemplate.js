@@ -11,7 +11,7 @@ import Navbar from 'components/organisms/Navbar/Navbar';
 
 const StyledWrapper = styled.div`
   position: relative;
-  padding: 0 50px;
+  padding: 100px 50px 50px 50px;
 `;
 
 const StyledButtonIcon = styled(ButtonIcon)`

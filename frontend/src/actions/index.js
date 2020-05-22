@@ -23,12 +23,11 @@ export const addItem = (itemContent) => {
   };
 };
 
-export const editItem = ( itemContent) => {
+export const editItem = (itemContent) => {
   return {
     type: actionTypes.EDIT_ITEM,
     payload: {
       item: {
-
         ...itemContent,
       },
     },
@@ -45,4 +44,8 @@ export const changeItemQuantity = (id, itemQuantity) => {
   };
 };
 
-
+export const authenticate = () => {
+  return {
+    
+  };
+};
