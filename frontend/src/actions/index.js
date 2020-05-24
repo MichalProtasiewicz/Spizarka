@@ -1,27 +1,39 @@
 import axios from 'axios';
 import * as actionTypes from 'actions/actionTypes';
 
-export const removeItem = (id) => {
-  return {
-    type: actionTypes.REMOVE_ITEM,
-    payload: {
-      id,
-    },
-  };
+export const removeItem = (id) => (dispatch) => {
+  dispatch({ type: actionTypes.REMOVE_ITEM_REQUEST });
+  axios
+    .delete(`http://127.0.0.1:8000/api/products/${id}`)
+    .then(() => {
+      dispatch({
+        type: actionTypes.REMOVE_ITEM_SUCCESS,
+        payload: {
+          id,
+        },
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: actionTypes.REMOVE_ITEM_FAILURE });
+    });
 };
 
-export const addItem = (itemContent) => {
-  const getId = () => `_${Math.random().toString(36).substr(2, 9)}`;
+export const addItem = (itemContent) => (dispatch, getState) => {
+  dispatch({ type: actionTypes.ADD_ITEM_REQUEST });
 
-  return {
-    type: actionTypes.ADD_ITEM,
-    payload: {
-      item: {
-        id: getId(),
-        ...itemContent,
-      },
-    },
-  };
+  return axios
+    .post(`http://127.0.0.1:8000/api/products/`, {
+      userID: getState().userID,
+      ...itemContent,
+    })
+    .then(({ data }) => {
+      dispatch({ type: actionTypes.ADD_ITEM_SUCCESS, payload: { data } });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: actionTypes.ADD_ITEM_FAILURE });
+    });
 };
 
 export const editItem = (itemContent) => {
@@ -53,9 +65,31 @@ export const authenticate = (email, password) => (dispatch) => {
       email,
       password,
     })
-    .then((payload) => dispatch({ type: actionTypes.AUTH_SUCCESS, payload }))
+    .then((payload) => {
+      console.log(payload);
+      dispatch({ type: actionTypes.AUTH_SUCCESS, payload });
+    })
     .catch((err) => {
       console.log(err);
       dispatch({ type: actionTypes.AUTH_FAILURE });
+    });
+};
+
+export const fetchItems = () => (dispatch, getState) => {
+  dispatch({ type: actionTypes.FETCH_REQUEST });
+
+  return axios
+    .get('http://127.0.0.1:8000/api/products', {
+      params: {
+        userID: getState().userID,
+      },
+    })
+    .then((payload) => {
+      console.log(payload);
+      dispatch({ type: actionTypes.FETCH_SUCCESS, payload });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: actionTypes.FETCH_FAILURE });
     });
 };
