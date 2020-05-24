@@ -36,9 +36,11 @@ const UserPageTemplate = ({ children, products }) => {
 
   const editItem = (e) => {
     const id = e.target.value;
+    console.log(id);
     const itemEditedTmp = products.filter((item) => {
-      return item.id === id;
+      return item.id == id;
     });
+    console.log(itemEditedTmp);
     setItemEdited(itemEditedTmp[0]);
     toggleNewItemBar();
   };

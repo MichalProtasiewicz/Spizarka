@@ -33,7 +33,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         products: [...state.products.filter((item) => item.id !== action.payload.id)],
       };
-    case actionTypes.EDIT_ITEM:
+    case actionTypes.EDIT_ITEM_SUCCESS:
       return {
         ...state,
         products: [

@@ -36,15 +36,21 @@ export const addItem = (itemContent) => (dispatch, getState) => {
     });
 };
 
-export const editItem = (itemContent) => {
-  return {
-    type: actionTypes.EDIT_ITEM,
-    payload: {
-      item: {
-        ...itemContent,
-      },
-    },
-  };
+export const editItem = (id, itemContent) => (dispatch, getState) => {
+  dispatch({ type: actionTypes.EDIT_ITEM_REQUEST });
+
+  return axios
+    .put(`http://127.0.0.1:8000/api/products/${id}`, {
+      userID: getState().userID,
+      ...itemContent,
+    })
+    .then(({ data }) => {
+      dispatch({ type: actionTypes.EDIT_ITEM_SUCCESS, payload: { data } });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: actionTypes.EDIT_ITEM_FAILURE });
+    });
 };
 
 export const changeItemQuantity = (id, itemQuantity) => {
