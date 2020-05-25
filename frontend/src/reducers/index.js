@@ -1,8 +1,8 @@
 import * as actionTypes from 'actions/actionTypes';
 
 const initialState = {
-  products: [
-  ],
+  products: [],
+  categories: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -17,6 +17,17 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         products: [...action.payload.data],
+      };
+    case actionTypes.FETCH_CATEGORIES_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case actionTypes.FETCH_CATEGORIES_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        categories: [...action.payload.data],
       };
     case actionTypes.AUTH_SUCCESS:
       return {

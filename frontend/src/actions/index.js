@@ -1,6 +1,25 @@
 import axios from 'axios';
 import * as actionTypes from 'actions/actionTypes';
 
+
+export const authenticate = (email, password) => (dispatch) => {
+  dispatch({ type: actionTypes.AUTH_REQUEST });
+
+  return axios
+    .post('http://127.0.0.1:8000/api/users/login', {
+      email,
+      password,
+    })
+    .then((payload) => {
+      console.log(payload);
+      dispatch({ type: actionTypes.AUTH_SUCCESS, payload });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: actionTypes.AUTH_FAILURE });
+    });
+};
+
 export const removeItem = (id) => (dispatch) => {
   dispatch({ type: actionTypes.REMOVE_ITEM_REQUEST });
   axios
@@ -63,24 +82,6 @@ export const changeItemQuantity = (id, itemQuantity) => {
   };
 };
 
-export const authenticate = (email, password) => (dispatch) => {
-  dispatch({ type: actionTypes.AUTH_REQUEST });
-
-  return axios
-    .post('http://127.0.0.1:8000/api/user/login', {
-      email,
-      password,
-    })
-    .then((payload) => {
-      console.log(payload);
-      dispatch({ type: actionTypes.AUTH_SUCCESS, payload });
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({ type: actionTypes.AUTH_FAILURE });
-    });
-};
-
 export const fetchItems = () => (dispatch, getState) => {
   dispatch({ type: actionTypes.FETCH_REQUEST });
 
@@ -97,5 +98,20 @@ export const fetchItems = () => (dispatch, getState) => {
     .catch((err) => {
       console.log(err);
       dispatch({ type: actionTypes.FETCH_FAILURE });
+    });
+};
+
+export const fetchCategories = () => (dispatch) => {
+  dispatch({ type: actionTypes.FETCH_CATEGORIES_REQUEST });
+
+  return axios
+    .get('http://127.0.0.1:8000/api/category')
+    .then((payload) => {
+      console.log(payload);
+      dispatch({ type: actionTypes.FETCH_CATEGORIES_SUCCESS, payload });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: actionTypes.FETCH_CATEGORIES_FAILURE });
     });
 };

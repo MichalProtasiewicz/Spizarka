@@ -7,9 +7,9 @@ import Button from 'components/atoms/Button/Button';
 import Heading from 'components/atoms/Heading/Heading';
 import { connect } from 'react-redux';
 import { addItem as addItemAction, editItem as editItemAction } from 'actions';
+import Select from 'react-select';
 
-const StyledWrapper = styled.div`
-`;
+const StyledWrapper = styled.div``;
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -26,13 +26,11 @@ const StyledButton = styled(Button)`
   margin-top: 40px;
 `;
 
-const ModalForm = ({ addItem, editedProduct, editItem, handleClose }) => {
-
+const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }) => {
   let item = { name: '', category: '', quantity: 0, minQuantity: 0 };
   if (editedProduct) {
     item = editedProduct;
   }
-
   return (
     <StyledWrapper>
       <Heading big>{editedProduct ? 'Edytuj' : 'Dodaj nowy'} produkt</Heading>
@@ -68,6 +66,15 @@ const ModalForm = ({ addItem, editedProduct, editItem, handleClose }) => {
               onBlur={handleBlur}
               value={values.category}
             />
+            <Select
+              options={categories}
+              name="category"
+              placeholder="category"
+
+              getOptionValue={(option) => option.id}
+              getOptionLabel={(option) => option.name}
+            />
+
             <StyledInput
               type="number"
               name="quantity"
@@ -104,9 +111,11 @@ ModalForm.defaultProps = {
   editedProduct: null,
 };
 
+const mapStateToProps = ({ categories }) => ({ categories });
+
 const mapDispatchToProps = (dispatch) => ({
   addItem: (itemContent) => dispatch(addItemAction(itemContent)),
   editItem: (itemContent) => dispatch(editItemAction(itemContent)),
 });
 
-export default connect(null, mapDispatchToProps)(ModalForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalForm);
