@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as actionTypes from 'actions/actionTypes';
+import * as actionTypes from 'constants/actionTypes';
 
 
 export const authenticate = (email, password) => (dispatch) => {
