@@ -1,24 +1,88 @@
 import axios from 'axios';
 import * as actionTypes from 'constants/actionTypes';
 
+export const authStart = () => {
+  return {
+    type: actionTypes.AUTH_REQUEST,
+  };
+};
 
-export const authenticate = (email, password) => (dispatch) => {
-  dispatch({ type: actionTypes.AUTH_REQUEST });
+export const authSuccess = (token) => {
+  return {
+    type: actionTypes.AUTH_SUCCESS,
+    token,
+  };
+};
+
+export const authFail = (err) => {
+  return {
+    type: actionTypes.AUTH_FAILURE,
+    err,
+  };
+};
+
+export const logout = () => {
+  localStorage.removeItem('user');
+  localStorage.removeItem('expirationDate');
+  return {
+    type: actionTypes.AUTH_LOGOUT,
+  };
+};
+
+export const checkAuthTimeout = (expirationTime) => (dispatch) => {
+  setTimeout(() => {
+    dispatch(logout());
+  }, expirationTime * 1000);
+};
+
+export const authLogin = (username, password) => (dispatch) => {
+  dispatch(authStart());
 
   return axios
-    .post('http://127.0.0.1:8000/api/users/login', {
-      email,
+    .post('http://127.0.0.1:8000/rest-auth/login', {
+      username,
       password,
     })
     .then((payload) => {
       console.log(payload);
-      dispatch({ type: actionTypes.AUTH_SUCCESS, payload });
+      const token = payload.data.key;
+      const expirationDate = new Date(new Date().getTime() + 360);
+      localStorage.setItem('token', token);
+      localStorage.setItem('expirationDate', expirationDate);
+      dispatch(authSuccess(token));
+      dispatch(checkAuthTimeout(3600));
     })
     .catch((err) => {
       console.log(err);
-      dispatch({ type: actionTypes.AUTH_FAILURE });
+      dispatch(authFail(err));
     });
 };
+
+export const authSignup = (username, email, password1, password2) => (dispatch) => {
+  dispatch(authStart());
+
+  return axios
+    .post('http://127.0.0.1:8000/rest-auth/registration', {
+      username,
+      email,
+      password1,
+      password2,
+    })
+    .then((payload) => {
+      console.log(payload);
+      const token = payload.data.key;
+      const expirationDate = new Date(new Date().getTime() + 360);
+      localStorage.setItem('token', token);
+      localStorage.setItem('expirationDate', expirationDate);
+      dispatch(authSuccess(token));
+      dispatch(checkAuthTimeout(3600));
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch(authFail(err));
+    });
+};
+
 
 export const removeItem = (id) => (dispatch) => {
   dispatch({ type: actionTypes.REMOVE_ITEM_REQUEST });

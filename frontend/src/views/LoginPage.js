@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Link, Redirect } from 'react-router-dom';
 import { routes } from 'routes';
 import { connect } from 'react-redux';
-import { authenticate as authenticateAction } from 'actions';
+import { authLogin as authLoginAction } from 'actions';
 import { Formik, Form, ErrorMessage } from 'formik';
 import AuthTemplate from 'templates/AuthTemplate';
 import Heading from 'components/atoms/Heading/Heading';
@@ -37,12 +37,12 @@ const StyledHeading = styled(Heading)`
   margin-bottom: 30px;
 `;
 
-const LoginPage = ({ userID, authenticate }) => (
+const LoginPage = ({ userID, authLogin }) => (
   <AuthTemplate>
     <Formik
-      initialValues={{ email: '', password: '' }}
-      onSubmit={({ email, password }) => {
-        authenticate(email, password);
+      initialValues={{ username: '', password: '' }}
+      onSubmit={({ username, password }) => {
+        authLogin(username, password);
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => {
@@ -54,9 +54,9 @@ const LoginPage = ({ userID, authenticate }) => (
             <StyledHeading>Sign in</StyledHeading>
             <StyledForm>
               <StyledInput
-                type="email"
-                name="email"
-                placeholder="Email"
+                type="text"
+                name="username"
+                placeholder="Username"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.title}
@@ -81,7 +81,7 @@ const LoginPage = ({ userID, authenticate }) => (
 
 LoginPage.propTypes = {
   userID: PropTypes.number,
-  authenticate: PropTypes.func.isRequired,
+  authLogin: PropTypes.func.isRequired,
 };
 
 LoginPage.defaultProps = {
@@ -93,7 +93,7 @@ const mapStateToProps = ({ userID = null }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  authenticate: (email, password) => dispatch(authenticateAction(email, password)),
+  authLogin: (username, password) => dispatch(authLoginAction(username, password)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

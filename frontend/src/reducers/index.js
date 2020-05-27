@@ -3,10 +3,59 @@ import * as actionTypes from 'constants/actionTypes';
 const initialState = {
   products: [],
   categories: [],
+  auth: {
+    token: null,
+    error: null,
+    loading: false,
+  },
+};
+
+const updateObject = (oldObject, updatedProperties) => {
+  return {
+    ...oldObject,
+    ...updatedProperties,
+  };
+};
+
+const authStart = (state, action) => {
+  return updateObject(state, {
+    error: null,
+    loading: true,
+  });
+};
+
+const authSuccess = (state, action) => {
+  return updateObject(state, {
+    token: action.token,
+    error: null,
+    loading: false,
+    userID: action.payload.data.id,
+  });
+};
+
+const authFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+    loading: false,
+  });
+};
+
+const authLogout = (state, action) => {
+  return updateObject(state, {
+    token: null,
+  });
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.AUTH_REQUEST:
+      return authStart(state, action);
+    case actionTypes.AUTH_SUCCESS:
+      return authSuccess(state, action);
+    case actionTypes.AUTH_FAILURE:
+      return authFail(state, action);
+    case actionTypes.AUTH_LOGOUT:
+      return authLogout(state, action);
     case actionTypes.FETCH_REQUEST:
       return {
         ...state,
@@ -28,11 +77,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         categories: [...action.payload.data],
-      };
-    case actionTypes.AUTH_SUCCESS:
-      return {
-        ...state,
-        userID: action.payload.data.id,
       };
     case actionTypes.ADD_ITEM_SUCCESS:
       return {

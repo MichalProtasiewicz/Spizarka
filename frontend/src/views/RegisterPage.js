@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Link, Redirect } from 'react-router-dom';
 import { routes } from 'routes';
 import { connect } from 'react-redux';
-import { authenticate as authenticateAction } from 'actions';
+import { authSignup as authSignupAction } from 'actions';
 import { Formik, Form, ErrorMessage } from 'formik';
 import AuthTemplate from 'templates/AuthTemplate';
 import Heading from 'components/atoms/Heading/Heading';
@@ -37,12 +37,12 @@ const StyledHeading = styled(Heading)`
   margin-bottom: 30px;
 `;
 
-const RegisterPage = ({ userID, authenticate }) => (
+const RegisterPage = ({ userID, authSignup }) => (
   <AuthTemplate>
     <Formik
-      initialValues={{ email: '', password: '' }}
-      onSubmit={({ email, password }) => {
-        console.log('hello');
+      initialValues={{ username: '', password: '' }}
+      onSubmit={({ username, password }) => {
+        authSignup(username, password)
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => {
@@ -54,9 +54,9 @@ const RegisterPage = ({ userID, authenticate }) => (
             <StyledHeading>Register</StyledHeading>
             <StyledForm>
               <StyledInput
-                type="email"
-                name="email"
-                placeholder="Email"
+                type="text"
+                name="username"
+                placeholder="Username"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.title}
@@ -81,7 +81,7 @@ const RegisterPage = ({ userID, authenticate }) => (
 
 RegisterPage.propTypes = {
   userID: PropTypes.number,
-  authenticate: PropTypes.func.isRequired,
+  authSignup: PropTypes.func.isRequired,
 };
 
 RegisterPage.defaultProps = {
@@ -93,7 +93,7 @@ const mapStateToProps = ({ userID = null }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  authenticate: (username, password) => dispatch(authenticateAction(username, password)),
+  authSignup: (username, password) => dispatch(authSignupAction(username, password)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);
