@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { routes } from 'routes';
 import Logo from 'components/atoms/Logo/Logo';
+import { connect } from 'react-redux';
+import { logout as logoutAction } from 'actions';
 
 const NavbarWrapper = styled.div`
   position: fixed;
@@ -35,7 +38,16 @@ const StyledNavLink = styled(NavLink)`
   border-right: 1px ${({ theme }) => theme.raisinBlack} solid;
 `;
 
-const Navbar = () => (
+const StyledButton = styled.button`
+
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border:none;
+  color: ${({ theme }) => theme.white};
+  font-size: ${({ theme }) => theme.fontSize.l};
+`;
+
+const Navbar = ({ logout }) => (
   <NavbarWrapper>
     <Logo />
     <StyledLinksList>
@@ -49,8 +61,21 @@ const Navbar = () => (
           Lista Zakupów
         </StyledNavLink>
       </li>
+      <li>
+        <StyledButton onClick={logout} >
+          Wyloguj
+        </StyledButton>
+      </li>
     </StyledLinksList>
   </NavbarWrapper>
 );
 
-export default Navbar;
+Navbar.propTypes = {
+  logout: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  logout: () => dispatch(logoutAction()),
+});
+
+export default connect(null, mapDispatchToProps)(Navbar);

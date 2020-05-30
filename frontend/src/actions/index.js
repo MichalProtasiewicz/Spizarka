@@ -39,14 +39,14 @@ export const authLogin = (username, password) => (dispatch) => {
   dispatch(authStart());
 
   return axios
-    .post('http://127.0.0.1:8000/rest-auth/login', {
+    .post('http://127.0.0.1:8000/rest-auth/login/', {
       username,
       password,
     })
     .then((payload) => {
       console.log(payload);
       const token = payload.data.key;
-      const expirationDate = new Date(new Date().getTime() + 360);
+      const expirationDate = new Date(Date.now() + 3600 * 1000 * 24);
       localStorage.setItem('token', token);
       localStorage.setItem('expirationDate', expirationDate);
       dispatch(authSuccess(token));
@@ -62,7 +62,7 @@ export const authSignup = (username, email, password1, password2) => (dispatch) 
   dispatch(authStart());
 
   return axios
-    .post('http://127.0.0.1:8000/rest-auth/registration', {
+    .post('http://127.0.0.1:8000/rest-auth/registration/', {
       username,
       email,
       password1,
@@ -71,7 +71,7 @@ export const authSignup = (username, email, password1, password2) => (dispatch) 
     .then((payload) => {
       console.log(payload);
       const token = payload.data.key;
-      const expirationDate = new Date(new Date().getTime() + 360);
+      const expirationDate = new Date(new Date().getDate() + 1);
       localStorage.setItem('token', token);
       localStorage.setItem('expirationDate', expirationDate);
       dispatch(authSuccess(token));
@@ -83,6 +83,20 @@ export const authSignup = (username, email, password1, password2) => (dispatch) 
     });
 };
 
+export const authCheckState = () => (dispatch) => {
+  const token = localStorage.getItem('token');
+  if (token === undefined) {
+    dispatch(logout());
+  } else {
+    const expirationDate = new Date(localStorage.getItem('expirationDate'));
+    if (expirationDate <= new Date()) {
+      dispatch(logout());
+    } else {
+      dispatch(authSuccess(token));
+      dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000));
+    }
+  }
+};
 
 export const removeItem = (id) => (dispatch) => {
   dispatch({ type: actionTypes.REMOVE_ITEM_REQUEST });

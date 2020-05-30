@@ -37,7 +37,7 @@ const StyledHeading = styled(Heading)`
   margin-bottom: 30px;
 `;
 
-const LoginPage = ({ userID, authLogin }) => (
+const LoginPage = ({ authLogin }) => (
   <AuthTemplate>
     <Formik
       initialValues={{ username: '', password: '' }}
@@ -46,9 +46,6 @@ const LoginPage = ({ userID, authLogin }) => (
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => {
-        if (userID) {
-          return <Redirect to={routes.home} />;
-        }
         return (
           <>
             <StyledHeading>Sign in</StyledHeading>
@@ -80,20 +77,12 @@ const LoginPage = ({ userID, authLogin }) => (
 );
 
 LoginPage.propTypes = {
-  userID: PropTypes.number,
   authLogin: PropTypes.func.isRequired,
 };
 
-LoginPage.defaultProps = {
-  userID: null,
-};
-
-const mapStateToProps = ({ userID = null }) => ({
-  userID,
-});
 
 const mapDispatchToProps = (dispatch) => ({
   authLogin: (username, password) => dispatch(authLoginAction(username, password)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default connect(null, mapDispatchToProps)(LoginPage);

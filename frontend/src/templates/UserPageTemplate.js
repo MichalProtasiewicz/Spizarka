@@ -65,7 +65,9 @@ const UserPageTemplate = ({ children, products }) => {
   );
 };
 
-const mapStateToProps = ({ products }) => ({ products });
+const mapStateToProps = ({ products }) => ({
+  products,
+});
 
 UserPageTemplate.propTypes = {
   children: PropTypes.element.isRequired,

@@ -17,32 +17,27 @@ const updateObject = (oldObject, updatedProperties) => {
   };
 };
 
-const authStart = (state, action) => {
+const authStart = (state) => {
   return updateObject(state, {
-    error: null,
-    loading: true,
+    auth: {error:null, loading: true, token:null}
   });
 };
 
 const authSuccess = (state, action) => {
   return updateObject(state, {
-    token: action.token,
-    error: null,
-    loading: false,
-    userID: action.payload.data.id,
+    auth: {error:null, loading: false, token:action.token}
   });
 };
 
 const authFail = (state, action) => {
   return updateObject(state, {
-    error: action.error,
-    loading: false,
+    auth: {error:action.error, loading: false, token:null}
   });
 };
 
-const authLogout = (state, action) => {
+const authLogout = (state) => {
   return updateObject(state, {
-    token: null,
+    auth: { error: null, loading: false, token: null },
   });
 };
 
