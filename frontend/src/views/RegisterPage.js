@@ -37,18 +37,15 @@ const StyledHeading = styled(Heading)`
   margin-bottom: 30px;
 `;
 
-const RegisterPage = ({ userID, authSignup }) => (
+const RegisterPage = ({ authSignup }) => (
   <AuthTemplate>
     <Formik
-      initialValues={{ username: '', password: '' }}
-      onSubmit={({ username, password }) => {
-        authSignup(username, password)
+      initialValues={{ username: '', email:'', password1: '', password2: '' }}
+      onSubmit={({ username, email, password1, password2 }) => {
+        authSignup(username, email, password1, password2)
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => {
-        if (userID) {
-          return <Redirect to={routes.home} />;
-        }
         return (
           <>
             <StyledHeading>Register</StyledHeading>
@@ -62,9 +59,25 @@ const RegisterPage = ({ userID, authSignup }) => (
                 value={values.title}
               />
               <StyledInput
+                type="email"
+                name="email"
+                placeholder="Email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.title}
+              />
+              <StyledInput
                 type="password"
-                name="password"
+                name="password1"
                 placeholder="Password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.title}
+              />
+              <StyledInput
+                type="password"
+                name="password2"
+                placeholder="Repeat password"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.title}
@@ -80,20 +93,11 @@ const RegisterPage = ({ userID, authSignup }) => (
 );
 
 RegisterPage.propTypes = {
-  userID: PropTypes.number,
   authSignup: PropTypes.func.isRequired,
 };
 
-RegisterPage.defaultProps = {
-  userID: null,
-};
-
-const mapStateToProps = ({ userID = null }) => ({
-  userID,
-});
-
 const mapDispatchToProps = (dispatch) => ({
-  authSignup: (username, password) => dispatch(authSignupAction(username, password)),
+  authSignup: (username, email, password1, password2) => dispatch(authSignupAction(username, email, password1, password2)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);
+export default connect(null, mapDispatchToProps)(RegisterPage);
