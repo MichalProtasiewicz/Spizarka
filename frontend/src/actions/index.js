@@ -108,7 +108,7 @@ export const addItem = (itemContent) => (dispatch, getState) => {
   dispatch({ type: actionTypes.ADD_ITEM_REQUEST });
   return axios
     .post(`http://127.0.0.1:8000/api/products/`, {
-      userId: getState().auth.userID,
+      owner: getState().auth.userID,
       ...itemContent,
     })
     .then(({ data }) => {
@@ -125,7 +125,7 @@ export const editItem = (id, itemContent) => (dispatch, getState) => {
 
   return axios
     .put(`http://127.0.0.1:8000/api/products/${id}/`, {
-      userId: getState().auth.userID,
+      owner: getState().auth.userID,
       ...itemContent,
     })
     .then(({ data }) => {
@@ -153,7 +153,7 @@ export const fetchItems = () => (dispatch, getState) => {
   return axios
     .get('http://127.0.0.1:8000/api/products', {
       params: {
-        userId: getState().auth.userID,
+        owner: getState().auth.userID,
       },
     })
     .then((payload) => {

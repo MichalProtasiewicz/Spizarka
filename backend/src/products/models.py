@@ -6,7 +6,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    userId = models.ForeignKey(
+    owner = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     categoryId = models.ForeignKey(
         Category, on_delete=models.SET_DEFAULT, default=0)
