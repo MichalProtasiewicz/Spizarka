@@ -57,15 +57,6 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
               onBlur={handleBlur}
               value={values.name}
             />
-            <StyledInput
-              type="text"
-              name="category"
-              placeholder="category"
-              autoComplete="off"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.category}
-            />
             <Select
               options={categories}
               name="category"
