@@ -60,9 +60,7 @@ export const authLogin = (username, password) => (dispatch) => {
     });
 };
 
-export const authSignup = (username, email, password1, password2) => (dispatch) => {
-  dispatch(authStart());
-
+export const authSignup = (username, email, password1, password2) => {
   return axios
     .post('http://127.0.0.1:8000/rest-auth/registration/', {
       username,
@@ -70,19 +68,6 @@ export const authSignup = (username, email, password1, password2) => (dispatch) 
       password1,
       password2,
     })
-    .then((payload) => {
-      console.log(payload);
-      const token = payload.data.key;
-      const expirationDate = new Date(new Date().getDate() + 1);
-      localStorage.setItem('token', token);
-      localStorage.setItem('expirationDate', expirationDate);
-      dispatch(authSuccess(token));
-      dispatch(checkAuthTimeout(3600));
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch(authFail(err));
-    });
 };
 
 export const authCheckState = () => (dispatch) => {

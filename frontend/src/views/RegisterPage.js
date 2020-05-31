@@ -40,9 +40,9 @@ const StyledHeading = styled(Heading)`
 const RegisterPage = ({ authSignup }) => (
   <AuthTemplate>
     <Formik
-      initialValues={{ username: '', email:'', password1: '', password2: '' }}
+      initialValues={{ username: '', email: '', password1: '', password2: '' }}
       onSubmit={({ username, email, password1, password2 }) => {
-        authSignup(username, email, password1, password2)
+        authSignup(username, email, password1, password2);
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => {
@@ -97,7 +97,8 @@ RegisterPage.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  authSignup: (username, email, password1, password2) => dispatch(authSignupAction(username, email, password1, password2)),
+  authSignup: (username, email, password1, password2) =>
+    dispatch(authSignupAction(username, email, password1, password2)),
 });
 
 export default connect(null, mapDispatchToProps)(RegisterPage);
