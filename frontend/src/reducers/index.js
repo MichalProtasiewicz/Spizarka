@@ -4,6 +4,7 @@ const initialState = {
   products: [],
   categories: [],
   auth: {
+    userID: null,
     token: null,
     error: null,
     loading: false,
@@ -19,25 +20,28 @@ const updateObject = (oldObject, updatedProperties) => {
 
 const authStart = (state) => {
   return updateObject(state, {
-    auth: {error:null, loading: true, token:null}
+    auth: { error: null, loading: true, userID: null, token: null },
   });
 };
 
 const authSuccess = (state, action) => {
+  console.log('hi');
+  console.log(state);
+  console.log(action);
   return updateObject(state, {
-    auth: {error:null, loading: false, token:action.token}
+    auth: { error: null, loading: false, userID: action.userID, token: action.token },
   });
 };
 
 const authFail = (state, action) => {
   return updateObject(state, {
-    auth: {error:action.error, loading: false, token:null}
+    auth: { error: action.error, loading: false, userID: null, token: null },
   });
 };
 
 const authLogout = (state) => {
   return updateObject(state, {
-    auth: { error: null, loading: false, token: null },
+    auth: { error: null, loading: false, userID: null, token: null },
   });
 };
 

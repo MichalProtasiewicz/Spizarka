@@ -7,10 +7,11 @@ export const authStart = () => {
   };
 };
 
-export const authSuccess = (token) => {
+export const authSuccess = (token, userID) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
     token,
+    userID,
   };
 };
 
@@ -39,17 +40,18 @@ export const authLogin = (username, password) => (dispatch) => {
   dispatch(authStart());
 
   return axios
-    .post('http://127.0.0.1:8000/rest-auth/login/', {
+    .post('http://127.0.0.1:8000/authenticate/', {
       username,
       password,
     })
     .then((payload) => {
-      console.log(payload);
-      const token = payload.data.key;
+      const userID = payload.data.id;
+      const userToken = payload.data.token;
       const expirationDate = new Date(Date.now() + 3600 * 1000 * 24);
-      localStorage.setItem('token', token);
+      localStorage.setItem('userID', userID);
+      localStorage.setItem('token', userToken);
       localStorage.setItem('expirationDate', expirationDate);
-      dispatch(authSuccess(token));
+      dispatch(authSuccess(userToken, userID));
       dispatch(checkAuthTimeout(3600));
     })
     .catch((err) => {
@@ -85,6 +87,7 @@ export const authSignup = (username, email, password1, password2) => (dispatch) 
 
 export const authCheckState = () => (dispatch) => {
   const token = localStorage.getItem('token');
+  const userID = localStorage.getItem('userID');
   if (token === undefined) {
     dispatch(logout());
   } else {
@@ -92,7 +95,7 @@ export const authCheckState = () => (dispatch) => {
     if (expirationDate <= new Date()) {
       dispatch(logout());
     } else {
-      dispatch(authSuccess(token));
+      dispatch(authSuccess(token, userID));
       dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000));
     }
   }
