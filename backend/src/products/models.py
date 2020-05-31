@@ -1,17 +1,13 @@
 from django.db import models
-
+from django.conf import settings
 
 class Category(models.Model):
     name = models.CharField(max_length=45)
 
 
-class User(models.Model):
-    email = models.CharField(max_length=45)
-    password = models.CharField(max_length=45)
-
-
 class Product(models.Model):
-    userId = models.ForeignKey(User, on_delete=models.CASCADE)
+    userId = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     categoryId = models.ForeignKey(
         Category, on_delete=models.SET_DEFAULT, default=0)
     name = models.CharField(max_length=45)

@@ -106,10 +106,9 @@ export const removeItem = (id) => (dispatch) => {
 
 export const addItem = (itemContent) => (dispatch, getState) => {
   dispatch({ type: actionTypes.ADD_ITEM_REQUEST });
-
   return axios
     .post(`http://127.0.0.1:8000/api/products/`, {
-      userID: getState().userID,
+      userId: getState().auth.userID,
       ...itemContent,
     })
     .then(({ data }) => {
@@ -125,8 +124,8 @@ export const editItem = (id, itemContent) => (dispatch, getState) => {
   dispatch({ type: actionTypes.EDIT_ITEM_REQUEST });
 
   return axios
-    .put(`http://127.0.0.1:8000/api/products/${id}`, {
-      userID: getState().userID,
+    .put(`http://127.0.0.1:8000/api/products/${id}/`, {
+      userId: getState().auth.userID,
       ...itemContent,
     })
     .then(({ data }) => {
@@ -154,7 +153,7 @@ export const fetchItems = () => (dispatch, getState) => {
   return axios
     .get('http://127.0.0.1:8000/api/products', {
       params: {
-        userID: getState().userID,
+        userId: getState().auth.userID,
       },
     })
     .then((payload) => {
