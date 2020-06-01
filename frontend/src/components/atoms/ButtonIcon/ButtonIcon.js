@@ -7,6 +7,7 @@ const ButtonIcon = styled.button`
   border-radius: 30px;
   background-color: ${({ theme }) => theme.blue};
   border: none;
+  outline: none;
 
   ${({ small }) =>
     small &&

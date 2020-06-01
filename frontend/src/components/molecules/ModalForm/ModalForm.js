@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Formik, Form, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import Heading from 'components/atoms/Heading/Heading';
 import { connect } from 'react-redux';
 import { addItem as addItemAction, editItem as editItemAction } from 'actions';
-import Select from 'react-select';
+import {SelectField} from 'components/atoms/SelectField/SelectField';
 
 const StyledWrapper = styled.div``;
 
@@ -26,8 +26,9 @@ const StyledButton = styled(Button)`
   margin-top: 40px;
 `;
 
+
 const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }) => {
-  let item = { name: '', category: '', quantity: 0, minQuantity: 0 };
+  let item = { name: '', categoryId: '', quantity: 0, minQuantity: 0 };
   if (editedProduct) {
     item = editedProduct;
   }
@@ -57,15 +58,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
               onBlur={handleBlur}
               value={values.name}
             />
-            <Select
-              options={categories}
-              name="category"
-              placeholder="category"
-
-              getOptionValue={(option) => option.id}
-              getOptionLabel={(option) => option.name}
-            />
-
+            <Field name='categoryId' component={SelectField} options={categories} />
             <StyledInput
               type="number"
               name="quantity"
@@ -96,6 +89,7 @@ ModalForm.propTypes = {
   addItem: PropTypes.func.isRequired,
   editedProduct: PropTypes.object,
   editItem: PropTypes.func.isRequired,
+  categories: PropTypes.array.isRequired,
 };
 
 ModalForm.defaultProps = {

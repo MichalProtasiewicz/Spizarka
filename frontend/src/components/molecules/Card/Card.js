@@ -69,7 +69,7 @@ const StyledEditButton = styled.button`
 const Card = ({
   id,
   name,
-  category,
+  categoryId,
   quantity,
   minQuantity,
   removeItem,
@@ -126,7 +126,7 @@ const Card = ({
 Card.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
+  categoryId: PropTypes.number.isRequired,
   quantity: PropTypes.number,
   minQuantity: PropTypes.number,
   removeItem: PropTypes.func.isRequired,

@@ -13,3 +13,4 @@ class Product(models.Model):
     name = models.CharField(max_length=45)
     quantity = models.IntegerField(default=0)
     minQuantity = models.IntegerField(default=0)
+

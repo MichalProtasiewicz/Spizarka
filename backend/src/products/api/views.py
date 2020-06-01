@@ -5,12 +5,12 @@ from .serializers import ProductSerializer, CategorySerializer
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
-
     serializer_class = ProductSerializer
+    filter_fields = {'owner'}
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
-
     serializer_class = CategorySerializer
+
 

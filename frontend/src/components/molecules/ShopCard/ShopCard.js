@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 const StyledWrapper = styled.div`
   width: 80vw;
@@ -43,11 +44,12 @@ const StyledSpan = styled.span`
 `;
 
 
-const ShopCard = ({ id, name, category, quantity, minQuantity }) => {
+const ShopCard = ({ id, name, categoryId, quantity, minQuantity, categories }) => {
+  const categoryName=categories.find((x) => x.id === categoryId).name;
   return (
     <StyledWrapper>
       <NameSpan>{name}</NameSpan>
-      <CategorySpan>{category}</CategorySpan>
+      <CategorySpan>{categoryName}</CategorySpan>
       <QuantityWrapper>
         <StyledSpan>{quantity}</StyledSpan>/<StyledSpan green>{minQuantity}</StyledSpan>
       </QuantityWrapper>
@@ -58,9 +60,10 @@ const ShopCard = ({ id, name, category, quantity, minQuantity }) => {
 ShopCard.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
+  categoryId: PropTypes.number.isRequired,
   quantity: PropTypes.number,
   minQuantity: PropTypes.number,
+  categories: PropTypes.array.isRequired,
 };
 
 ShopCard.defaultProps = {
@@ -68,4 +71,6 @@ ShopCard.defaultProps = {
   minQuantity: 0,
 };
 
-export default ShopCard;
+const mapStateToProps = ({ categories }) => ({ categories });
+
+export default connect(mapStateToProps)(ShopCard);

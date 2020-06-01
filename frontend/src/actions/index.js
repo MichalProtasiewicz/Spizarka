@@ -61,13 +61,12 @@ export const authLogin = (username, password) => (dispatch) => {
 };
 
 export const authSignup = (username, email, password1, password2) => {
-  return axios
-    .post('http://127.0.0.1:8000/rest-auth/registration/', {
-      username,
-      email,
-      password1,
-      password2,
-    })
+  return axios.post('http://127.0.0.1:8000/rest-auth/registration/', {
+    username,
+    email,
+    password1,
+    password2,
+  });
 };
 
 export const authCheckState = () => (dispatch) => {
@@ -149,15 +148,19 @@ export const changeItemQuantity = (id, itemQuantity) => {
 
 export const fetchItems = () => (dispatch, getState) => {
   dispatch({ type: actionTypes.FETCH_REQUEST });
-
   return axios
     .get('http://127.0.0.1:8000/api/products', {
-      params: {
-        owner: getState().auth.userID,
+      body: {
+        owner: getState().auth.userID
       },
+      params: {
+        owner: getState().auth.userID
+      }
     })
     .then((payload) => {
+      console.log(payload.data);
       console.log(payload);
+
       dispatch({ type: actionTypes.FETCH_SUCCESS, payload });
     })
     .catch((err) => {
