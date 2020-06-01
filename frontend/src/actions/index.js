@@ -121,7 +121,6 @@ export const addItem = (itemContent) => (dispatch, getState) => {
 
 export const editItem = (id, itemContent) => (dispatch, getState) => {
   dispatch({ type: actionTypes.EDIT_ITEM_REQUEST });
-
   return axios
     .put(`http://127.0.0.1:8000/api/products/${id}/`, {
       owner: getState().auth.userID,
@@ -158,9 +157,6 @@ export const fetchItems = () => (dispatch, getState) => {
       }
     })
     .then((payload) => {
-      console.log(payload.data);
-      console.log(payload);
-
       dispatch({ type: actionTypes.FETCH_SUCCESS, payload });
     })
     .catch((err) => {
@@ -175,7 +171,6 @@ export const fetchCategories = () => (dispatch) => {
   return axios
     .get('http://127.0.0.1:8000/api/category')
     .then((payload) => {
-      console.log(payload);
       dispatch({ type: actionTypes.FETCH_CATEGORIES_SUCCESS, payload });
     })
     .catch((err) => {

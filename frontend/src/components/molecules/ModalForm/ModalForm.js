@@ -7,7 +7,7 @@ import Button from 'components/atoms/Button/Button';
 import Heading from 'components/atoms/Heading/Heading';
 import { connect } from 'react-redux';
 import { addItem as addItemAction, editItem as editItemAction } from 'actions';
-import {SelectField} from 'components/atoms/SelectField/SelectField';
+import { SelectField } from 'components/atoms/SelectField/SelectField';
 
 const StyledWrapper = styled.div``;
 
@@ -26,7 +26,6 @@ const StyledButton = styled(Button)`
   margin-top: 40px;
 `;
 
-
 const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }) => {
   let item = { name: '', categoryId: '', quantity: 0, minQuantity: 0 };
   if (editedProduct) {
@@ -40,7 +39,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
         initialValues={{ ...item }}
         onSubmit={(values) => {
           if (editedProduct) {
-            editItem(values);
+            editItem(editedProduct.id, values);
           } else {
             addItem(values);
           }
@@ -58,7 +57,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
               onBlur={handleBlur}
               value={values.name}
             />
-            <Field name='categoryId' component={SelectField} options={categories} />
+            <Field name="categoryId" component={SelectField} options={categories} />
             <StyledInput
               type="number"
               name="quantity"
@@ -100,7 +99,7 @@ const mapStateToProps = ({ categories }) => ({ categories });
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (itemContent) => dispatch(addItemAction(itemContent)),
-  editItem: (itemContent) => dispatch(editItemAction(itemContent)),
+  editItem: (id, itemContent) => dispatch(editItemAction(id, itemContent)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalForm);

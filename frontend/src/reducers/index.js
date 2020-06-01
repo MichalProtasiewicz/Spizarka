@@ -89,8 +89,9 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         products: [
           ...state.products.map((item) => {
-            if (item.id === action.payload.item.id) {
-              item = action.payload.item;
+            if (item.id === action.payload.data.id) {
+              item = action.payload.data;
+
               return item;
             }
             return item;
