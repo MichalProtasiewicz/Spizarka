@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -60,7 +60,7 @@ const StyledEditButton = styled.button`
   width: 24px;
   height: 24px;
   border-radius: 6px;
-  background-image: url(${ EditIcon });
+  background-image: url(${EditIcon});
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: 75% 75%;
@@ -76,18 +76,18 @@ const Card = ({
   modalContext,
   changeItemQuantity,
 }) => {
-  const [count, setCount] = useState(quantity);
-
   const IncrementQuantity = () => {
-    changeItemQuantity(id, quantity + 1);
-    return setCount(count + 1);
+    quantity++;
+    changeItemQuantity(id, quantity);
+    return quantity;
   };
   const DecreaseQuantity = () => {
-    if (count > 0) {
-      changeItemQuantity(id, quantity - 1);
-      return setCount(count - 1);
+    if (quantity > 0) {
+      quantity--;
+      changeItemQuantity(id, quantity);
+      return quantity;
     }
-    return null;
+    return quantity;
   };
 
   return (
@@ -107,12 +107,12 @@ const Card = ({
           style={{ fontSize: 40, color: 'hsl(0, 100%, 63%)' }}
           onClick={() => DecreaseQuantity()}
         />
-        {count < minQuantity ? (
+        {quantity < minQuantity ? (
           <StyledSpan big style={{ color: 'hsl(0, 100%, 63%)' }}>
-            {count}
+            {quantity}
           </StyledSpan>
         ) : (
-          <StyledSpan big>{count}</StyledSpan>
+          <StyledSpan big>{quantity}</StyledSpan>
         )}
         <PlusIcon
           style={{ fontSize: 40, color: 'hsl(144, 100%, 39%)' }}
