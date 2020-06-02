@@ -139,9 +139,6 @@ export const fetchItems = () => (dispatch, getState) => {
   dispatch({ type: actionTypes.FETCH_REQUEST });
   return axios
     .get('http://127.0.0.1:8000/api/products', {
-      body: {
-        owner: getState().auth.userID,
-      },
       params: {
         owner: getState().auth.userID,
       },
