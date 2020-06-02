@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   removeItem as removeItemAction,
-  changeItemQuantity as changeItemQuantityAction,
+  editItem as editItemAction,
 } from 'actions';
 import CloseIcon from '@material-ui/icons/Close';
 import MinusIcon from '@material-ui/icons/Remove';
@@ -74,20 +74,21 @@ const Card = ({
   minQuantity,
   removeItem,
   modalContext,
-  changeItemQuantity,
+  editItem,
 }) => {
+  const editedItem= {id, name, categoryId, quantity, minQuantity}
   const IncrementQuantity = () => {
-    quantity++;
-    changeItemQuantity(id, quantity);
-    return quantity;
+    editedItem.quantity++;
+    editItem(id, editedItem);
+    return editedItem;
   };
   const DecreaseQuantity = () => {
     if (quantity > 0) {
-      quantity--;
-      changeItemQuantity(id, quantity);
-      return quantity;
+      editedItem.quantity--;
+      editItem(id, editedItem);
+      return editedItem;
     }
-    return quantity;
+    return editedItem;
   };
 
   return (
@@ -130,7 +131,7 @@ Card.propTypes = {
   quantity: PropTypes.number,
   minQuantity: PropTypes.number,
   removeItem: PropTypes.func.isRequired,
-  changeItemQuantity: PropTypes.func.isRequired,
+  editItem: PropTypes.func.isRequired,
   modalContext: PropTypes.object.isRequired,
 };
 
@@ -141,7 +142,7 @@ Card.defaultProps = {
 
 const mapDispatchToProps = (dispatch) => ({
   removeItem: (id) => dispatch(removeItemAction(id)),
-  changeItemQuantity: (id, quantity) => dispatch(changeItemQuantityAction(id, quantity)),
+  editItem: (id, content) => dispatch(editItemAction(id, content)),
 });
 
 export default withContext(connect(null, mapDispatchToProps)(Card));

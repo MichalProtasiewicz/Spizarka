@@ -135,26 +135,16 @@ export const editItem = (id, itemContent) => (dispatch, getState) => {
     });
 };
 
-export const changeItemQuantity = (id, itemQuantity) => {
-  return {
-    type: actionTypes.CHANGE_ITEM_QUANTITY,
-    payload: {
-      id,
-      itemQuantity,
-    },
-  };
-};
-
 export const fetchItems = () => (dispatch, getState) => {
   dispatch({ type: actionTypes.FETCH_REQUEST });
   return axios
     .get('http://127.0.0.1:8000/api/products', {
       body: {
-        owner: getState().auth.userID
+        owner: getState().auth.userID,
       },
       params: {
-        owner: getState().auth.userID
-      }
+        owner: getState().auth.userID,
+      },
     })
     .then((payload) => {
       dispatch({ type: actionTypes.FETCH_SUCCESS, payload });

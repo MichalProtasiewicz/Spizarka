@@ -98,19 +98,6 @@ const rootReducer = (state = initialState, action) => {
           }),
         ],
       };
-    case actionTypes.CHANGE_ITEM_QUANTITY:
-      return {
-        ...state,
-        products: [
-          ...state.products.map((item) => {
-            if (item.id === action.payload.id) {
-              item.quantity = action.payload.itemQuantity;
-              return item;
-            }
-            return item;
-          }),
-        ],
-      };
     default:
       return state;
   }
