@@ -7,7 +7,7 @@ const StyledWrapper = styled.div`
   z-index: 9999;
   position: fixed;
   display: flex;
-  padding: 100px 90px;
+  padding: 100px 75px;
   flex-direction: column;
   right: 0;
   top: 0;

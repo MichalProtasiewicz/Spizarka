@@ -15,7 +15,7 @@ import withContext from 'hoc/withContext';
 const StyledWrapper = styled.div`
   width: 200px;
   height: 200px;
-  box-shadow: 0 10px 30px -10px hsla(0, 0%, 0%, 1);
+  box-shadow: 0 10px 30px -10px hsla(0, 0%, 0%, 0.2);
   border-radius: 10px;
   display: grid;
   grid-template-columns: 1fr;

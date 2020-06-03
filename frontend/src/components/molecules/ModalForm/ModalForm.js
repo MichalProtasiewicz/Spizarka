@@ -14,7 +14,7 @@ const StyledWrapper = styled.div``;
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 80px;
 `;
 
 const StyledInput = styled(Input)`
@@ -24,6 +24,10 @@ const StyledInput = styled(Input)`
 const StyledButton = styled(Button)`
   align-self: center;
   margin-top: 40px;
+`;
+
+const StyledLabel = styled.label`
+ 
 `;
 
 const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }) => {
@@ -57,11 +61,10 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
               onBlur={handleBlur}
               value={values.name}
             />
-            <Field
-              name="categoryId"
-              component={SelectField}
-              options={categories}
-            />
+            <StyledLabel for="name">
+              <span>Name</span>
+            </StyledLabel>
+            <Field name="categoryId" component={SelectField} options={categories} />
             <StyledInput
               type="number"
               name="quantity"
