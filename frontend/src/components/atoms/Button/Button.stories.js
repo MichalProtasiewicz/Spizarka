@@ -15,6 +15,6 @@ storiesOf('Atoms/Button', module)
     const defaultValue = 'hsl(49, 100%, 58%)';
     const groupId = 'GROUP-ID1';
     const value = select(label, options, defaultValue, groupId);
-    return <Button style={{ backgroundColor: { value } }}>Hello {value}</Button>;
+    return <Button style={{ backgroundColor: { value } }}>Sign up</Button>;
   })
   .add('Secondary', () => <Button secondary>Hello</Button>);
