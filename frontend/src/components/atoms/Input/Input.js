@@ -2,15 +2,19 @@ import styled, { css } from 'styled-components';
 import magnifierIcon from 'assets/icons/magnifier.svg';
 
 const Input = styled.input`
+  position: static;
   padding: 15px 30px;
   font-size: ${({ theme }) => theme.fontSize.s};
   font-weight: ${({ theme }) => theme.regular};
   background-color: ${({ theme }) => theme.grey100};
-  border: none;
+  border: 0px solid ${({ theme }) => theme.blue};
   border-radius: 50px;
+  outline: none;
 
+  &:focus {
+    box-shadow: 0 0 0px 4px ${({ theme }) => theme.blue};
+  }
   ::placeholder {
-    text-transform: uppercase;
     letter-spacing: 1px;
     color: ${({ theme }) => theme.grey300};
   }

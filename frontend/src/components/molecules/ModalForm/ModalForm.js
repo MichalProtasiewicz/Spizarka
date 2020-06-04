@@ -18,6 +18,7 @@ const StyledForm = styled(Form)`
 `;
 
 const StyledInput = styled(Input)`
+  margin-top: 30px;
   margin-bottom: 30px;
 `;
 
@@ -27,11 +28,11 @@ const StyledButton = styled(Button)`
 `;
 
 const StyledLabel = styled.label`
- 
+
 `;
 
 const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }) => {
-  let item = { name: '', categoryId: '', quantity: 0, minQuantity: 0 };
+  let item = { name: '', categoryId: '', quantity: '', minQuantity: '' };
   if (editedProduct) {
     item = editedProduct;
   }
@@ -55,20 +56,20 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
             <StyledInput
               type="text"
               name="name"
-              placeholder="name"
+              placeholder="Name"
               autoComplete="off"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.name}
             />
-            <StyledLabel for="name">
-              <span>Name</span>
+            <StyledLabel for="category">
+              <span>Category</span>
             </StyledLabel>
             <Field name="categoryId" component={SelectField} options={categories} />
             <StyledInput
               type="number"
               name="quantity"
-              placeholder="quantity"
+              placeholder="Quantity"
               autoComplete="off"
               onChange={handleChange}
               onBlur={handleBlur}
@@ -77,7 +78,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
             <StyledInput
               type="number"
               name="minQuantity"
-              placeholder="min quantity"
+              placeholder="Minimum quantity"
               autoComplete="off"
               onChange={handleChange}
               onBlur={handleBlur}
