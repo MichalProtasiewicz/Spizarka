@@ -62,7 +62,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
               onBlur={handleBlur}
               value={values.name}
             />
-            <StyledLabel for="category">
+            <StyledLabel htmlFor="category">
               <span>Category</span>
             </StyledLabel>
             <Field name="categoryId" component={SelectField} options={categories} />
