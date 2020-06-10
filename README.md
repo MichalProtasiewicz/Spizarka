@@ -70,8 +70,3 @@ Zdarzyło Ci się pójść do sklepu i kupić mąkę, mimo, że czekają na Cieb
 # Model bazy danych
 
 ![db_schema](db_schema.png 'Schemat bazy danych')
-
-# Wykonali
-
-- Michał Protasiewicz
-- Mateusz Sowiński
