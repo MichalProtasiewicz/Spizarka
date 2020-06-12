@@ -6,6 +6,7 @@ import { routes } from 'routes';
 import { connect } from 'react-redux';
 import { authLogin as authLoginAction } from 'actions';
 import { Formik, Form } from 'formik';
+import ErrorLabel from 'components/atoms/ErrorLabel/ErrorLabel';
 import AuthTemplate from 'templates/AuthTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
@@ -34,6 +35,9 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledHeading = styled(Heading)`
+  margin-bottom: 30px;
+`;
+const StyledErrorLabel = styled(ErrorLabel)`
   margin-bottom: 30px;
 `;
 
@@ -66,7 +70,9 @@ const LoginPage = ({ authLogin, auth }) => (
                 onBlur={handleBlur}
                 value={values.title}
               />
-              {auth.error != null ? <div>Błedny login lub hasło</div> : null}
+              {auth.error != null ? (
+                <StyledErrorLabel>Błedny login lub hasło</StyledErrorLabel>
+              ) : null}
               <Button type="submit">sign in</Button>
             </StyledForm>
             <StyledLink to={routes.register}>I want my account!</StyledLink>

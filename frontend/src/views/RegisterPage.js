@@ -39,16 +39,20 @@ const StyledHeading = styled(Heading)`
   margin-bottom: 30px;
 `;
 
+const StyledInputWrapper = styled.div`
+  position: relative;
+`;
+
+const StyledErorLabel = styled(ErrorLabel)`
+  position: absolute;
+  top: 40px;
+  left: 20px;
+`;
+
 const RegisterSchema = Yup.object().shape({
-  username: Yup.string()
-    .min(8, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
+  username: Yup.string().min(8, 'Too Short!').max(50, 'Too Long!').required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
-  password1: Yup.string()
-    .min(8, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
+  password1: Yup.string().min(8, 'Too Short!').max(50, 'Too Long!').required('Required'),
   password2: Yup.string()
     .required('Required')
     .oneOf([Yup.ref('password1'), null], 'Passwords must match'),
@@ -68,50 +72,58 @@ const RegisterPage = ({ authSignup }) => (
           <>
             <StyledHeading>Register</StyledHeading>
             <StyledForm onSubmit={handleSubmit}>
-              <StyledInput
-                type="text"
-                name="username"
-                placeholder="Username"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.title}
-              />
-              <ErrorLabel>
-                <ErrorMessage name="username" />
-              </ErrorLabel>
-              <StyledInput
-                type="email"
-                name="email"
-                placeholder="Email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.title}
-              />
-              <ErrorLabel>
-                <ErrorMessage name="email" />
-              </ErrorLabel>
-              <StyledInput
-                type="password"
-                name="password1"
-                placeholder="Password"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.title}
-              />
-              <ErrorLabel>
-                <ErrorMessage name="password1" />
-              </ErrorLabel>
-              <StyledInput
-                type="password"
-                name="password2"
-                placeholder="Repeat password"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.title}
-              />
-              <ErrorLabel>
-                <ErrorMessage name="password2" />
-              </ErrorLabel>
+              <StyledInputWrapper>
+                <StyledInput
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.title}
+                />
+                <StyledErorLabel>
+                  <ErrorMessage name="username" />
+                </StyledErorLabel>
+              </StyledInputWrapper>
+              <StyledInputWrapper>
+                <StyledInput
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.title}
+                />
+                <StyledErorLabel>
+                  <ErrorMessage name="email" />
+                </StyledErorLabel>
+              </StyledInputWrapper>
+              <StyledInputWrapper>
+                <StyledInput
+                  type="password"
+                  name="password1"
+                  placeholder="Password"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.title}
+                />
+                <StyledErorLabel>
+                  <ErrorMessage name="password1" />
+                </StyledErorLabel>
+              </StyledInputWrapper>
+              <StyledInputWrapper>
+                <StyledInput
+                  type="password"
+                  name="password2"
+                  placeholder="Repeat password"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.title}
+                />
+                <StyledErorLabel>
+                  <ErrorMessage name="password2" />
+                </StyledErorLabel>
+              </StyledInputWrapper>
               <Button type="submit">register</Button>
             </StyledForm>
             <StyledLink to={routes.login}>I want to log in!</StyledLink>
