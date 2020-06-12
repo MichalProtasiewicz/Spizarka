@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { routes } from 'routes';
 import { connect } from 'react-redux';
 import { authLogin as authLoginAction } from 'actions';
-import { Formik, Form, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import AuthTemplate from 'templates/AuthTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
@@ -37,7 +37,7 @@ const StyledHeading = styled(Heading)`
   margin-bottom: 30px;
 `;
 
-const LoginPage = ({ authLogin }) => (
+const LoginPage = ({ authLogin, auth }) => (
   <AuthTemplate>
     <Formik
       initialValues={{ username: '', password: '' }}
@@ -45,11 +45,11 @@ const LoginPage = ({ authLogin }) => (
         authLogin(username, password);
       }}
     >
-      {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => {
+      {({ values, handleChange, handleBlur, handleSubmit }) => {
         return (
           <>
             <StyledHeading>Sign in</StyledHeading>
-            <StyledForm>
+            <StyledForm onSubmit={handleSubmit}>
               <StyledInput
                 type="text"
                 name="username"
@@ -66,6 +66,7 @@ const LoginPage = ({ authLogin }) => (
                 onBlur={handleBlur}
                 value={values.title}
               />
+              {auth.error != null ? <div>Błedny login lub hasło</div> : null}
               <Button type="submit">sign in</Button>
             </StyledForm>
             <StyledLink to={routes.register}>I want my account!</StyledLink>
@@ -78,11 +79,13 @@ const LoginPage = ({ authLogin }) => (
 
 LoginPage.propTypes = {
   authLogin: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
+const mapStateToProps = ({ auth }) => ({ auth });
 
 const mapDispatchToProps = (dispatch) => ({
   authLogin: (username, password) => dispatch(authLoginAction(username, password)),
 });
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

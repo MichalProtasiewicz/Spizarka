@@ -15,12 +15,12 @@ export const authSuccess = (token, userID) => {
   };
 };
 
-export const authFail = (err) => {
-  return {
-    type: actionTypes.AUTH_FAILURE,
-    err,
-  };
-};
+export const authFail = (error) => {
+         return {
+           type: actionTypes.AUTH_FAILURE,
+           error,
+         };
+       };
 
 export const logout = () => {
   localStorage.removeItem('user');
@@ -54,9 +54,9 @@ export const authLogin = (username, password) => (dispatch) => {
       dispatch(authSuccess(userToken, userID));
       dispatch(checkAuthTimeout(3600));
     })
-    .catch((err) => {
-      console.log(err);
-      dispatch(authFail(err));
+    .catch((error) => {
+      console.log(error);
+      dispatch(authFail(error));
     });
 };
 
@@ -97,8 +97,8 @@ export const removeItem = (id) => (dispatch) => {
         },
       });
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      console.log(error);
       dispatch({ type: actionTypes.REMOVE_ITEM_FAILURE });
     });
 };
@@ -113,8 +113,8 @@ export const addItem = (itemContent) => (dispatch, getState) => {
     .then(({ data }) => {
       dispatch({ type: actionTypes.ADD_ITEM_SUCCESS, payload: { data } });
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      console.log(error);
       dispatch({ type: actionTypes.ADD_ITEM_FAILURE });
     });
 };
@@ -129,8 +129,8 @@ export const editItem = (id, itemContent) => (dispatch, getState) => {
     .then(({ data }) => {
       dispatch({ type: actionTypes.EDIT_ITEM_SUCCESS, payload: { data } });
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      console.log(error);
       dispatch({ type: actionTypes.EDIT_ITEM_FAILURE });
     });
 };
@@ -146,8 +146,8 @@ export const fetchItems = () => (dispatch, getState) => {
     .then((payload) => {
       dispatch({ type: actionTypes.FETCH_SUCCESS, payload });
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      console.log(error);
       dispatch({ type: actionTypes.FETCH_FAILURE });
     });
 };
@@ -160,8 +160,8 @@ export const fetchCategories = () => (dispatch) => {
     .then((payload) => {
       dispatch({ type: actionTypes.FETCH_CATEGORIES_SUCCESS, payload });
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      console.log(error);
       dispatch({ type: actionTypes.FETCH_CATEGORIES_FAILURE });
     });
 };

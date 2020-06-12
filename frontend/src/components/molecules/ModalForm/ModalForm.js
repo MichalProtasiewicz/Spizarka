@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import Heading from 'components/atoms/Heading/Heading';
@@ -31,8 +32,13 @@ const StyledLabel = styled.label`
 
 `;
 
+const ProductSchema = Yup.object().shape({
+  name: Yup.string().required('Required'),
+  categoryId: Yup.string().required('Required'),
+});
+
 const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }) => {
-  let item = { name: '', categoryId: '', quantity: '', minQuantity: '' };
+  let item = { name: '', categoryId: '', quantity: 0, minQuantity: 0 };
   if (editedProduct) {
     item = editedProduct;
   }
@@ -42,6 +48,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
       <Formik
         enableReinitialize
         initialValues={{ ...item }}
+        validationSchema={ProductSchema}
         onSubmit={(values) => {
           if (editedProduct) {
             editItem(editedProduct.id, values);
@@ -51,8 +58,11 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
           handleClose();
         }}
       >
-        {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-          <StyledForm>
+        {({ values, handleChange, handleBlur, handleSubmit }) => (
+          <StyledForm onSubmit={handleSubmit}>
+            <StyledLabel htmlFor="name">
+              <span>Product Name</span>
+            </StyledLabel>
             <StyledInput
               type="text"
               name="name"
@@ -62,10 +72,15 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
               onBlur={handleBlur}
               value={values.name}
             />
+            <ErrorMessage name="name" />
             <StyledLabel htmlFor="category">
               <span>Category</span>
             </StyledLabel>
             <Field name="categoryId" component={SelectField} options={categories} />
+            <ErrorMessage name="categoryId" />
+            <StyledLabel htmlFor="quantity">
+              <span>Quantity</span>
+            </StyledLabel>
             <StyledInput
               type="number"
               name="quantity"
@@ -75,6 +90,9 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
               onBlur={handleBlur}
               value={values.quantity}
             />
+            <StyledLabel htmlFor="quantity">
+              <span>Minimum Quantity</span>
+            </StyledLabel>
             <StyledInput
               type="number"
               name="minQuantity"
@@ -97,6 +115,7 @@ ModalForm.propTypes = {
   editedProduct: PropTypes.object,
   editItem: PropTypes.func.isRequired,
   categories: PropTypes.array.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 ModalForm.defaultProps = {

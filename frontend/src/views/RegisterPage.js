@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { routes } from 'routes';
 import { connect } from 'react-redux';
 import { authSignup as authSignupAction } from 'actions';
 import { Formik, Form, ErrorMessage } from 'formik';
+import ErrorLabel from 'components/atoms/ErrorLabel/ErrorLabel';
+import * as Yup from 'yup';
 import AuthTemplate from 'templates/AuthTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
@@ -37,19 +39,35 @@ const StyledHeading = styled(Heading)`
   margin-bottom: 30px;
 `;
 
+const RegisterSchema = Yup.object().shape({
+  username: Yup.string()
+    .min(8, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  email: Yup.string().email('Invalid email').required('Required'),
+  password1: Yup.string()
+    .min(8, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  password2: Yup.string()
+    .required('Required')
+    .oneOf([Yup.ref('password1'), null], 'Passwords must match'),
+});
+
 const RegisterPage = ({ authSignup }) => (
   <AuthTemplate>
     <Formik
       initialValues={{ username: '', email: '', password1: '', password2: '' }}
+      validationSchema={RegisterSchema}
       onSubmit={({ username, email, password1, password2 }) => {
         authSignup(username, email, password1, password2);
       }}
     >
-      {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => {
+      {({ values, handleChange, handleBlur, handleSubmit }) => {
         return (
           <>
             <StyledHeading>Register</StyledHeading>
-            <StyledForm>
+            <StyledForm onSubmit={handleSubmit}>
               <StyledInput
                 type="text"
                 name="username"
@@ -58,6 +76,9 @@ const RegisterPage = ({ authSignup }) => (
                 onBlur={handleBlur}
                 value={values.title}
               />
+              <ErrorLabel>
+                <ErrorMessage name="username" />
+              </ErrorLabel>
               <StyledInput
                 type="email"
                 name="email"
@@ -66,6 +87,9 @@ const RegisterPage = ({ authSignup }) => (
                 onBlur={handleBlur}
                 value={values.title}
               />
+              <ErrorLabel>
+                <ErrorMessage name="email" />
+              </ErrorLabel>
               <StyledInput
                 type="password"
                 name="password1"
@@ -74,6 +98,9 @@ const RegisterPage = ({ authSignup }) => (
                 onBlur={handleBlur}
                 value={values.title}
               />
+              <ErrorLabel>
+                <ErrorMessage name="password1" />
+              </ErrorLabel>
               <StyledInput
                 type="password"
                 name="password2"
@@ -82,6 +109,9 @@ const RegisterPage = ({ authSignup }) => (
                 onBlur={handleBlur}
                 value={values.title}
               />
+              <ErrorLabel>
+                <ErrorMessage name="password2" />
+              </ErrorLabel>
               <Button type="submit">register</Button>
             </StyledForm>
             <StyledLink to={routes.login}>I want to log in!</StyledLink>
