@@ -6,7 +6,7 @@ import { routes } from 'routes';
 import { connect } from 'react-redux';
 import { authLogin as authLoginAction } from 'actions';
 import { Formik, Form } from 'formik';
-import ErrorLabel from 'components/atoms/ErrorLabel/ErrorLabel';
+import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import AuthTemplate from 'templates/AuthTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
@@ -21,7 +21,6 @@ const StyledForm = styled(Form)`
 
 const StyledInput = styled(Input)`
   margin: 0 0 30px 0;
-  height: 40px;
   width: 300px;
 `;
 
@@ -37,7 +36,7 @@ const StyledLink = styled(Link)`
 const StyledHeading = styled(Heading)`
   margin-bottom: 30px;
 `;
-const StyledErrorLabel = styled(ErrorLabel)`
+const StyledParagraph = styled(Paragraph)`
   margin-bottom: 30px;
 `;
 
@@ -57,21 +56,23 @@ const LoginPage = ({ authLogin, auth }) => (
               <StyledInput
                 type="text"
                 name="username"
-                placeholder="Username"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.title}
-              />
+              >
+                Username
+              </StyledInput>
               <StyledInput
                 type="password"
                 name="password"
-                placeholder="Password"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.title}
-              />
+              >
+                Password
+              </StyledInput>
               {auth.error != null ? (
-                <StyledErrorLabel>Błedny login lub hasło</StyledErrorLabel>
+                <StyledParagraph danger>Błedne dane logowania</StyledParagraph>
               ) : null}
               <Button type="submit">sign in</Button>
             </StyledForm>

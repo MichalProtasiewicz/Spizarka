@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 import { routes } from 'routes';
 import { connect } from 'react-redux';
 import { authSignup as authSignupAction } from 'actions';
-import { Formik, Form, ErrorMessage } from 'formik';
-import ErrorLabel from 'components/atoms/ErrorLabel/ErrorLabel';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import AuthTemplate from 'templates/AuthTemplate';
 import Heading from 'components/atoms/Heading/Heading';
@@ -22,7 +21,6 @@ const StyledForm = styled(Form)`
 
 const StyledInput = styled(Input)`
   margin: 0 0 30px 0;
-  height: 40px;
   width: 300px;
 `;
 
@@ -41,12 +39,6 @@ const StyledHeading = styled(Heading)`
 
 const StyledInputWrapper = styled.div`
   position: relative;
-`;
-
-const StyledErorLabel = styled(ErrorLabel)`
-  position: absolute;
-  top: 40px;
-  left: 20px;
 `;
 
 const RegisterSchema = Yup.object().shape({
@@ -76,53 +68,49 @@ const RegisterPage = ({ authSignup }) => (
                 <StyledInput
                   type="text"
                   name="username"
-                  placeholder="Username"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.title}
-                />
-                <StyledErorLabel>
-                  <ErrorMessage name="username" />
-                </StyledErorLabel>
+                  errorLabelName="username"
+                >
+                  Username
+                </StyledInput>
               </StyledInputWrapper>
               <StyledInputWrapper>
                 <StyledInput
-                  type="email"
+                  type="text"
                   name="email"
-                  placeholder="Email"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.title}
-                />
-                <StyledErorLabel>
-                  <ErrorMessage name="email" />
-                </StyledErorLabel>
+                  errorLabelName="email"
+                >
+                  Email
+                </StyledInput>
               </StyledInputWrapper>
               <StyledInputWrapper>
                 <StyledInput
                   type="password"
                   name="password1"
-                  placeholder="Password"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.title}
-                />
-                <StyledErorLabel>
-                  <ErrorMessage name="password1" />
-                </StyledErorLabel>
+                  errorLabelName="password1"
+                >
+                  Password
+                </StyledInput>
               </StyledInputWrapper>
               <StyledInputWrapper>
                 <StyledInput
                   type="password"
                   name="password2"
-                  placeholder="Repeat password"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.title}
-                />
-                <StyledErorLabel>
-                  <ErrorMessage name="password2" />
-                </StyledErorLabel>
+                  errorLabelName="password2"
+                >
+                  Repeat password
+                </StyledInput>
               </StyledInputWrapper>
               <Button type="submit">register</Button>
             </StyledForm>

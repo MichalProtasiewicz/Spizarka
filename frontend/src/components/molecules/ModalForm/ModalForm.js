@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import ErrorLabel from 'components/atoms/ErrorLabel/ErrorLabel';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import Heading from 'components/atoms/Heading/Heading';
@@ -11,39 +10,28 @@ import { connect } from 'react-redux';
 import { addItem as addItemAction, editItem as editItemAction } from 'actions';
 import { SelectField } from 'components/atoms/SelectField/SelectField';
 
-const StyledWrapper = styled.div``;
+const StyledWrapper = styled.div`
+  height: 100%;
+`;
 
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  margin-top: 80px;
+  justify-content: space-around;
+  height: 55%;
 `;
 
 const StyledInput = styled(Input)`
-  margin-top: 30px;
-  margin-bottom: 30px;
-  width:100%;
+  width: 100%;
+`;
+
+const StyledHeading = styled(Heading)`
+  margin-bottom: 50px;
 `;
 
 const StyledButton = styled(Button)`
   align-self: center;
-  margin-top: 40px;
-`;
-
-const StyledLabel = styled.label`
-  position: absolute;
-  top: 20px;
-  left: 25px;
-`;
-
-const StyledInputWrapper = styled.div`
-  position: relative;
-`;
-
-const StyledErorLabel = styled(ErrorLabel)`
-  position: absolute;
-  top: 80px;
-  left: 20px;
+  margin-top:30px;
 `;
 
 const ProductSchema = Yup.object().shape({
@@ -58,7 +46,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
   }
   return (
     <StyledWrapper>
-      <Heading big>{editedProduct ? 'Edytuj' : 'Dodaj nowy'} produkt</Heading>
+      <StyledHeading big>{editedProduct ? 'Edytuj' : 'Dodaj nowy'} produkt</StyledHeading>
       <Formik
         enableReinitialize
         initialValues={{ ...item }}
@@ -74,60 +62,38 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
       >
         {({ values, handleChange, handleBlur, handleSubmit }) => (
           <StyledForm onSubmit={handleSubmit}>
-            <StyledInputWrapper>
-              <StyledLabel htmlFor="name">
-                <span>Name</span>
-              </StyledLabel>
-              <StyledInput
-                type="text"
-                name="name"
-                placeholder="Name"
-                autoComplete="off"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.name}
-              />
-              <StyledErorLabel>
-                <ErrorMessage name="name" />
-              </StyledErorLabel>
-            </StyledInputWrapper>
-            <StyledInputWrapper>
-              <StyledLabel htmlFor="categoryId">
-                <span>Category</span>
-              </StyledLabel>
-              <Field name="categoryId" component={SelectField} options={categories} />
-              <StyledErorLabel>
-                <ErrorMessage name="categoryId" />
-              </StyledErorLabel>
-            </StyledInputWrapper>
-            <StyledInputWrapper>
-              <StyledLabel htmlFor="quantity">
-                <span>Quantity</span>
-              </StyledLabel>
-              <StyledInput
-                type="number"
-                name="quantity"
-                placeholder="Quantity"
-                autoComplete="off"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.quantity}
-              />
-            </StyledInputWrapper>
-            <StyledInputWrapper>
-              <StyledLabel htmlFor="minQuantity">
-                <span>Minimum Quantity</span>
-              </StyledLabel>
-              <StyledInput
-                type="number"
-                name="minQuantity"
-                placeholder="Minimum quantity"
-                autoComplete="off"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.minQuantity}
-              />
-            </StyledInputWrapper>
+            <StyledInput
+              type="text"
+              name="name"
+              autoComplete="off"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.name}
+              errorLabelName="name"
+            >
+              Name
+            </StyledInput>
+            <Field name="categoryId" component={SelectField} options={categories} />
+            <StyledInput
+              type="number"
+              name="quantity"
+              autoComplete="off"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.quantity}
+            >
+              Quantity
+            </StyledInput>
+            <StyledInput
+              type="number"
+              name="minQuantity"
+              autoComplete="off"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.minQuantity}
+            >
+              Minimum quantity
+            </StyledInput>
             <StyledButton type="submit">{editedProduct ? 'Edytuj' : 'Dodaj'} produkt</StyledButton>
           </StyledForm>
         )}
