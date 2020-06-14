@@ -28,11 +28,12 @@ const Modal = ({ isVisible, children }) => (
 
 Modal.propTypes = {
   isVisible: PropTypes.bool,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.element,
 };
 
 Modal.defaultProps = {
   isVisible: false,
+  children: null,
 };
 
 export default Modal;

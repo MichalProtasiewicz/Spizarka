@@ -19,6 +19,7 @@ const LogoWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding: 0 20px 40px 20px;
+  margin-bottom: 30px;
 `;
 
 const StyledLogo = styled.img`
@@ -33,8 +34,8 @@ const StyledHeading = styled(Heading)`
 `;
 
 const StyledAuthCard = styled.div`
-  width: 500px;
-  height: 500px;
+  width: 550px;
+  height: 600px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);

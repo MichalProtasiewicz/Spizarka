@@ -20,8 +20,8 @@ const StyledForm = styled(Form)`
 `;
 
 const StyledInput = styled(Input)`
-  margin: 0 0 30px 0;
-  width: 300px;
+  margin: 0 0 40px 0;
+  width: 350px;
 `;
 
 const StyledLink = styled(Link)`
@@ -50,85 +50,92 @@ const RegisterSchema = Yup.object().shape({
     .oneOf([Yup.ref('password1'), null], 'Passwords must match'),
 });
 
-const RegisterPage = ({ authSignup }) => (
-  <AuthTemplate>
-    <Formik
-      initialValues={{ username: '', email: '', password1: '', password2: '' }}
-      validationSchema={RegisterSchema}
-      onSubmit={({ username, email, password1, password2 }) => {
-        authSignup(username, email, password1, password2);
-      }}
-    >
-      {({ values, handleChange, handleBlur, handleSubmit }) => {
-        return (
-          <>
-            <StyledHeading>Register</StyledHeading>
-            <StyledForm onSubmit={handleSubmit}>
-              <StyledInputWrapper>
-                <StyledInput
-                  type="text"
-                  name="username"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.title}
-                  errorLabelName="username"
-                >
-                  Username
-                </StyledInput>
-              </StyledInputWrapper>
-              <StyledInputWrapper>
-                <StyledInput
-                  type="text"
-                  name="email"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.title}
-                  errorLabelName="email"
-                >
-                  Email
-                </StyledInput>
-              </StyledInputWrapper>
-              <StyledInputWrapper>
-                <StyledInput
-                  type="password"
-                  name="password1"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.title}
-                  errorLabelName="password1"
-                >
-                  Password
-                </StyledInput>
-              </StyledInputWrapper>
-              <StyledInputWrapper>
-                <StyledInput
-                  type="password"
-                  name="password2"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.title}
-                  errorLabelName="password2"
-                >
-                  Repeat password
-                </StyledInput>
-              </StyledInputWrapper>
-              <Button type="submit">register</Button>
-            </StyledForm>
-            <StyledLink to={routes.login}>I want to log in!</StyledLink>
-          </>
-        );
-      }}
-    </Formik>
-  </AuthTemplate>
-);
+const RegisterPage = ({ authSignup, auth }) => {
+  //wyczyszczenie errora po nieudanym logowaniu
+  auth.error = null;
+  return (
+    <AuthTemplate>
+      <Formik
+        initialValues={{ username: '', email: '', password1: '', password2: '' }}
+        validationSchema={RegisterSchema}
+        onSubmit={({ username, email, password1, password2 }) => {
+          authSignup(username, email, password1, password2);
+        }}
+      >
+        {({ values, handleChange, handleBlur, handleSubmit }) => {
+          return (
+            <>
+              <StyledHeading big>Register</StyledHeading>
+              <StyledForm onSubmit={handleSubmit}>
+                <StyledInputWrapper>
+                  <StyledInput
+                    type="text"
+                    name="username"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.title}
+                    errorLabelName="username"
+                  >
+                    Username
+                  </StyledInput>
+                </StyledInputWrapper>
+                <StyledInputWrapper>
+                  <StyledInput
+                    type="text"
+                    name="email"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.title}
+                    errorLabelName="email"
+                  >
+                    Email
+                  </StyledInput>
+                </StyledInputWrapper>
+                <StyledInputWrapper>
+                  <StyledInput
+                    type="password"
+                    name="password1"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.title}
+                    errorLabelName="password1"
+                  >
+                    Password
+                  </StyledInput>
+                </StyledInputWrapper>
+                <StyledInputWrapper>
+                  <StyledInput
+                    type="password"
+                    name="password2"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.title}
+                    errorLabelName="password2"
+                  >
+                    Repeat password
+                  </StyledInput>
+                </StyledInputWrapper>
+                <Button type="submit">register</Button>
+              </StyledForm>
+              <StyledLink to={routes.login}>I want to log in!</StyledLink>
+            </>
+          );
+        }}
+      </Formik>
+    </AuthTemplate>
+  );
+};
 
 RegisterPage.propTypes = {
   authSignup: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
 };
+
+const mapStateToProps = ({ auth }) => ({ auth });
 
 const mapDispatchToProps = (dispatch) => ({
   authSignup: (username, email, password1, password2) =>
     dispatch(authSignupAction(username, email, password1, password2)),
 });
 
-export default connect(null, mapDispatchToProps)(RegisterPage);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);

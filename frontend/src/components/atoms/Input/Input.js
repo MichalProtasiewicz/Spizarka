@@ -64,12 +64,11 @@ const ErrorLabel = styled.span`
   left: 20px;
 `;
 
-
 const Input = ({ children, errorLabelName, ...props }) => (
   <StyledInputWrapper>
     <StyledInput {...props} required />
     {StyledInput.value === '' ? (
-      <InputLabel >{children}</InputLabel>
+      <InputLabel>{children}</InputLabel>
     ) : (
       <InputLabel active>{children}</InputLabel>
     )}
@@ -82,15 +81,14 @@ const Input = ({ children, errorLabelName, ...props }) => (
   </StyledInputWrapper>
 );
 
-
 Input.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.string,
   errorLabelName: PropTypes.string,
 };
 
 Input.defaultProps = {
+  children: null,
   errorLabelName: null,
 };
-
 
 export default Input;

@@ -20,8 +20,8 @@ const StyledForm = styled(Form)`
 `;
 
 const StyledInput = styled(Input)`
-  margin: 0 0 30px 0;
-  width: 300px;
+  margin: 0 0 40px 0;
+  width: 350px;
 `;
 
 const StyledLink = styled(Link)`
@@ -34,7 +34,7 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledHeading = styled(Heading)`
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 `;
 const StyledParagraph = styled(Paragraph)`
   margin-bottom: 30px;
@@ -51,7 +51,7 @@ const LoginPage = ({ authLogin, auth }) => (
       {({ values, handleChange, handleBlur, handleSubmit }) => {
         return (
           <>
-            <StyledHeading>Sign in</StyledHeading>
+            <StyledHeading big>Sign in</StyledHeading>
             <StyledForm onSubmit={handleSubmit}>
               <StyledInput
                 type="text"

@@ -62,6 +62,11 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
       >
         {({ values, handleChange, handleBlur, handleSubmit }) => (
           <StyledForm onSubmit={handleSubmit}>
+            <Field
+              name="categoryId"
+              component={SelectField}
+              options={categories}
+            />
             <StyledInput
               type="text"
               name="name"
@@ -73,7 +78,6 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
             >
               Name
             </StyledInput>
-            <Field name="categoryId" component={SelectField} options={categories} />
             <StyledInput
               type="number"
               name="quantity"
