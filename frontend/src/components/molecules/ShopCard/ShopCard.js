@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 const StyledWrapper = styled.div`
   width: 80vw;
   height: 100px;
-  border: 1px solid ${({ theme }) => theme.raisinBlack};
+  border: 3px solid ${({ theme }) => theme.blue};
   border-radius: 10px;
   display: flex;
   justify-content: space-between;

@@ -1,21 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   removeItem as removeItemAction,
   editItem as editItemAction,
 } from 'actions';
-import CloseIcon from '@material-ui/icons/Close';
 import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
 import EditIcon from 'assets/icons/edit.svg';
+import CrossIcon from 'assets/icons/cross.svg';
 import withContext from 'hoc/withContext';
 
 const StyledWrapper = styled.div`
   width: 200px;
   height: 200px;
-  box-shadow: 0 10px 30px -10px hsla(0, 0%, 0%, 0.2);
+  border: 4px solid ${({ theme }) => theme.blue};
   border-radius: 10px;
   display: grid;
   grid-template-columns: 1fr;
@@ -27,7 +27,7 @@ const QuantityWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 2px solid;
+  border-top: 3px solid ${({ theme }) => theme.blue};
   padding: 10px;
   border-radius: 10px;
 `;
@@ -39,31 +39,26 @@ const StyledSpan = styled.span`
   justify-self: center;
 `;
 
-const StyledCloseIcon = styled(CloseIcon)`
+const StyledIconButton = styled.button`
   position: absolute;
-  left: 190px;
-  top: -10px;
-  border-radius: 6px;
-  color: ${({ theme }) => theme.danger};
-  background-color: ${({ theme }) => theme.white};
-  border: 2px solid ${({ theme }) => theme.black};
-`;
-
-const StyledEditButton = styled.button`
-  position: absolute;
-  left: 190px;
-  top: 20px;
   border-radius: 6px;
   background-color: ${({ theme }) => theme.white};
-  border: 2px solid ${({ theme }) => theme.black};
-
+  border: 3px solid ${({ theme }) => theme.danger};
   width: 24px;
   height: 24px;
   border-radius: 6px;
-  background-image: url(${EditIcon});
+  padding: 12px 12px 12px 12px;
+  background-image: url(${({ icon }) => icon});
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: 75% 75%;
+  outline: none;
+
+  ${({ green }) =>
+    green &&
+    css`
+      border-color: ${({ theme }) => theme.success};
+    `}
 `;
 
 const Card = ({
@@ -94,15 +89,24 @@ const Card = ({
   return (
     <StyledWrapper>
       <StyledSpan>{name}</StyledSpan>
-      <StyledCloseIcon
-        fontSize="large"
+      <StyledIconButton
+        style={{ top: '-15px', left: '180px' }}
+        icon={CrossIcon}
+        addEventListener
         onClick={() => {
           if (window.confirm('Usunąć produkt z listy?')) {
             removeItem(id);
           }
         }}
       />
-      <StyledEditButton addEventListener onClick={modalContext.editItem} value={id} />
+      <StyledIconButton
+        style={{ top: '25px', left: '180px' }}
+        green
+        icon={EditIcon}
+        addEventListener
+        onClick={modalContext.editItem}
+        value={id}
+      />
       <QuantityWrapper>
         <MinusIcon
           style={{ fontSize: 40, color: 'hsl(0, 100%, 63%)' }}
