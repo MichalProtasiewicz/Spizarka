@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
@@ -11,6 +11,7 @@ import PlusIcon from '@material-ui/icons/Add';
 import EditIcon from 'assets/icons/edit.svg';
 import CrossIcon from 'assets/icons/cross.svg';
 import withContext from 'hoc/withContext';
+import CardButton from 'components/atoms/CardButton/CardButton';
 
 const StyledWrapper = styled.div`
   width: 200px;
@@ -37,28 +38,6 @@ const StyledSpan = styled.span`
   font-weight: ${({ theme }) => theme.bold};
   align-self: center;
   justify-self: center;
-`;
-
-const StyledIconButton = styled.button`
-  position: absolute;
-  border-radius: 6px;
-  background-color: ${({ theme }) => theme.white};
-  border: 3px solid ${({ theme }) => theme.danger};
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
-  padding: 12px 12px 12px 12px;
-  background-image: url(${({ icon }) => icon});
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: 75% 75%;
-  outline: none;
-
-  ${({ green }) =>
-    green &&
-    css`
-      border-color: ${({ theme }) => theme.success};
-    `}
 `;
 
 const Card = ({
@@ -89,8 +68,9 @@ const Card = ({
   return (
     <StyledWrapper>
       <StyledSpan>{name}</StyledSpan>
-      <StyledIconButton
+      <CardButton
         style={{ top: '-15px', left: '180px' }}
+        red
         icon={CrossIcon}
         addEventListener
         onClick={() => {
@@ -99,7 +79,7 @@ const Card = ({
           }
         }}
       />
-      <StyledIconButton
+      <CardButton
         style={{ top: '25px', left: '180px' }}
         green
         icon={EditIcon}

@@ -1,7 +1,9 @@
 import React from 'react';
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import CrossIcon from 'assets/icons/cross.svg';
+import CardButton from 'components/atoms/CardButton/CardButton';
 
 const StyledWrapper = styled.div`
   width: 80vw;
@@ -43,13 +45,24 @@ const StyledSpan = styled.span`
     `}
 `;
 
+const StyledCardButton = styled(CardButton)`
+ top: -15px;
+ left: 79vw;
+`;
 
 const ShopCard = ({ id, name, categoryId, quantity, minQuantity, categories }) => {
-  const categoryName=categories.find((x) => x.id === categoryId).name;
+  const categoryName = categories.find((x) => x.id === categoryId).name;
   return (
     <StyledWrapper>
-      <NameSpan>{name}</NameSpan>
+      <StyledCardButton
+        icon={CrossIcon}
+        addEventListener
+        onClick={() => {
+          console.log('Kupione');
+        }}
+      />
       <CategorySpan>{categoryName}</CategorySpan>
+      <NameSpan>{name}</NameSpan>
       <QuantityWrapper>
         <StyledSpan>{quantity}</StyledSpan>/<StyledSpan green>{minQuantity}</StyledSpan>
       </QuantityWrapper>
