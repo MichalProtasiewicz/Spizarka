@@ -2,6 +2,8 @@
 
 Django + React application.
 
+Live: https://spizarkaa.herokuapp.com/
+
 # Cel aplikacji
 
 Zdarzyło Ci się pójść do sklepu i kupić mąkę, mimo, że czekają na Ciebie trzy nieotwarte paczki w domu? Żeby walczyć z nadmiernym magazynowaniem żywności, powstała aplikacja, dzięki której w łatwy sposób zapiszesz stan swojej domowej spiżarni, aby potem w sklepie nie mieć wątpliwości co faktycznie Ci się przyda.
