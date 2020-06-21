@@ -47,7 +47,8 @@ const StyledSpan = styled.span`
 
 const StyledCardButton = styled(CardButton)`
  top: -15px;
- left: 79vw;
+ left: 80vw;
+ margin-left: -20px;
 `;
 
 const ShopCard = ({ id, name, categoryId, quantity, minQuantity, categories }) => {

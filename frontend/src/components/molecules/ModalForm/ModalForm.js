@@ -10,9 +10,6 @@ import { connect } from 'react-redux';
 import { addItem as addItemAction, editItem as editItemAction } from 'actions';
 import { SelectField } from 'components/atoms/SelectField/SelectField';
 
-const StyledWrapper = styled.div`
-  height: 100%;
-`;
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -45,7 +42,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
     item = editedProduct;
   }
   return (
-    <StyledWrapper>
+    <>
       <StyledHeading big>{editedProduct ? 'Edytuj' : 'Dodaj nowy'} produkt</StyledHeading>
       <Formik
         enableReinitialize
@@ -102,7 +99,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
           </StyledForm>
         )}
       </Formik>
-    </StyledWrapper>
+    </>
   );
 };
 
