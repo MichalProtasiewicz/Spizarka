@@ -5,10 +5,16 @@ import { Formik, Form } from 'formik';
 import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
+import CardButton from 'components/atoms/CardButton/CardButton';
+import CrossIcon from 'assets/icons/cross.svg';
 
 const StyledWrapper = styled.div`
   z-index: 9999;
-  position: fixed;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: ${({ isVisible }) => (isVisible ? 'absolute' : 'none')};
   padding: 10px 30px 10px 30px;
   border: 5px solid ${({ theme }) => theme.blue};
   border-radius: 15px;
@@ -39,8 +45,21 @@ const StyledButton = styled(Button)`
   margin-left: 60px;
 `;
 
-const ShopListModal = ({ name }) => (
-  <StyledWrapper>
+const StyledCardButton = styled(CardButton)`
+  position: absolute;
+  top: -15px;
+  left: 525px;
+`;
+
+const ShopListModal = ({ isVisible }) => (
+  <StyledWrapper isVisible={isVisible}>
+    <StyledCardButton
+      icon={CrossIcon}
+      addEventListener
+      onClick={() => {
+        isVisible=false
+      }}
+    />
     <Formik
       enableReinitialize
       initialValues={{ count: 0 }}
@@ -50,7 +69,7 @@ const ShopListModal = ({ name }) => (
     >
       {({ values, handleChange, handleBlur, handleSubmit }) => (
         <StyledForm onSubmit={handleSubmit}>
-          <StyledHeading>{name} Ile sztuk produktu zostało kupione? </StyledHeading>
+          <StyledHeading>Ile sztuk produktu kupiono? </StyledHeading>
           <Input
             type="number"
             name="count"
@@ -69,7 +88,12 @@ const ShopListModal = ({ name }) => (
 );
 
 ShopListModal.propTypes = {
-  name: PropTypes.string.isRequired,
+  isVisible: PropTypes.bool,
 };
+
+ShopListModal.defaultProps = {
+  isVisible: false,
+};
+
 
 export default ShopListModal;

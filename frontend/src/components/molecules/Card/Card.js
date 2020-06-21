@@ -17,6 +17,7 @@ const StyledWrapper = styled.div`
   width: 200px;
   height: 200px;
   border: 4px solid ${({ theme }) => theme.blue};
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   display: grid;
   grid-template-columns: 1fr;

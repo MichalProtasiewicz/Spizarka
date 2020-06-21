@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import UserPageTemplate from 'templates/UserPageTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import ShopCardsList from 'components/organisms/ShopCardsList/ShopCardsList';
+import ShopListModal from 'components/organisms/ShopListModal/ShopListModal';
 
 const StyledHeading = styled(Heading)`
   margin-bottom: 60px;
@@ -13,8 +14,9 @@ const StyledHeading = styled(Heading)`
 const ShopListPage = ({ products }) => (
   <UserPageTemplate>
     <>
-    <StyledHeading big>Lista zakupów</StyledHeading>
-    <ShopCardsList items={products} />
+      <StyledHeading big>Lista zakupów</StyledHeading>
+      <ShopCardsList items={products} />
+      <ShopListModal isVisible={true} />
     </>
   </UserPageTemplate>
 );

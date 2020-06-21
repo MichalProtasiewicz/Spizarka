@@ -9,6 +9,7 @@ const StyledWrapper = styled.div`
   width: 80vw;
   height: 100px;
   border: 3px solid ${({ theme }) => theme.blue};
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
@@ -86,5 +87,6 @@ ShopCard.defaultProps = {
 };
 
 const mapStateToProps = ({ categories }) => ({ categories });
+
 
 export default connect(mapStateToProps)(ShopCard);
