@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
@@ -54,6 +55,10 @@ const StyledCardButton = styled(CardButton)`
   left: 524px;
 `;
 
+const ProductSchema = Yup.object().shape({
+  count: Yup.number().min(0, 'Positive number required'),
+});
+
 const ShopListModal = ({ isVisible, editedProduct, handleClose, editItem }) => {
   return (
     <StyledWrapper isVisible={isVisible}>
@@ -67,6 +72,7 @@ const ShopListModal = ({ isVisible, editedProduct, handleClose, editItem }) => {
       <Formik
         enableReinitialize
         initialValues={{ count: 0 }}
+        validationSchema={ProductSchema}
         onSubmit={(values) => {
           editedProduct.quantity += values.count;
           editItem(editedProduct.id, editedProduct);
@@ -83,6 +89,7 @@ const ShopListModal = ({ isVisible, editedProduct, handleClose, editItem }) => {
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.count}
+              errorLabelName="count"
             >
               Ilość
             </Input>

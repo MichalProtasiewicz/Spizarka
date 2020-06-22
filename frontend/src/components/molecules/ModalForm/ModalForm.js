@@ -34,6 +34,8 @@ const StyledButton = styled(Button)`
 const ProductSchema = Yup.object().shape({
   name: Yup.string().required('Required'),
   categoryId: Yup.string().required('Required'),
+  quantity: Yup.number().min(0,'Positive number required'),
+  minQuantity: Yup.number().positive('Positive number required'),
 });
 
 const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }) => {
@@ -63,6 +65,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
               name="categoryId"
               component={SelectField}
               options={categories}
+              errorLabelName="category"
             />
             <StyledInput
               type="text"
@@ -82,6 +85,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.quantity}
+              errorLabelName="quantity"
             >
               Quantity
             </StyledInput>
@@ -92,6 +96,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.minQuantity}
+              errorLabelName="minQuantity"
             >
               Minimum quantity
             </StyledInput>
