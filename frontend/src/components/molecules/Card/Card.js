@@ -68,7 +68,6 @@ const Card = ({
       <StyledSpan>{name}</StyledSpan>
       <CardButton
         style={{ top: '-15px', left: '180px' }}
-        red
         icon={CrossIcon}
         addEventListener
         onClick={() => {
@@ -87,7 +86,7 @@ const Card = ({
       />
       <QuantityWrapper>
         <MinusIcon
-          style={{ fontSize: 40, color: 'hsl(0, 100%, 63%)' }}
+          style={{ fontSize: 40, color: 'hsl(0, 100%, 63%)', cursor: 'pointer' }}
           onClick={() => DecreaseQuantity()}
         />
         {quantity < minQuantity ? (
@@ -98,7 +97,7 @@ const Card = ({
           <StyledSpan big>{quantity}</StyledSpan>
         )}
         <PlusIcon
-          style={{ fontSize: 40, color: 'hsl(144, 100%, 39%)' }}
+          style={{ fontSize: 40, color: 'hsl(144, 100%, 39%)', cursor: 'pointer' }}
           onClick={() => IncrementQuantity()}
         />
       </QuantityWrapper>

@@ -36,15 +36,31 @@ const StyledNavLink = styled(NavLink)`
   margin: 15px;
   border-left: 1px ${({ theme }) => theme.raisinBlack} solid;
   border-right: 1px ${({ theme }) => theme.raisinBlack} solid;
+  cursor: pointer;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.grey100};
+  }
+  &:active {
+    border-color: ${({ theme }) => theme.grey200};
+  }
 `;
 
 const StyledButton = styled.button`
-
   background-color: Transparent;
   background-repeat: no-repeat;
-  border:none;
+  border: none;
   color: ${({ theme }) => theme.white};
-  font-size: ${({ theme }) => theme.fontSize.l};
+  font-size: ${({ theme }) => theme.fontSize.m};
+  outline:none;
+  cursor: pointer;
+
+  &:hover {
+    color: ${({ theme }) => theme.grey100};
+  }
+  &:active {
+    color: ${({ theme }) => theme.grey200};
+  }
 `;
 
 const Navbar = ({ logout }) => (

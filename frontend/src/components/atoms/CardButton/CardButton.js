@@ -14,17 +14,23 @@ const CardButton = styled.button`
   background-position: 50% 50%;
   background-size: 75% 75%;
   outline: none;
+  box-shadow: 0 2px ${({ theme }) => theme.grey100};
+  cursor: pointer;
+
+  &:active {
+    box-shadow: 0 1px ${({ theme }) => theme.grey200};
+    transform: translateY(1px);
+  }
+  &:hover {
+    border-color: ${({ theme }) => theme.danger};
+  }
 
   ${({ green }) =>
     green &&
     css`
-      border-color: ${({ theme }) => theme.success};
-    `}
-
-  ${({ red }) =>
-    red &&
-    css`
-      border-color: ${({ theme }) => theme.danger};
+      &:hover {
+        border-color: ${({ theme }) => theme.success};
+      }
     `}
 `;
 

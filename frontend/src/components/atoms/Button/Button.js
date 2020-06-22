@@ -17,6 +17,16 @@ const Button = styled.button`
   font-size: 16px;
   text-transform: uppercase;
   outline: none;
+  box-shadow: 0 2px ${({ theme }) => theme.grey100};
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.darkBlue};
+  }
+  &:active {
+    box-shadow: 0 1px ${({ theme }) => theme.grey200};
+    transform: translateY(1px);
+  }
 
   ${({ secondary }) =>
     secondary &&

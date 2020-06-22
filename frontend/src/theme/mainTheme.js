@@ -1,5 +1,6 @@
 export const theme = {
          blue: 'hsl(203, 94%, 39%)',
+         darkBlue: 'hsl(203, 94%, 33%)',
          raisinBlack: 'hsl(280, 9%, 20%)',
          white: 'hsl(156, 100%, 99%)',
          yellowGreen: 'hsl(85, 59%, 58%)',
