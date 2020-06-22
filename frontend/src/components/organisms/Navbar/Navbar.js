@@ -43,6 +43,7 @@ const StyledNavLink = styled(NavLink)`
   }
   &:active {
     border-color: ${({ theme }) => theme.grey200};
+    color: ${({ theme }) => theme.grey200};
   }
 `;
 

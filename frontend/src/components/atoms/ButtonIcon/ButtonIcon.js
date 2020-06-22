@@ -16,6 +16,7 @@ const ButtonIcon = styled.button`
   }
   &:active {
     box-shadow: 0 1px ${({ theme }) => theme.grey200};
+    color: ${({ theme }) => theme.grey200};
     transform: translateY(1px);
   }
 
