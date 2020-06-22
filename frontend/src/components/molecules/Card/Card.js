@@ -2,10 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  removeItem as removeItemAction,
-  editItem as editItemAction,
-} from 'actions';
+import { removeItem as removeItemAction, editItem as editItemAction } from 'actions';
 import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
 import EditIcon from 'assets/icons/edit.svg';
@@ -51,7 +48,7 @@ const Card = ({
   modalContext,
   editItem,
 }) => {
-  const editedItem= {id, name, categoryId, quantity, minQuantity}
+  const editedItem = { id, name, categoryId, quantity, minQuantity };
   const IncrementQuantity = () => {
     editedItem.quantity++;
     editItem(id, editedItem);

@@ -9,6 +9,8 @@ import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 import PlusIcon from '@material-ui/icons/Add';
 import Navbar from 'components/organisms/Navbar/Navbar';
 
+import ShopListModal from 'components/organisms/ShopListModal/ShopListModal';
+
 const StyledWrapper = styled.div`
   position: relative;
   padding: 100px 50px 50px 50px;
@@ -24,6 +26,20 @@ const StyledButtonIcon = styled(ButtonIcon)`
 const UserPageTemplate = ({ children, products }) => {
   const [isNewItemBarVisible, setIsNewItemBarVisible] = useState(false);
   const [itemEdited, setItemEdited] = useState(null);
+  const [isShopModalBarVisible, setIsShopModalBarVisible] = useState(false);
+
+  const toggleShopModalBar = () => {
+    return setIsShopModalBarVisible(!isShopModalBarVisible);
+  };
+
+  const editShopItem = (e) => {
+    const id = e.target.value;
+    const itemEditedTmp = products.filter((item) => {
+      return item.id == id;
+    });
+    setItemEdited(itemEditedTmp[0]);
+    toggleShopModalBar();
+  };
 
   const toggleNewItemBar = () => {
     return setIsNewItemBarVisible(!isNewItemBarVisible);
@@ -46,6 +62,8 @@ const UserPageTemplate = ({ children, products }) => {
   const contextElements = {
     editItem,
     toggleNewItemBar,
+    editShopItem,
+    toggleShopModalBar,
   };
   return (
     <ModalContext.Provider value={contextElements}>
@@ -58,6 +76,11 @@ const UserPageTemplate = ({ children, products }) => {
         <Modal isVisible={isNewItemBarVisible}>
           <ModalForm handleClose={toggleNewItemBar} editedProduct={itemEdited} />
         </Modal>
+        <ShopListModal
+          isVisible={isShopModalBarVisible}
+          handleClose={toggleShopModalBar}
+          editedProduct={itemEdited}
+        />
       </StyledWrapper>
     </ModalContext.Provider>
   );

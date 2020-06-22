@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { Formik, Form } from 'formik';
 import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import CardButton from 'components/atoms/CardButton/CardButton';
 import CrossIcon from 'assets/icons/cross.svg';
+
+import { editItem as editItemAction } from 'actions';
 
 const StyledWrapper = styled.div`
   z-index: 9999;
@@ -47,53 +50,64 @@ const StyledButton = styled(Button)`
 
 const StyledCardButton = styled(CardButton)`
   position: absolute;
-  top: -15px;
-  left: 525px;
+  top: -14px;
+  left: 524px;
 `;
 
-const ShopListModal = ({ isVisible }) => (
-  <StyledWrapper isVisible={isVisible}>
-    <StyledCardButton
-      icon={CrossIcon}
-      addEventListener
-      onClick={() => {
-        isVisible=false
-      }}
-    />
-    <Formik
-      enableReinitialize
-      initialValues={{ count: 0 }}
-      onSubmit={(values) => {
-        // update product quantity function
-      }}
-    >
-      {({ values, handleChange, handleBlur, handleSubmit }) => (
-        <StyledForm onSubmit={handleSubmit}>
-          <StyledHeading>Ile sztuk produktu kupiono? </StyledHeading>
-          <Input
-            type="number"
-            name="count"
-            autoComplete="off"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.count}
-          >
-            Ilość
-          </Input>
-          <StyledButton type="submit">Dodaj</StyledButton>
-        </StyledForm>
-      )}
-    </Formik>
-  </StyledWrapper>
-);
+const ShopListModal = ({ isVisible, editedProduct, handleClose, editItem }) => {
+  return (
+    <StyledWrapper isVisible={isVisible}>
+      <StyledCardButton
+        icon={CrossIcon}
+        addEventListener
+        onClick={() => {
+          handleClose();
+        }}
+      />
+      <Formik
+        enableReinitialize
+        initialValues={{ count: 0 }}
+        onSubmit={(values) => {
+          editedProduct.quantity += values.count;
+          editItem(editedProduct.id, editedProduct);
+          handleClose();
+        }}
+      >
+        {({ values, handleChange, handleBlur, handleSubmit }) => (
+          <StyledForm onSubmit={handleSubmit}>
+            <StyledHeading>Ile sztuk produktu kupiono? </StyledHeading>
+            <Input
+              type="number"
+              name="count"
+              autoComplete="off"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.count}
+            >
+              Ilość
+            </Input>
+            <StyledButton type="submit">Dodaj</StyledButton>
+          </StyledForm>
+        )}
+      </Formik>
+    </StyledWrapper>
+  );
+};
 
 ShopListModal.propTypes = {
   isVisible: PropTypes.bool,
+  editedProduct: PropTypes.object,
+  handleClose: PropTypes.func.isRequired,
+  editItem: PropTypes.func.isRequired,
 };
 
 ShopListModal.defaultProps = {
   isVisible: false,
+  editedProduct: null,
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  editItem: (id, itemContent) => dispatch(editItemAction(id, itemContent)),
+});
 
-export default ShopListModal;
+export default connect(null, mapDispatchToProps)(ShopListModal);

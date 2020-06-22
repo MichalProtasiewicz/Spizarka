@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CrossIcon from 'assets/icons/cross.svg';
 import CardButton from 'components/atoms/CardButton/CardButton';
+import withContext from 'hoc/withContext';
 
 const StyledWrapper = styled.div`
   width: 80vw;
@@ -47,21 +48,20 @@ const StyledSpan = styled.span`
 `;
 
 const StyledCardButton = styled(CardButton)`
- top: -15px;
- left: 80vw;
- margin-left: -20px;
+  top: -15px;
+  left: 80vw;
+  margin-left: -20px;
 `;
 
-const ShopCard = ({ id, name, categoryId, quantity, minQuantity, categories }) => {
+const ShopCard = ({ id, name, categoryId, quantity, minQuantity, categories, modalContext }) => {
   const categoryName = categories.find((x) => x.id === categoryId).name;
   return (
     <StyledWrapper>
       <StyledCardButton
         icon={CrossIcon}
         addEventListener
-        onClick={() => {
-          console.log('Kupione');
-        }}
+        onClick={modalContext.editShopItem}
+        value={id}
       />
       <CategorySpan>{categoryName}</CategorySpan>
       <NameSpan>{name}</NameSpan>
@@ -79,6 +79,7 @@ ShopCard.propTypes = {
   quantity: PropTypes.number,
   minQuantity: PropTypes.number,
   categories: PropTypes.array.isRequired,
+  modalContext: PropTypes.object.isRequired,
 };
 
 ShopCard.defaultProps = {
@@ -88,5 +89,4 @@ ShopCard.defaultProps = {
 
 const mapStateToProps = ({ categories }) => ({ categories });
 
-
-export default connect(mapStateToProps)(ShopCard);
+export default withContext(connect(mapStateToProps)(ShopCard));
