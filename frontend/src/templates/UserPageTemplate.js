@@ -9,7 +9,9 @@ import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 import PlusIcon from '@material-ui/icons/Add';
 import Navbar from 'components/organisms/Navbar/Navbar';
 
-import ShopListModal from 'components/organisms/ShopListModal/ShopListModal';
+import AlertModal from 'components/organisms/AlertModal/AlertModal';
+import ShoppingAlert from 'components/molecules/ShoppingAlert/ShoppingAlert';
+import DeleteAlert from 'components/molecules/DeleteAlert/DeleteAlert';
 
 const StyledWrapper = styled.div`
   position: relative;
@@ -25,45 +27,49 @@ const StyledButtonIcon = styled(ButtonIcon)`
 
 const UserPageTemplate = ({ children, products }) => {
   const [isNewItemBarVisible, setIsNewItemBarVisible] = useState(false);
+  const [isAlertModalBarVisible, setIsAlertModalBarVisible] = useState(false);
   const [itemEdited, setItemEdited] = useState(null);
-  const [isShopModalBarVisible, setIsShopModalBarVisible] = useState(false);
+  const [isDeleteAlert, setIsDeleteAlert] = useState(false);
 
-  const toggleShopModalBar = () => {
-    return setIsShopModalBarVisible(!isShopModalBarVisible);
-  };
-
-  const editShopItem = (e) => {
+  const choseEditedItem = (e) => {
     const id = e.target.value;
     const itemEditedTmp = products.filter((item) => {
       return item.id == id;
     });
     setItemEdited(itemEditedTmp[0]);
-    toggleShopModalBar();
   };
 
   const toggleNewItemBar = () => {
     return setIsNewItemBarVisible(!isNewItemBarVisible);
   };
-
+  const toggleAlertModalBar = () => {
+    return setIsAlertModalBarVisible(!isAlertModalBarVisible);
+  };
   const addItem = () => {
     setItemEdited(null);
     toggleNewItemBar();
   };
-
   const editItem = (e) => {
-    const id = e.target.value;
-    const itemEditedTmp = products.filter((item) => {
-      return item.id == id;
-    });
-    setItemEdited(itemEditedTmp[0]);
+    choseEditedItem(e);
     toggleNewItemBar();
+  };
+  const editShopItem = (e) => {
+    choseEditedItem(e);
+    setIsDeleteAlert(false);
+    toggleAlertModalBar();
+  };
+  const deleteItemAlert = (e) => {
+    choseEditedItem(e);
+    setIsDeleteAlert(true);
+    toggleAlertModalBar();
   };
 
   const contextElements = {
     editItem,
     toggleNewItemBar,
     editShopItem,
-    toggleShopModalBar,
+    toggleAlertModalBar,
+    deleteItemAlert,
   };
   return (
     <ModalContext.Provider value={contextElements}>
@@ -76,11 +82,13 @@ const UserPageTemplate = ({ children, products }) => {
         <Modal isVisible={isNewItemBarVisible}>
           <ModalForm handleClose={toggleNewItemBar} editedProduct={itemEdited} />
         </Modal>
-        <ShopListModal
-          isVisible={isShopModalBarVisible}
-          handleClose={toggleShopModalBar}
-          editedProduct={itemEdited}
-        />
+        <AlertModal isVisible={isAlertModalBarVisible} handleClose={toggleAlertModalBar}>
+          {isDeleteAlert ? (
+            <DeleteAlert handleClose={toggleAlertModalBar} editedProduct={itemEdited} />
+          ) : (
+            <ShoppingAlert handleClose={toggleAlertModalBar} editedProduct={itemEdited} />
+          )}
+        </AlertModal>
       </StyledWrapper>
     </ModalContext.Provider>
   );

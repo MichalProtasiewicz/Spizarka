@@ -70,11 +70,15 @@ const Card = ({
         style={{ top: '-15px', left: '180px' }}
         icon={CrossIcon}
         addEventListener
+        onClick={modalContext.deleteItemAlert}
+        value={id}
+        /*
         onClick={() => {
           if (window.confirm('Usunąć produkt z listy?')) {
             removeItem(id);
           }
         }}
+        */
       />
       <CardButton
         style={{ top: '25px', left: '180px' }}

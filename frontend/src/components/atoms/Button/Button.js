@@ -29,6 +29,24 @@ const Button = styled.button`
     transform: translateY(1px);
   }
 
+  ${({ danger }) =>
+    danger &&
+    css`
+      background-color: ${({ theme }) => theme.danger};
+      &:hover {
+        background-color: ${({ theme }) => theme.darkDanger};
+      }
+    `}
+
+    ${({ success }) =>
+      success &&
+      css`
+        background-color: ${({ theme }) => theme.success};
+        &:hover {
+          background-color: ${({ theme }) => theme.darkSuccess};
+        }
+      `}
+
   ${({ secondary }) =>
     secondary &&
     css`
