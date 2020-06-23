@@ -8,7 +8,6 @@ import ModalContext from 'context';
 import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 import PlusIcon from '@material-ui/icons/Add';
 import Navbar from 'components/organisms/Navbar/Navbar';
-
 import AlertModal from 'components/organisms/AlertModal/AlertModal';
 import ShoppingAlert from 'components/molecules/ShoppingAlert/ShoppingAlert';
 import DeleteAlert from 'components/molecules/DeleteAlert/DeleteAlert';
