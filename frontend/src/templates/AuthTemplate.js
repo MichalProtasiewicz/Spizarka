@@ -48,7 +48,7 @@ const StyledAuthCard = styled.div`
 const AuthTemplate = ({ children }) => (
   <StyledWrapper>
     <LogoWrapper>
-      <StyledLogo src={logoImg} alt="" />
+      <StyledLogo src={logoImg} alt="logo" />
       <StyledHeading big>Spizarka</StyledHeading>
     </LogoWrapper>
     <StyledAuthCard>{children}</StyledAuthCard>

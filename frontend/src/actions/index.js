@@ -138,10 +138,8 @@ export const editItem = (id, itemContent) => (dispatch, getState) => {
 export const fetchItems = () => (dispatch, getState) => {
   dispatch({ type: actionTypes.FETCH_REQUEST });
   return axios
-    .get('http://127.0.0.1:8000/api/products', {
-      params: {
-        owner: getState().auth.userID,
-      },
+    .get('http://127.0.0.1:8000/api/products?owner=' + getState().auth.userID, {
+      
     })
     .then((payload) => {
       dispatch({ type: actionTypes.FETCH_SUCCESS, payload });
