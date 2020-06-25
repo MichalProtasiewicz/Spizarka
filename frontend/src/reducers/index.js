@@ -9,6 +9,10 @@ const initialState = {
     error: null,
     loading: false,
   },
+  register: {
+    succesfull: false,
+    error: null,
+  }
 };
 
 const updateObject = (oldObject, updatedProperties) => {
@@ -42,6 +46,17 @@ const authLogout = (state) => {
   });
 };
 
+const registerSuccess = (state) => {
+  return updateObject(state, {
+    register: { error: null, succesfull: true}
+  })
+}
+const registerError = (state, action) => {
+  return updateObject(state, {
+    register: { error: action.error, succesfull: true },
+  });
+};
+
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTH_REQUEST:
@@ -52,6 +67,10 @@ const rootReducer = (state = initialState, action) => {
       return authFail(state, action);
     case actionTypes.AUTH_LOGOUT:
       return authLogout(state, action);
+    case actionTypes.REGISTER_SUCCESS:
+      return registerSuccess(state);
+    case actionTypes.REGISTER_FAILURE:
+      return registerError(state, action);
     case actionTypes.FETCH_REQUEST:
       return {
         ...state,

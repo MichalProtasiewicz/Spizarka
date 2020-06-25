@@ -40,56 +40,62 @@ const StyledParagraph = styled(Paragraph)`
   margin-bottom: 30px;
 `;
 
-const LoginPage = ({ authLogin, auth }) => (
-  <AuthTemplate>
-    <Formik
-      initialValues={{ username: '', password: '' }}
-      onSubmit={({ username, password }) => {
-        authLogin(username, password);
-      }}
-    >
-      {({ values, handleChange, handleBlur, handleSubmit }) => {
-        return (
-          <>
-            <StyledHeading big>Sign in</StyledHeading>
-            <StyledForm onSubmit={handleSubmit}>
-              <StyledInput
-                type="text"
-                name="username"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.title}
-              >
-                Username
-              </StyledInput>
-              <StyledInput
-                type="password"
-                name="password"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.title}
-              >
-                Password
-              </StyledInput>
-              {auth.error != null ? (
-                <StyledParagraph danger>Błedne dane logowania</StyledParagraph>
-              ) : null}
-              <Button type="submit">sign in</Button>
-            </StyledForm>
-            <StyledLink to={routes.register}>I want my account!</StyledLink>
-          </>
-        );
-      }}
-    </Formik>
-  </AuthTemplate>
-);
+
+const LoginPage = ({ authLogin, auth, register }) => {
+  //wyczyszczenie zmiennej po udanej rejestracji
+  register.succesfull = false;
+  return (
+    <AuthTemplate>
+      <Formik
+        initialValues={{ username: '', password: '' }}
+        onSubmit={({ username, password }) => {
+          authLogin(username, password);
+        }}
+      >
+        {({ values, handleChange, handleBlur, handleSubmit }) => {
+          return (
+            <>
+              <StyledHeading big>Sign in</StyledHeading>
+              <StyledForm onSubmit={handleSubmit}>
+                <StyledInput
+                  type="text"
+                  name="username"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.title}
+                >
+                  Username
+                </StyledInput>
+                <StyledInput
+                  type="password"
+                  name="password"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.title}
+                >
+                  Password
+                </StyledInput>
+                {auth.error != null ? (
+                  <StyledParagraph danger>Błedne dane logowania</StyledParagraph>
+                ) : null}
+                <Button type="submit">sign in</Button>
+              </StyledForm>
+              <StyledLink to={routes.register}>I want my account!</StyledLink>
+            </>
+          );
+        }}
+      </Formik>
+    </AuthTemplate>
+  );
+};
 
 LoginPage.propTypes = {
   authLogin: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  register: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({ auth }) => ({ auth });
+const mapStateToProps = ({ auth, register }) => ({ auth, register });
 
 const mapDispatchToProps = (dispatch) => ({
   authLogin: (username, password) => dispatch(authLoginAction(username, password)),

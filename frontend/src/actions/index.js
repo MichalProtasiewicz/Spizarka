@@ -16,11 +16,25 @@ export const authSuccess = (token, userID) => {
 };
 
 export const authFail = (error) => {
-         return {
-           type: actionTypes.AUTH_FAILURE,
-           error,
-         };
-       };
+  return {
+    type: actionTypes.AUTH_FAILURE,
+    error,
+  };
+};
+
+export const registerSuccess = (succesfull) => {
+  return {
+    type: actionTypes.REGISTER_SUCCESS,
+    succesfull,
+  };
+};
+
+export const registerFail = (error) => {
+  return {
+    type: actionTypes.REGISTER_FAILURE,
+    error,
+  };
+};
 
 export const logout = () => {
   localStorage.removeItem('user');
@@ -60,13 +74,21 @@ export const authLogin = (username, password) => (dispatch) => {
     });
 };
 
-export const authSignup = (username, email, password1, password2) => {
-  return axios.post('http://127.0.0.1:8000/rest-auth/registration/', {
-    username,
-    email,
-    password1,
-    password2,
-  });
+export const authSignup = (username, email, password1, password2) => (dispatch) => {
+  return axios
+    .post('http://127.0.0.1:8000/rest-auth/registration/', {
+      username,
+      email,
+      password1,
+      password2,
+    })
+    .then((payload) => {
+      dispatch(registerSuccess(payload.data.succesfull));
+    })
+    .catch((error) => {
+      console.log(error);
+      dispatch(registerFail(error));
+    });
 };
 
 export const authCheckState = () => (dispatch) => {
@@ -138,9 +160,7 @@ export const editItem = (id, itemContent) => (dispatch, getState) => {
 export const fetchItems = () => (dispatch, getState) => {
   dispatch({ type: actionTypes.FETCH_REQUEST });
   return axios
-    .get('http://127.0.0.1:8000/api/products?owner=' + getState().auth.userID, {
-      
-    })
+    .get('http://127.0.0.1:8000/api/products?owner=' + getState().auth.userID, {})
     .then((payload) => {
       dispatch({ type: actionTypes.FETCH_SUCCESS, payload });
     })

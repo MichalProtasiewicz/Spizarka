@@ -11,6 +11,7 @@ import AuthTemplate from 'templates/AuthTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
+import NotificationWrapper from 'components/atoms/NotificationWrapper/NotificationWrapper';
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -50,88 +51,95 @@ const RegisterSchema = Yup.object().shape({
     .oneOf([Yup.ref('password1'), null], 'Passwords must match'),
 });
 
-const RegisterPage = ({ authSignup, auth }) => {
+const RegisterPage = ({ authSignup, auth, register }) => {
   //wyczyszczenie errora po nieudanym logowaniu
   auth.error = null;
   return (
-    <AuthTemplate>
-      <Formik
-        initialValues={{ username: '', email: '', password1: '', password2: '' }}
-        validationSchema={RegisterSchema}
-        onSubmit={({ username, email, password1, password2 }) => {
-          authSignup(username, email, password1, password2);
-        }}
-      >
-        {({ values, handleChange, handleBlur, handleSubmit }) => {
-          return (
-            <>
-              <StyledHeading big>Register</StyledHeading>
-              <StyledForm onSubmit={handleSubmit}>
-                <StyledInputWrapper>
-                  <StyledInput
-                    type="text"
-                    name="username"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.title}
-                    errorLabelName="username"
-                  >
-                    Username
-                  </StyledInput>
-                </StyledInputWrapper>
-                <StyledInputWrapper>
-                  <StyledInput
-                    type="text"
-                    name="email"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.title}
-                    errorLabelName="email"
-                  >
-                    Email
-                  </StyledInput>
-                </StyledInputWrapper>
-                <StyledInputWrapper>
-                  <StyledInput
-                    type="password"
-                    name="password1"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.title}
-                    errorLabelName="password1"
-                  >
-                    Password
-                  </StyledInput>
-                </StyledInputWrapper>
-                <StyledInputWrapper>
-                  <StyledInput
-                    type="password"
-                    name="password2"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.title}
-                    errorLabelName="password2"
-                  >
-                    Repeat password
-                  </StyledInput>
-                </StyledInputWrapper>
-                <Button type="submit">register</Button>
-              </StyledForm>
-              <StyledLink to={routes.login}>I want to log in!</StyledLink>
-            </>
-          );
-        }}
-      </Formik>
-    </AuthTemplate>
+    <>
+      {register.succesfull ? (
+        <NotificationWrapper>Pomyślnie zarejestrowano nowe konto!</NotificationWrapper>
+      ) : null}
+      <AuthTemplate>
+        <Formik
+          initialValues={{ username: '', email: '', password1: '', password2: '' }}
+          validationSchema={RegisterSchema}
+          onSubmit={({ username, email, password1, password2 }) => {
+            authSignup(username, email, password1, password2);
+          }}
+        >
+          {({ values, handleChange, handleBlur, handleSubmit }) => {
+            return (
+              <>
+                <StyledHeading big>Register</StyledHeading>
+
+                <StyledForm onSubmit={handleSubmit}>
+                  <StyledInputWrapper>
+                    <StyledInput
+                      type="text"
+                      name="username"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.title}
+                      errorLabelName="username"
+                    >
+                      Username
+                    </StyledInput>
+                  </StyledInputWrapper>
+                  <StyledInputWrapper>
+                    <StyledInput
+                      type="text"
+                      name="email"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.title}
+                      errorLabelName="email"
+                    >
+                      Email
+                    </StyledInput>
+                  </StyledInputWrapper>
+                  <StyledInputWrapper>
+                    <StyledInput
+                      type="password"
+                      name="password1"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.title}
+                      errorLabelName="password1"
+                    >
+                      Password
+                    </StyledInput>
+                  </StyledInputWrapper>
+                  <StyledInputWrapper>
+                    <StyledInput
+                      type="password"
+                      name="password2"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.title}
+                      errorLabelName="password2"
+                    >
+                      Repeat password
+                    </StyledInput>
+                  </StyledInputWrapper>
+                  <Button type="submit">register</Button>
+                </StyledForm>
+                <StyledLink to={routes.login}>I want to log in!</StyledLink>
+              </>
+            );
+          }}
+        </Formik>
+      </AuthTemplate>
+    </>
   );
 };
 
 RegisterPage.propTypes = {
   authSignup: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  register: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({ auth }) => ({ auth });
+const mapStateToProps = ({ auth, register }) => ({ auth, register });
 
 const mapDispatchToProps = (dispatch) => ({
   authSignup: (username, email, password1, password2) =>
