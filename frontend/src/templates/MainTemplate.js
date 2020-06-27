@@ -9,9 +9,9 @@ import { theme } from 'theme/mainTheme';
 import { authCheckState as authCheckStateAction } from 'actions';
 
 const MainTemplate = ({ children, auth, tryAutoLogin }) => {
-    useEffect(() => {
-      tryAutoLogin();
-    }, []);
+  useEffect(() => {
+    tryAutoLogin();
+  }, []);
   return (
     <div>
       <GlobalStyle />
@@ -24,7 +24,7 @@ const MainTemplate = ({ children, auth, tryAutoLogin }) => {
 MainTemplate.propTypes = {
   children: PropTypes.element.isRequired,
   auth: PropTypes.object.isRequired,
-  tryAutoLogin: PropTypes.func.isRequired
+  tryAutoLogin: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ auth }) => ({
