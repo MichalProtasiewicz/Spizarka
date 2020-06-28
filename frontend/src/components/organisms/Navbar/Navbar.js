@@ -79,9 +79,12 @@ const Navbar = ({ logout }) => (
         </StyledNavLink>
       </li>
       <li>
-        <StyledButton onClick={logout} >
-          Wyloguj
-        </StyledButton>
+        <StyledNavLink to={routes.settings} activeclass="active">
+          Ustawienia
+        </StyledNavLink>
+      </li>
+      <li>
+        <StyledButton onClick={logout}>Wyloguj</StyledButton>
       </li>
     </StyledLinksList>
   </NavbarWrapper>

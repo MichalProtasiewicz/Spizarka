@@ -4,4 +4,5 @@ export const routes = {
   shopping: '/shopping-list',
   register: '/register',
   login: '/login',
+  settings: '/settings',
 };

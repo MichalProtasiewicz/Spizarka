@@ -1,5 +1,4 @@
-import React, { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -35,17 +34,6 @@ const AcceptButton = styled(Button)`
   margin-left: 60px;
 `;
 
-function HeaderComponent() {
-  const [t, i18n] = useTranslation('common');
-  return (
-    <div>
-      <h1>{t('welcome.title', { framework: 'React' })}</h1>
-      <button onClick={() => i18n.changeLanguage('pl')}>pl</button>
-      <button onClick={() => i18n.changeLanguage('en')}>en</button>
-    </div>
-  );
-}
-
 const DeleteAlert = ({ handleClose, editedProduct, removeItem }) => {
   return (
     <Wrapper>
@@ -70,9 +58,6 @@ const DeleteAlert = ({ handleClose, editedProduct, removeItem }) => {
         Tak
       </AcceptButton>
 
-      <Suspense fallback="loading">
-        <HeaderComponent />
-      </Suspense>
     </Wrapper>
   );
 };
