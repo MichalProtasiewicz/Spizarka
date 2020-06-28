@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { routes } from 'routes';
@@ -42,6 +43,7 @@ const StyledParagraph = styled(Paragraph)`
 
 
 const LoginPage = ({ authLogin, auth, register }) => {
+  const [t] = useTranslation('translation');
   //wyczyszczenie zmiennej po udanej rejestracji
   register.succesfull = false;
   return (
@@ -55,7 +57,7 @@ const LoginPage = ({ authLogin, auth, register }) => {
         {({ values, handleChange, handleBlur, handleSubmit }) => {
           return (
             <>
-              <StyledHeading big>Sign in</StyledHeading>
+              <StyledHeading big>{t('auth.titleLogin')}</StyledHeading>
               <StyledForm onSubmit={handleSubmit}>
                 <StyledInput
                   type="text"
@@ -64,7 +66,7 @@ const LoginPage = ({ authLogin, auth, register }) => {
                   onBlur={handleBlur}
                   value={values.title}
                 >
-                  Username
+                  {t('auth.username')}
                 </StyledInput>
                 <StyledInput
                   type="password"
@@ -73,14 +75,14 @@ const LoginPage = ({ authLogin, auth, register }) => {
                   onBlur={handleBlur}
                   value={values.title}
                 >
-                  Password
+                  {t('auth.password')}
                 </StyledInput>
                 {auth.error != null ? (
-                  <StyledParagraph danger>Błedne dane logowania</StyledParagraph>
+                  <StyledParagraph danger>{t('errors.incorrectLogin')}</StyledParagraph>
                 ) : null}
-                <Button type="submit">sign in</Button>
+                <Button type="submit">{t('auth.buttonLogin')}</Button>
               </StyledForm>
-              <StyledLink to={routes.register}>I want my account!</StyledLink>
+              <StyledLink to={routes.register}>{t('auth.registerLink')}</StyledLink>
             </>
           );
         }}

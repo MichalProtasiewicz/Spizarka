@@ -14,11 +14,10 @@ const ShopListPage = () => {
   return (
     <UserPageTemplate>
       <Suspense fallback="loading">
-        <StyledHeading big>Ustawienia</StyledHeading>
-        <Paragraph>Język:</Paragraph>
+        <StyledHeading big>{t('navbar.settings')}</StyledHeading>
+        <Paragraph>{t('settings.languages')}</Paragraph>
         <button onClick={() => i18n.changeLanguage('pl')}>pl</button>
         <button onClick={() => i18n.changeLanguage('en')}>en</button>
-        <h1>{t('welcome.title', { framework: 'React' })}</h1>
       </Suspense>
     </UserPageTemplate>
   );

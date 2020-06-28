@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import UserPageTemplate from 'templates/UserPageTemplate';
@@ -10,14 +11,17 @@ const StyledHeading = styled(Heading)`
   margin-bottom: 60px;
 `;
 
-const ShopListPage = ({ products }) => (
-  <UserPageTemplate>
-    <>
-      <StyledHeading big>Lista zakupów</StyledHeading>
-      <ShopCardsList items={products} />
-    </>
-  </UserPageTemplate>
-);
+const ShopListPage = ({ products }) => {
+  const [t] = useTranslation('translation');
+  return (
+    <UserPageTemplate>
+      <>
+        <StyledHeading big>{t('navbar.shoppingList')}</StyledHeading>
+        <ShopCardsList items={products} />
+      </>
+    </UserPageTemplate>
+  );
+};
 
 ShopListPage.propTypes = {
   products: PropTypes.array,

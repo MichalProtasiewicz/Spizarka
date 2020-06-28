@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { routes } from 'routes';
@@ -17,7 +18,7 @@ const NavbarWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${({theme}) => theme.blue};
+  background-color: ${({ theme }) => theme.blue};
   z-index: 1;
 `;
 
@@ -53,7 +54,7 @@ const StyledButton = styled.button`
   border: none;
   color: ${({ theme }) => theme.white};
   font-size: ${({ theme }) => theme.fontSize.m};
-  outline:none;
+  outline: none;
   cursor: pointer;
 
   &:hover {
@@ -64,31 +65,34 @@ const StyledButton = styled.button`
   }
 `;
 
-const Navbar = ({ logout }) => (
-  <NavbarWrapper>
-    <Logo />
-    <StyledLinksList>
-      <li>
-        <StyledNavLink to={routes.products} activeclass="active">
-          Lista Produktów
-        </StyledNavLink>
-      </li>
-      <li>
-        <StyledNavLink to={routes.shopping} activeclass="active">
-          Lista Zakupów
-        </StyledNavLink>
-      </li>
-      <li>
-        <StyledNavLink to={routes.settings} activeclass="active">
-          Ustawienia
-        </StyledNavLink>
-      </li>
-      <li>
-        <StyledButton onClick={logout}>Wyloguj</StyledButton>
-      </li>
-    </StyledLinksList>
-  </NavbarWrapper>
-);
+const Navbar = ({ logout }) => {
+  const [t] = useTranslation('translation');
+  return (
+    <NavbarWrapper>
+      <Logo />
+      <StyledLinksList>
+        <li>
+          <StyledNavLink to={routes.products} activeclass="active">
+            {t('navbar.productsList')}
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink to={routes.shopping} activeclass="active">
+            {t('navbar.shoppingList')}
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink to={routes.settings} activeclass="active">
+            {t('navbar.settings')}
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledButton onClick={logout}>{t('navbar.logout')}</StyledButton>
+        </li>
+      </StyledLinksList>
+    </NavbarWrapper>
+  );
+};
 
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,

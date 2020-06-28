@@ -1,5 +1,6 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CardsList from 'components/organisms/CardsList/CardsList';
@@ -16,10 +17,11 @@ const MainPage = ({ products, fetchProducts, fetchCategories }) => {
     fetchProducts();
     fetchCategories();
   }, []);
+  const [t] = useTranslation('translation');
   return (
     <UserPageTemplate>
       <>
-        <StyledHeading big>Lista produktów</StyledHeading>
+        <StyledHeading big>{t('navbar.productsList')}</StyledHeading>
         <CardsList items={products} />
       </>
     </UserPageTemplate>

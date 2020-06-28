@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { routes } from 'routes';
@@ -52,13 +53,12 @@ const RegisterSchema = Yup.object().shape({
 });
 
 const RegisterPage = ({ authSignup, auth, register }) => {
+  const [t] = useTranslation('translation');
   //wyczyszczenie errora po nieudanym logowaniu
   auth.error = null;
   return (
     <>
-      {register.succesfull ? (
-        <NotificationWrapper>Pomyślnie zarejestrowano nowe konto!</NotificationWrapper>
-      ) : null}
+      {register.succesfull ? <NotificationWrapper>{t('errors.registerSuccess')}</NotificationWrapper> : null}
       <AuthTemplate>
         <Formik
           initialValues={{ username: '', email: '', password1: '', password2: '' }}
@@ -70,7 +70,7 @@ const RegisterPage = ({ authSignup, auth, register }) => {
           {({ values, handleChange, handleBlur, handleSubmit }) => {
             return (
               <>
-                <StyledHeading big>Register</StyledHeading>
+                <StyledHeading big>{t('auth.titleRegister')}</StyledHeading>
 
                 <StyledForm onSubmit={handleSubmit}>
                   <StyledInputWrapper>
@@ -82,7 +82,7 @@ const RegisterPage = ({ authSignup, auth, register }) => {
                       value={values.title}
                       errorLabelName="username"
                     >
-                      Username
+                      {t('auth.username')}
                     </StyledInput>
                   </StyledInputWrapper>
                   <StyledInputWrapper>
@@ -94,7 +94,7 @@ const RegisterPage = ({ authSignup, auth, register }) => {
                       value={values.title}
                       errorLabelName="email"
                     >
-                      Email
+                      {t('auth.email')}
                     </StyledInput>
                   </StyledInputWrapper>
                   <StyledInputWrapper>
@@ -106,7 +106,7 @@ const RegisterPage = ({ authSignup, auth, register }) => {
                       value={values.title}
                       errorLabelName="password1"
                     >
-                      Password
+                      {t('auth.password')}
                     </StyledInput>
                   </StyledInputWrapper>
                   <StyledInputWrapper>
@@ -118,12 +118,12 @@ const RegisterPage = ({ authSignup, auth, register }) => {
                       value={values.title}
                       errorLabelName="password2"
                     >
-                      Repeat password
+                      {t('auth.password2')}
                     </StyledInput>
                   </StyledInputWrapper>
-                  <Button type="submit">register</Button>
+                  <Button type="submit">{t('auth.buttonRegister')}</Button>
                 </StyledForm>
-                <StyledLink to={routes.login}>I want to log in!</StyledLink>
+                <StyledLink to={routes.login}>{t('auth.loginLink')}</StyledLink>
               </>
             );
           }}

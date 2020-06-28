@@ -1,19 +1,15 @@
 {
-  "login": {
-    "title": "Zaloguj się",
-    "username": "Login",
-    "password": "Hasło",
-    "button": "Zaloguj",
-    "registerLink": "Chce założyć nowe konto!"
-  },
-  "register": {
-    "title": "Zarejestruj się",
+  "auth": {
+    "titleRegister": "Zarejestruj się",
+    "titleLogin": "Zaloguj się",
     "username": "Login",
     "email": "Email",
-    "password1": "Hasło",
+    "password": "Hasło",
     "password2": "Powtórz hasło",
-    "button": "Zarejestruj",
-    "loginLink": "Chce się zalogować!"
+    "buttonRegister": "Zarejestruj",
+    "buttonLogin": "Zaloguj",
+    "loginLink": "Chce się zalogować!",
+    "registerLink": "Chce założyć nowe konto!"
   },
   "navbar": {
     "productsList": "Lista Produktów",
@@ -27,16 +23,27 @@
     "quantity": "Ilość",
     "minQuantity": "Minimalna ilość"
   },
-  "modal": {
+  "modals": {
     "yes": "Tak",
     "no": "Nie",
     "add": "Dodaj",
+    "edit": "Edytuj",
     "deleteProduct": "Na pewno usunąć wybrany produkt?",
     "newProduct": "Dodaj nowy produkt",
     "editProduct": "Edytuj produkt",
     "shopping": "Ile sztuk produktu kupiono?"
   },
-  "pages":{
+  "errors": {
+    "registerSuccess": "Pomyślnie zarejestrowano nowe konto!",
+    "short": "Zbyt krótkie",
+    "long": "Zbyt długie",
+    "required": "Wymagane",
+    "email": "Błędny email",
+    "positiveNum": "Wymagana wartość dodatnia",
+    "password": "Hasła muszą być zgodne",
+    "incorrectLogin": "Błędne dane logowania"
+  },
+  "settings": {
     "languages": "Język"
   }
 }

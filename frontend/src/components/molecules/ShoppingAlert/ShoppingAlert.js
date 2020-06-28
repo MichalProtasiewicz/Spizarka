@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { editItem as editItemAction } from 'actions';
 import { Formik, Form } from 'formik';
@@ -34,36 +35,39 @@ const ProductSchema = Yup.object().shape({
   count: Yup.number().min(0, 'Positive number required'),
 });
 
-const ShoppingAlert = ({ editedProduct, editItem, handleClose }) => (
-  <Formik
-    enableReinitialize
-    initialValues={{ count: 0 }}
-    validationSchema={ProductSchema}
-    onSubmit={(values) => {
-      editedProduct.quantity += values.count;
-      editItem(editedProduct.id, editedProduct);
-      handleClose();
-    }}
-  >
-    {({ values, handleChange, handleBlur, handleSubmit }) => (
-      <StyledForm onSubmit={handleSubmit}>
-        <StyledHeading>Ile sztuk produktu kupiono? </StyledHeading>
-        <Input
-          type="number"
-          name="count"
-          autoComplete="off"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.count}
-          errorLabelName="count"
-        >
-          Ilość
-        </Input>
-        <StyledButton type="submit">Dodaj</StyledButton>
-      </StyledForm>
-    )}
-  </Formik>
-);
+const ShoppingAlert = ({ editedProduct, editItem, handleClose }) => {
+  const [t] = useTranslation('translation');
+  return (
+    <Formik
+      enableReinitialize
+      initialValues={{ count: 0 }}
+      validationSchema={ProductSchema}
+      onSubmit={(values) => {
+        editedProduct.quantity += values.count;
+        editItem(editedProduct.id, editedProduct);
+        handleClose();
+      }}
+    >
+      {({ values, handleChange, handleBlur, handleSubmit }) => (
+        <StyledForm onSubmit={handleSubmit}>
+          <StyledHeading>{t('modals.shopping')}</StyledHeading>
+          <Input
+            type="number"
+            name="count"
+            autoComplete="off"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.count}
+            errorLabelName="count"
+          >
+            {t('product.quantity')}
+          </Input>
+          <StyledButton type="submit">{t('modals.add')}</StyledButton>
+        </StyledForm>
+      )}
+    </Formik>
+  );
+};
 
 ShoppingAlert.propTypes = {
   editedProduct: PropTypes.object,

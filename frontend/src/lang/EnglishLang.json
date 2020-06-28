@@ -1,25 +1,21 @@
 {
-  "login": {
-    "title": "Sign in",
-    "username": "Username",
-    "password": "Password",
-    "button": "Sign in",
-    "registerLink": "I want my account!"
-  },
-  "register": {
-    "title": "Register",
-    "username": "Username",
+  "auth": {
+    "titleRegister": "Register",
+    "titleLogin": "Sign in",
+    "username": "Login",
     "email": "Email",
-    "password1": "Password",
+    "password": "Password",
     "password2": "Repeat Password",
-    "button": "Register",
-    "loginLink": "I want to log in!"
+    "buttonRegister": "Register",
+    "buttonLogin": "Sign in",
+    "loginLink": "I want to log in!",
+    "registerLink": "I want my account!"
   },
   "navbar": {
     "productsList": "Products List",
     "shoppingList": "Shopping List",
     "settings": "Settings",
-    "logout": "Logout"
+    "logout": "Log out"
   },
   "product": {
     "name": "Name",
@@ -27,16 +23,27 @@
     "quantity": "Quantity",
     "minQuantity": "Minimal quantity"
   },
-  "modal": {
+  "modals": {
     "yes": "Yes",
     "no": "No",
     "add": "Add",
+    "edit": "Edit",
     "deleteProduct": "Are you sure you want to delete the selected product?",
     "newProduct": "Add new product",
     "editProduct": "Edit product",
     "shopping": "How many pieces of product were bought?"
   },
-  "setting": {
+  "errors": {
+    "registerSuccess": "New account successfully registered!",
+    "short": "Too short",
+    "long": "Too long",
+    "required": "Required",
+    "email": "Incorrect email",
+    "positiveNum": "Positive number required",
+    "password": "Passwords must match",
+    "incorrectLogin": "Incorrect login detail"
+  },
+  "settings": {
     "languages": "Languages"
   }
 }

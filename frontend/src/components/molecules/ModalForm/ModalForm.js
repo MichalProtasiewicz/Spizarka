@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Input from 'components/atoms/Input/Input';
@@ -43,9 +44,12 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
   if (editedProduct) {
     item = editedProduct;
   }
+  const [t] = useTranslation('translation');
   return (
     <>
-      <StyledHeading big>{editedProduct ? 'Edytuj' : 'Dodaj nowy'} produkt</StyledHeading>
+      <StyledHeading big>
+        {editedProduct ? t('modals.editProduct') : t('modals.newProduct')}
+      </StyledHeading>
       <Formik
         enableReinitialize
         initialValues={{ ...item }}
@@ -76,7 +80,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
               value={values.name}
               errorLabelName="name"
             >
-              Name
+              {t('product.name')}
             </StyledInput>
             <StyledInput
               type="number"
@@ -87,7 +91,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
               value={values.quantity}
               errorLabelName="quantity"
             >
-              Quantity
+              {t('product.quantity')}
             </StyledInput>
             <StyledInput
               type="number"
@@ -98,9 +102,11 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
               value={values.minQuantity}
               errorLabelName="minQuantity"
             >
-              Minimum quantity
+              {t('product.minQuantity')}
             </StyledInput>
-            <StyledButton type="submit">{editedProduct ? 'Edytuj' : 'Dodaj'} produkt</StyledButton>
+            <StyledButton type="submit">
+              {editedProduct ? t('modals.edit') : t('modals.add')}
+            </StyledButton>
           </StyledForm>
         )}
       </Formik>

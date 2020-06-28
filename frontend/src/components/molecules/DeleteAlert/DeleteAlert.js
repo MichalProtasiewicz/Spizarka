@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { removeItem as removeItemAction } from 'actions';
 import Heading from 'components/atoms/Heading/Heading';
@@ -35,9 +36,10 @@ const AcceptButton = styled(Button)`
 `;
 
 const DeleteAlert = ({ handleClose, editedProduct, removeItem }) => {
+  const [t] = useTranslation('translation');
   return (
     <Wrapper>
-      <StyledHeading>Napewno usunąć wybrany produkt? </StyledHeading>
+      <StyledHeading>{t('modals.deleteProduct')}</StyledHeading>
       <DeclineButton
         danger
         addEventListener
@@ -45,7 +47,7 @@ const DeleteAlert = ({ handleClose, editedProduct, removeItem }) => {
           handleClose();
         }}
       >
-        Nie
+        {t('modals.no')}
       </DeclineButton>
       <AcceptButton
         success
@@ -55,9 +57,8 @@ const DeleteAlert = ({ handleClose, editedProduct, removeItem }) => {
           handleClose();
         }}
       >
-        Tak
+        {t('modals.yes')}
       </AcceptButton>
-
     </Wrapper>
   );
 };
