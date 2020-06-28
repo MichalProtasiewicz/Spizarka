@@ -1,5 +1,42 @@
 {
-  "welcome": {
-    "title": "Witaj {{framework}}"
+  "login": {
+    "title": "Zaloguj się",
+    "username": "Login",
+    "password": "Hasło",
+    "button": "Zaloguj",
+    "registerLink": "Chce założyć nowe konto!"
+  },
+  "register": {
+    "title": "Zarejestruj się",
+    "username": "Login",
+    "email": "Email",
+    "password1": "Hasło",
+    "password2": "Powtórz hasło",
+    "button": "Zarejestruj",
+    "loginLink": "Chce się zalogować!"
+  },
+  "navbar": {
+    "productsList": "Lista Produktów",
+    "shoppingList": "Lista Zakupów",
+    "settings": "Ustawienia",
+    "logout": "Wyloguj"
+  },
+  "product": {
+    "name": "Nazwa",
+    "category": "Kategoria",
+    "quantity": "Ilość",
+    "minQuantity": "Minimalna ilość"
+  },
+  "modal": {
+    "yes": "Tak",
+    "no": "Nie",
+    "add": "Dodaj",
+    "deleteProduct": "Na pewno usunąć wybrany produkt?",
+    "newProduct": "Dodaj nowy produkt",
+    "editProduct": "Edytuj produkt",
+    "shopping": "Ile sztuk produktu kupiono?"
+  },
+  "pages":{
+    "languages": "Język"
   }
 }

@@ -1,5 +1,42 @@
 {
-  "welcome": {
-    "title": "Welcome to {{framework}}"
+  "login": {
+    "title": "Sign in",
+    "username": "Username",
+    "password": "Password",
+    "button": "Sign in",
+    "registerLink": "I want my account!"
+  },
+  "register": {
+    "title": "Register",
+    "username": "Username",
+    "email": "Email",
+    "password1": "Password",
+    "password2": "Repeat Password",
+    "button": "Register",
+    "loginLink": "I want to log in!"
+  },
+  "navbar": {
+    "productsList": "Products List",
+    "shoppingList": "Shopping List",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "product": {
+    "name": "Name",
+    "category": "Category",
+    "quantity": "Quantity",
+    "minQuantity": "Minimal quantity"
+  },
+  "modal": {
+    "yes": "Yes",
+    "no": "No",
+    "add": "Add",
+    "deleteProduct": "Are you sure you want to delete the selected product?",
+    "newProduct": "Add new product",
+    "editProduct": "Edit product",
+    "shopping": "How many pieces of product were bought?"
+  },
+  "setting": {
+    "languages": "Languages"
   }
 }
