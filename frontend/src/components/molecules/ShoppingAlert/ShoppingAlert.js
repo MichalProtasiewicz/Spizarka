@@ -32,7 +32,7 @@ const StyledButton = styled(Button)`
 `;
 
 const ProductSchema = Yup.object().shape({
-  count: Yup.number().min(0, 'Positive number required'),
+  count: Yup.number().min(0, 'errors.positiveNum'),
 });
 
 const ShoppingAlert = ({ editedProduct, editItem, handleClose }) => {

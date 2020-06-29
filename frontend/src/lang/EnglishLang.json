@@ -41,7 +41,7 @@
     "email": "Incorrect email",
     "positiveNum": "Positive number required",
     "password": "Passwords must match",
-    "incorrectLogin": "Incorrect login detail"
+    "incorrectLogin": "Incorrect login details"
   },
   "settings": {
     "languages": "Languages"

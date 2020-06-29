@@ -44,12 +44,12 @@ const StyledInputWrapper = styled.div`
 `;
 
 const RegisterSchema = Yup.object().shape({
-  username: Yup.string().min(8, 'Too Short!').max(50, 'Too Long!').required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
-  password1: Yup.string().min(8, 'Too Short!').max(50, 'Too Long!').required('Required'),
+  username: Yup.string().min(8, 'errors.short').max(50, 'errors.long').required('errors.required'),
+  email: Yup.string().email('errors.email').required('errors.required'),
+  password1: Yup.string().min(8, 'errors.short').max(50, 'errors.long').required('errors.required'),
   password2: Yup.string()
-    .required('Required')
-    .oneOf([Yup.ref('password1'), null], 'Passwords must match'),
+    .required('errors.required')
+    .oneOf([Yup.ref('password1'), null], 'errors.password'),
 });
 
 const RegisterPage = ({ authSignup, auth, register }) => {

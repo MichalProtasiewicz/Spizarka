@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ErrorMessage } from 'formik';
+import { useTranslation } from 'react-i18next';
 import styled, { css } from 'styled-components';
 import magnifierIcon from 'assets/icons/magnifier.svg';
 
@@ -64,22 +65,25 @@ const ErrorLabel = styled.span`
   left: 20px;
 `;
 
-const Input = ({ children, errorLabelName, ...props }) => (
-  <StyledInputWrapper>
-    <StyledInput {...props} required />
-    {StyledInput.value === '' ? (
-      <InputLabel>{children}</InputLabel>
-    ) : (
-      <InputLabel active>{children}</InputLabel>
-    )}
+const Input = ({ children, errorLabelName, ...props }) => {
+  const [t] = useTranslation('translation');
+  return (
+    <StyledInputWrapper>
+      <StyledInput {...props} required />
+      {StyledInput.value === '' ? (
+        <InputLabel>{children}</InputLabel>
+      ) : (
+        <InputLabel active>{children}</InputLabel>
+      )}
 
-    {errorLabelName ? (
-      <ErrorLabel>
-        <ErrorMessage name={errorLabelName} />
-      </ErrorLabel>
-    ) : null}
-  </StyledInputWrapper>
-);
+      {errorLabelName ? (
+        <ErrorLabel>
+          <ErrorMessage name={errorLabelName}>{msg => t(msg)}</ErrorMessage>
+        </ErrorLabel>
+      ) : null}
+    </StyledInputWrapper>
+  );
+};
 
 Input.propTypes = {
   children: PropTypes.string,

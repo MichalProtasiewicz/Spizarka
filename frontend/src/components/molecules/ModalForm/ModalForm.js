@@ -33,10 +33,10 @@ const StyledButton = styled(Button)`
 `;
 
 const ProductSchema = Yup.object().shape({
-  name: Yup.string().required('Required'),
-  categoryId: Yup.string().required('Required'),
-  quantity: Yup.number().min(0,'Positive number required'),
-  minQuantity: Yup.number().positive('Positive number required'),
+  name: Yup.string().required('errors.required'),
+  categoryId: Yup.string().required('errors.required'),
+  quantity: Yup.number().min(0, 'errors.positiveNum'),
+  minQuantity: Yup.number().positive('errors.positiveNum'),
 });
 
 const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }) => {
