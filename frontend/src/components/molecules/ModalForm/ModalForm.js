@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 import { addItem as addItemAction, editItem as editItemAction } from 'actions';
 import { SelectField } from 'components/atoms/SelectField/SelectField';
 
-
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
@@ -29,7 +28,7 @@ const StyledHeading = styled(Heading)`
 
 const StyledButton = styled(Button)`
   align-self: center;
-  margin-top:30px;
+  margin-top: 30px;
 `;
 
 const ProductSchema = Yup.object().shape({

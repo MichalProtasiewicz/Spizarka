@@ -78,7 +78,7 @@ const Input = ({ children, errorLabelName, ...props }) => {
 
       {errorLabelName ? (
         <ErrorLabel>
-          <ErrorMessage name={errorLabelName}>{msg => t(msg)}</ErrorMessage>
+          <ErrorMessage name={errorLabelName}>{(msg) => t(msg)}</ErrorMessage>
         </ErrorLabel>
       ) : null}
     </StyledInputWrapper>

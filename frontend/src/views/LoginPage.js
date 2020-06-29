@@ -41,7 +41,6 @@ const StyledParagraph = styled(Paragraph)`
   margin-bottom: 30px;
 `;
 
-
 const LoginPage = ({ authLogin, auth, register }) => {
   const [t] = useTranslation('translation');
   //wyczyszczenie zmiennej po udanej rejestracji
