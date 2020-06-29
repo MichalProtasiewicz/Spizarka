@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Heading from 'components/atoms/Heading/Heading';
 import logoImg from 'assets/logo.svg';
+import LanguageButton from 'components/atoms/LanguageButton/LanguageButton';
+import PlFlag from 'assets/icons/plFlag.svg';
+import UkFlag from 'assets/icons/ukFlag.svg';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -45,14 +50,46 @@ const StyledAuthCard = styled.div`
   justify-content: center;
 `;
 
-const AuthTemplate = ({ children }) => (
-  <StyledWrapper>
-    <LogoWrapper>
-      <StyledLogo src={logoImg} alt="logo" />
-      <StyledHeading big>Spizarka</StyledHeading>
-    </LogoWrapper>
-    <StyledAuthCard>{children}</StyledAuthCard>
-  </StyledWrapper>
-);
+const LangWrapper = styled.div`
+  position: fixed;
+  right: 0px;
+  top: 0;
+  width: 100px;
+  height: 50px;
+  background-color: ${({ theme }) => theme.white};
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr;
+`;
+
+const AuthTemplate = ({ children }) => {
+  const [t, i18n] = useTranslation('translation');
+  return (
+    <StyledWrapper>
+      <Suspense fallback="loading">
+        <LangWrapper>
+          <LanguageButton
+            icon={PlFlag}
+            addEventListener
+            onClick={() => i18n.changeLanguage('pl')}
+          />
+          <LanguageButton
+            icon={UkFlag}
+            addEventListener
+            onClick={() => i18n.changeLanguage('en')}
+          />
+        </LangWrapper>
+      </Suspense>
+      <LogoWrapper>
+        <StyledLogo src={logoImg} alt="logo" />
+        <StyledHeading big>Spizarka</StyledHeading>
+      </LogoWrapper>
+      <StyledAuthCard>{children}</StyledAuthCard>
+    </StyledWrapper>
+  );
+};
+
+AuthTemplate.propTypes = {
+  children: PropTypes.object.isRequired,
+};
 
 export default AuthTemplate;
