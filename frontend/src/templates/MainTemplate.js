@@ -14,8 +14,10 @@ const MainTemplate = ({ children, auth, tryAutoLogin }) => {
   }, []);
   return (
     <div>
-      <GlobalStyle />
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        {children}
+      </ThemeProvider>
       {auth.token === null ? <Redirect to={routes.login} /> : <Redirect to={routes.home} />}
     </div>
   );
