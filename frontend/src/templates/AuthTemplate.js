@@ -65,11 +65,16 @@ const LangWrapper = styled.div`
   position: fixed;
   right: 0px;
   top: 0;
-  width: 100px;
-  height: 50px;
+  width: 66px;
+  height: 33px;
   background-color: ${({ theme }) => theme.white};
   display: grid;
   grid-template-columns: 0.5fr 0.5fr;
+`;
+
+const StyledLanguageButton = styled(LanguageButton)`
+  width: 32px;
+  height: 32px;
 `;
 
 const AuthTemplate = ({ children }) => {
@@ -78,12 +83,12 @@ const AuthTemplate = ({ children }) => {
     <StyledWrapper>
       <Suspense fallback="loading">
         <LangWrapper>
-          <LanguageButton
+          <StyledLanguageButton
             icon={PlFlag}
             addEventListener
             onClick={() => i18n.changeLanguage('pl')}
           />
-          <LanguageButton
+          <StyledLanguageButton
             icon={UkFlag}
             addEventListener
             onClick={() => i18n.changeLanguage('en')}
@@ -92,7 +97,7 @@ const AuthTemplate = ({ children }) => {
       </Suspense>
       <LogoWrapper>
         <StyledLogo src={logoImg} alt="logo" />
-        <StyledHeading >Spizarka</StyledHeading>
+        <StyledHeading>Spizarka</StyledHeading>
       </LogoWrapper>
       <StyledAuthCard>{children}</StyledAuthCard>
     </StyledWrapper>
