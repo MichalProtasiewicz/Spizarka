@@ -23,19 +23,27 @@ const LogoWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0 20px 40px 20px;
   margin-bottom: 30px;
+  @media (max-width: 500px) {
+    width: 80%;
+  }
 `;
 
 const StyledLogo = styled.img`
   width: 150px;
   height: auto;
+  @media (max-width: 450px) {
+    margin-left: 25%;
+  }
 `;
 
 const StyledHeading = styled(Heading)`
   margin-top: 60px;
   font-size: ${({ theme }) => theme.fontSize.xxl};
   font-family: cursive;
+  @media (max-width: 450px) {
+    display:none;
+  }
 `;
 
 const StyledAuthCard = styled.div`
@@ -48,6 +56,9 @@ const StyledAuthCard = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 const LangWrapper = styled.div`
@@ -81,7 +92,7 @@ const AuthTemplate = ({ children }) => {
       </Suspense>
       <LogoWrapper>
         <StyledLogo src={logoImg} alt="logo" />
-        <StyledHeading big>Spizarka</StyledHeading>
+        <StyledHeading >Spizarka</StyledHeading>
       </LogoWrapper>
       <StyledAuthCard>{children}</StyledAuthCard>
     </StyledWrapper>

@@ -23,6 +23,9 @@ const StyledForm = styled(Form)`
 const StyledInput = styled(Input)`
   margin: 0 0 40px 0;
   width: 350px;
+  @media (max-width: 450px) {
+    width: 250px;
+  }
 `;
 
 const StyledLink = styled(Link)`
