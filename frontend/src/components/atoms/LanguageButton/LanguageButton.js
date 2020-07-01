@@ -14,7 +14,6 @@ const LanguageButton = styled.button`
   cursor: pointer;
 
   &:active {
-    box-shadow: 0 1px ${({ theme }) => theme.grey100};
     transform: translateY(1px);
   }
 `;

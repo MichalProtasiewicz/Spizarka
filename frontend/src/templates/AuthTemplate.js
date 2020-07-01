@@ -67,7 +67,7 @@ const LangWrapper = styled.div`
   top: 0;
   width: 66px;
   height: 33px;
-  background-color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.blue};
   display: grid;
   grid-template-columns: 0.5fr 0.5fr;
 `;
@@ -75,6 +75,7 @@ const LangWrapper = styled.div`
 const StyledLanguageButton = styled(LanguageButton)`
   width: 32px;
   height: 32px;
+  background-color: ${({ theme }) => theme.blue};
 `;
 
 const AuthTemplate = ({ children }) => {

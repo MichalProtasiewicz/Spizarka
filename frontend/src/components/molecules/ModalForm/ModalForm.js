@@ -15,11 +15,12 @@ const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 55%;
+  height: 50vh;
 `;
 
 const StyledInput = styled(Input)`
   width: 100%;
+  margin-bottom: 20px;
 `;
 
 const StyledHeading = styled(Heading)`
