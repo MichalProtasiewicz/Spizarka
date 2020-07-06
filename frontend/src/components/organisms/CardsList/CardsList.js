@@ -5,25 +5,31 @@ import Card from 'components/molecules/Card/Card';
 
 const StyledGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
-
-  @media (max-width: 1500px) {
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 50px;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 30px;
+  justify-items: center;
+  border: solid 1px black;
+  @media (max-width: 2000px) {
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 30px;
   }
-
+  @media (max-width: 1650px) {
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 30px;
+  }
+  @media (max-width: 1300px) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+  }
   @media (max-width: 1050px) {
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 50px;
+    grid-gap: 30px;
   }
-
-  @media (max-width: 750px) {
+  @media (max-width: 800px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 50px;
+    grid-gap: 30px;
   }
-
-  @media (max-width: 470px) {
+  @media (max-width: 500px) {
     grid-template-columns: 1fr;
   }
 `;

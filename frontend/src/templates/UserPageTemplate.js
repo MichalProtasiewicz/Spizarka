@@ -14,7 +14,7 @@ import DeleteAlert from 'components/molecules/DeleteAlert/DeleteAlert';
 
 const StyledWrapper = styled.div`
   position: relative;
-  padding: 100px 50px 50px 50px;
+  padding: 100px 5vw 0 5vw;
 `;
 
 const StyledButtonIcon = styled(ButtonIcon)`
