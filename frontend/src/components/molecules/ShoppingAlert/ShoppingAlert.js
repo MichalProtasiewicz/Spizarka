@@ -29,6 +29,10 @@ const StyledButton = styled(Button)`
   grid-row: 2;
   width: 150px;
   margin-left: 60px;
+  @media (max-width: 435px) {
+    margin-left: 40px;
+    width: 125px;
+  }
 `;
 
 const ProductSchema = Yup.object().shape({

@@ -25,14 +25,28 @@ const DeclineButton = styled(Button)`
   grid-column: 1;
   grid-row: 2;
   width: 150px;
-  margin-left: 30px;
+  margin-left: 5%;
+  @media (max-width: 450px) {
+    width: 125px;
+    margin-left: 0;
+  }
+  @media (max-width: 370px) {
+    width: 100px;
+  }
 `;
 
 const AcceptButton = styled(Button)`
   grid-column: 2;
   grid-row: 2;
   width: 150px;
-  margin-left: 60px;
+  margin-left: 10%;
+  @media (max-width: 450px) {
+    width: 125px;
+    margin-left: 0;
+  }
+  @media (max-width: 370px) {
+    width: 100px;
+  }
 `;
 
 const DeleteAlert = ({ handleClose, editedProduct, removeItem }) => {

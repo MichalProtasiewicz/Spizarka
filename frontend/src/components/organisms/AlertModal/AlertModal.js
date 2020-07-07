@@ -7,8 +7,8 @@ import CrossIcon from 'assets/icons/cross.svg';
 const StyledWrapper = styled.div`
   z-index: 9999;
   position: absolute;
-  top: 40%;
-  left: 50%;
+  top: 25vh;
+  left: 50vw;
   transform: translate(-50%, -50%);
   display: ${({ isVisible }) => (isVisible ? 'absolute' : 'none')};
   padding: 10px 30px 10px 30px;
@@ -18,12 +18,18 @@ const StyledWrapper = styled.div`
   width: 550px;
   background-color: white;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+  @media (max-width: 600px) {
+    width: 90%;
+  }
 `;
 
 const StyledCardButton = styled(CardButton)`
   position: absolute;
   top: -14px;
   left: 524px;
+  @media (max-width: 600px) {
+    left: 96%;
+  }
 `;
 
 const AlertModal = ({ isVisible, handleClose, children }) => {
