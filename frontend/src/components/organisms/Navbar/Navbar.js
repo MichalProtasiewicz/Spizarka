@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
@@ -7,10 +7,12 @@ import { routes } from 'routes';
 import Logo from 'components/atoms/Logo/Logo';
 import { connect } from 'react-redux';
 import { logout as logoutAction } from 'actions';
+import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
+import BurgerIcon from 'assets/icons/burger.svg';
 
 const NavbarWrapper = styled.div`
   position: fixed;
-  left: 0;
+  right: 0;
   top: 0;
   padding: 25px 0;
   width: 100vw;
@@ -27,6 +29,27 @@ const StyledLinksList = styled.ul`
   padding: 0;
   list-style: none;
   display: flex;
+  justify-content: space-between;
+  @media (max-width: 800px) {
+    margin: 0;
+    border-left: 10px solid ${({ theme }) => theme.blue};
+    z-index: 2;
+    position: fixed;
+    display: flex;
+    padding: 150px 50px;
+    flex-direction: column;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 400px;
+    background-color: ${({ theme }) => theme.white};
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    transform: translate(${({ isOpen }) => (isOpen ? '0' : '100%')});
+    transition: transform 0.25s ease-in-out;
+  }
+  @media (max-width: 500px) {
+    width: 100vw;
+  }
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -46,6 +69,14 @@ const StyledNavLink = styled(NavLink)`
     border-color: ${({ theme }) => theme.grey200};
     color: ${({ theme }) => theme.grey200};
   }
+
+  @media (max-width: 800px) {
+    color: ${({ theme }) => theme.black};
+    border: none;
+  }
+  @media (max-width: 350px) {
+    font-size: ${({ theme }) => theme.fontSize.m};
+  }
 `;
 
 const StyledButton = styled.button`
@@ -63,14 +94,44 @@ const StyledButton = styled.button`
   &:active {
     color: ${({ theme }) => theme.grey200};
   }
+  @media (max-width: 800px) {
+    color: ${({ theme }) => theme.black};
+    margin: 20px;
+  }
+`;
+
+const StyledButtonIcon = styled(ButtonIcon)`
+  z-index: 9999;
+  background-color: transparent;
+  display: none;
+  margin-right: 20px;
+  font-size: 40;
+  cursor: pointer;
+  &:hover {
+    background-color: transparent;
+  }
+  @media (max-width: 800px) {
+    display: fixed;
+  }
 `;
 
 const Navbar = ({ logout }) => {
   const [t] = useTranslation('translation');
+  const [isOpen, setIsOpen] = useState(false);
+
+   const toggleHamburgerMenu = () => {
+     return setIsOpen(!isOpen);
+   };
+
   return (
     <NavbarWrapper>
       <Logo />
-      <StyledLinksList>
+      <StyledButtonIcon
+        icon={BurgerIcon}
+        style={{  }}
+        onClick={toggleHamburgerMenu}
+      />
+      <StyledLinksList isOpen={isOpen}>
         <li>
           <StyledNavLink to={routes.products} activeclass="active">
             {t('navbar.productsList')}

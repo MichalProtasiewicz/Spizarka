@@ -13,7 +13,7 @@ const StyledWrapper = styled.div`
   top: 0;
   height: 100vh;
   width: 550px;
-  background-color: white;
+  background-color: ${({ theme }) => theme.white};
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
   transform: translate(${({ isVisible }) => (isVisible ? '0' : '100%')});
   transition: transform 0.25s ease-in-out;

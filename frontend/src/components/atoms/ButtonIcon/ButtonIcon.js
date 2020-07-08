@@ -6,17 +6,18 @@ const ButtonIcon = styled.button`
   height: 60px;
   border-radius: 30px;
   background-color: ${({ theme }) => theme.blue};
+  background-image: url(${({ icon }) => icon});
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 75% 75%;
   border: none;
   outline: none;
-  box-shadow: 0 2px ${({ theme }) => theme.grey100};
   cursor: pointer;
 
   &:hover {
     background-color: ${({ theme }) => theme.darkBlue};
   }
   &:active {
-    box-shadow: 0 1px ${({ theme }) => theme.grey200};
-    color: ${({ theme }) => theme.grey200};
     transform: translateY(1px);
   }
 
