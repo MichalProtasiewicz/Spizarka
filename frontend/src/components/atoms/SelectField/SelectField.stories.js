@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Select, { Option, ReactSelectProps } from 'react-select';
+import Select from 'react-select';
 
 const categories = [
   {

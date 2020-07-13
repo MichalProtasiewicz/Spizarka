@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -6,17 +6,13 @@ import PropTypes from 'prop-types';
 import CardsList from 'components/organisms/CardsList/CardsList';
 import UserPageTemplate from 'templates/UserPageTemplate';
 import Heading from 'components/atoms/Heading/Heading';
-import { fetchItems as fetchItemsAction, fetchCategories as fetchCategoriesAction } from 'actions';
 
 const StyledHeading = styled(Heading)`
   margin-bottom: 60px;
 `;
 
-const MainPage = ({ products, fetchProducts, fetchCategories }) => {
-  useEffect(() => {
-    fetchProducts();
-    fetchCategories();
-  }, []);
+const MainPage = ({ products }) => {
+
   const [t] = useTranslation('translation');
   return (
     <UserPageTemplate>
@@ -30,19 +26,13 @@ const MainPage = ({ products, fetchProducts, fetchCategories }) => {
 
 const mapStateToProps = ({ products }) => ({ products });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchProducts: () => dispatch(fetchItemsAction()),
-  fetchCategories: () => dispatch(fetchCategoriesAction()),
-});
 
 MainPage.propTypes = {
   products: PropTypes.array,
-  fetchProducts: PropTypes.func.isRequired,
-  fetchCategories: PropTypes.func.isRequired,
 };
 
 MainPage.defaultProps = {
   products: [],
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
+export default connect(mapStateToProps)(MainPage);

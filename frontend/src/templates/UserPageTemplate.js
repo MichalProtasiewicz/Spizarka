@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -11,6 +11,7 @@ import Navbar from 'components/organisms/Navbar/Navbar';
 import AlertModal from 'components/organisms/AlertModal/AlertModal';
 import ShoppingAlert from 'components/molecules/ShoppingAlert/ShoppingAlert';
 import DeleteAlert from 'components/molecules/DeleteAlert/DeleteAlert';
+import { fetchItems as fetchItemsAction, fetchCategories as fetchCategoriesAction } from 'actions';
 
 const StyledWrapper = styled.div`
   position: relative;
@@ -24,11 +25,16 @@ const StyledButtonIcon = styled(ButtonIcon)`
   z-index: 10000;
 `;
 
-const UserPageTemplate = ({ children, products }) => {
+const UserPageTemplate = ({ children, products, fetchProducts, fetchCategories }) => {
   const [isNewItemBarVisible, setIsNewItemBarVisible] = useState(false);
   const [isAlertModalBarVisible, setIsAlertModalBarVisible] = useState(false);
   const [itemEdited, setItemEdited] = useState(null);
   const [isDeleteAlert, setIsDeleteAlert] = useState(false);
+
+  useEffect(() => {
+    fetchProducts();
+    fetchCategories();
+  }, []);
 
   const choseEditedItem = (e) => {
     const id = e.target.value;
@@ -96,14 +102,20 @@ const UserPageTemplate = ({ children, products }) => {
 const mapStateToProps = ({ products }) => ({
   products,
 });
+const mapDispatchToProps = (dispatch) => ({
+  fetchProducts: () => dispatch(fetchItemsAction()),
+  fetchCategories: () => dispatch(fetchCategoriesAction()),
+});
 
 UserPageTemplate.propTypes = {
   children: PropTypes.element.isRequired,
   products: PropTypes.array,
+  fetchProducts: PropTypes.func.isRequired,
+  fetchCategories: PropTypes.func.isRequired,
 };
 
 UserPageTemplate.defaultProps = {
   products: [],
 };
 
-export default connect(mapStateToProps)(UserPageTemplate);
+export default connect(mapStateToProps, mapDispatchToProps)(UserPageTemplate);
