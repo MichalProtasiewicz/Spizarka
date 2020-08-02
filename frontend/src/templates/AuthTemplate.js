@@ -10,7 +10,7 @@ import UkFlag from 'assets/icons/ukFlag.svg';
 
 const StyledWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: ${({ theme }) => theme.blue};
   display: flex;
   flex-direction: column;
