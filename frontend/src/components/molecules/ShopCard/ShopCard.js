@@ -54,7 +54,6 @@ const StyledCardButton = styled(CardButton)`
 `;
 
 const ShopCard = ({ id, name, categoryId, quantity, minQuantity, categories, modalContext }) => {
-  console.log(categories);
   const categoryName = categories.find((x) => x.id === categoryId).name;
 
   return (

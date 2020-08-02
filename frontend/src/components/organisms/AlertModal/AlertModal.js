@@ -6,8 +6,8 @@ import CrossIcon from 'assets/icons/cross.svg';
 
 const StyledWrapper = styled.div`
   z-index: 9999;
-  position: absolute;
-  top: 25vh;
+  position: fixed;
+  top: 30vh;
   left: 50vw;
   transform: translate(-50%, -50%);
   display: ${({ isVisible }) => (isVisible ? 'absolute' : 'none')};

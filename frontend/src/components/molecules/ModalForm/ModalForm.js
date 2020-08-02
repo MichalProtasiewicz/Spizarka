@@ -24,7 +24,13 @@ const StyledInput = styled(Input)`
 `;
 
 const StyledHeading = styled(Heading)`
+  text-align: center;
   margin-bottom: 50px;
+  font-size: ${({ theme }) => theme.fontSize.xl};
+  @media (max-width: 475px) {
+    font-size: ${({ theme }) => theme.fontSize.l};
+    margin-bottom: 25px;
+  }
 `;
 
 const StyledButton = styled(Button)`
@@ -47,7 +53,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
   const [t] = useTranslation('translation');
   return (
     <>
-      <StyledHeading big>
+      <StyledHeading >
         {editedProduct ? t('modals.editProduct') : t('modals.newProduct')}
       </StyledHeading>
       <Formik
