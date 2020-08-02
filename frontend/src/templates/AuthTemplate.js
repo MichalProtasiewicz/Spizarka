@@ -10,7 +10,7 @@ import UkFlag from 'assets/icons/ukFlag.svg';
 
 const StyledWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: ${({ theme }) => theme.blue};
   display: flex;
   flex-direction: column;
@@ -23,6 +23,7 @@ const LogoWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 10px;
   margin-bottom: 30px;
   @media (max-width: 500px) {
     width: 80%;
@@ -49,13 +50,14 @@ const StyledHeading = styled(Heading)`
 const StyledAuthCard = styled.div`
   width: 550px;
   height: 600px;
-  background-color: white;
+  background-color: ${({ theme }) => theme.white};
   border-radius: 10px;
   box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 35px;
   @media (max-width: 600px) {
     width: 100%;
   }

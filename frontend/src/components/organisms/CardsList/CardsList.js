@@ -8,6 +8,7 @@ const StyledGrid = styled.div`
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 30px;
   justify-items: center;
+  margin-bottom: 35px;
   @media (max-width: 2000px) {
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 30px;
