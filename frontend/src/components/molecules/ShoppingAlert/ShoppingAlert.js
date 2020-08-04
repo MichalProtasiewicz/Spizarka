@@ -7,7 +7,7 @@ import { editItem as editItemAction } from 'actions';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import Heading from 'components/atoms/Heading/Heading';
-import Input from 'components/atoms/Input/Input';
+import {Input} from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 
 const StyledForm = styled(Form)`

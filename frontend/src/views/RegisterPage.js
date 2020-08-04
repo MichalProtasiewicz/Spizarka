@@ -10,7 +10,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import AuthTemplate from 'templates/AuthTemplate';
 import Heading from 'components/atoms/Heading/Heading';
-import Input from 'components/atoms/Input/Input';
+import {SmallInput} from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import NotificationWrapper from 'components/atoms/NotificationWrapper/NotificationWrapper';
 
@@ -21,7 +21,7 @@ const StyledForm = styled(Form)`
   flex-direction: column;
 `;
 
-const StyledInput = styled(Input)`
+const StyledInput = styled(SmallInput)`
   margin: 0 0 40px 0;
   width: 350px;
   @media (max-width: 450px) {
@@ -35,11 +35,11 @@ const StyledLink = styled(Link)`
   font-size: ${({ theme }) => theme.fontSize.s};
   color: ${({ theme }) => theme.raisinBlack};
   text-transform: uppercase;
-  margin: 40px 0 40px;
+  margin: 20px 0 20px;
 `;
 
 const StyledHeading = styled(Heading)`
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 const StyledInputWrapper = styled.div`
@@ -57,7 +57,6 @@ const RegisterSchema = Yup.object().shape({
 
 const RegisterPage = ({ authSignup, auth, register }) => {
   const [t] = useTranslation('translation');
-  //wyczyszczenie errora po nieudanym logowaniu
   auth.error = null;
   return (
     <>
@@ -73,7 +72,7 @@ const RegisterPage = ({ authSignup, auth, register }) => {
           {({ values, handleChange, handleBlur, handleSubmit }) => {
             return (
               <>
-                <StyledHeading big>{t('auth.titleRegister')}</StyledHeading>
+                <StyledHeading>{t('auth.titleRegister')}</StyledHeading>
 
                 <StyledForm onSubmit={handleSubmit}>
                   <StyledInputWrapper>

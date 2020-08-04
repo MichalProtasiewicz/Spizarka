@@ -31,10 +31,17 @@ const StyledInput = styled.input`
       background-position: 15px 50%;
       background-repeat: no-repeat;
     `}
+
+  ${({ small }) =>
+    small &&
+    css`
+      padding: 10px 10px;
+    `}
 `;
 
 const InputLabel = styled.label`
   pointer-events: none;
+  font-size: ${({ theme }) => theme.fontSize.s};
   background-color: ${({ theme }) => theme.grey100};
   color: ${({ theme }) => theme.grey300};
   border-radius: 8px;
@@ -43,7 +50,6 @@ const InputLabel = styled.label`
   top: 15px;
   left: 10px;
   transition: 0.2s ease all;
-
   ${StyledInput}:focus ~ & {
     background-color: ${({ theme }) => theme.white};
     top: -10px;
@@ -54,6 +60,23 @@ const InputLabel = styled.label`
     top: -10px;
     left: 15px;
   }
+
+  ${({ small }) =>
+    small &&
+    css`
+      top: 10px;
+      left: 7px;
+
+      ${StyledInput}:focus ~ & {
+        background-color: ${({ theme }) => theme.white};
+        top: -10px;
+        left: 10px;
+      }
+      ${StyledInput}:valid~ & {
+        background-color: ${({ theme }) => theme.white};
+        top: -10px;
+        left: 10px;
+        `}
 `;
 
 const ErrorLabel = styled.span`
@@ -63,9 +86,15 @@ const ErrorLabel = styled.span`
   position: absolute;
   top: 55px;
   left: 20px;
+  ${({ small }) =>
+    small &&
+    css`
+      top: 40px;
+      left: 10px;
+    `}
 `;
 
-const Input = ({ children, errorLabelName, ...props }) => {
+export const Input = ({ children, errorLabelName, ...props }) => {
   const [t] = useTranslation('translation');
   return (
     <StyledInputWrapper>
@@ -95,4 +124,34 @@ Input.defaultProps = {
   errorLabelName: null,
 };
 
-export default Input;
+export const SmallInput = ({ children, errorLabelName, ...props }) => {
+  const [t] = useTranslation('translation');
+  return (
+    <StyledInputWrapper>
+      <StyledInput small {...props} required />
+      {StyledInput.value === '' ? (
+        <InputLabel small>{children}</InputLabel>
+      ) : (
+        <InputLabel small active>
+          {children}
+        </InputLabel>
+      )}
+
+      {errorLabelName ? (
+        <ErrorLabel small>
+          <ErrorMessage name={errorLabelName}>{(msg) => t(msg)}</ErrorMessage>
+        </ErrorLabel>
+      ) : null}
+    </StyledInputWrapper>
+  );
+};
+
+SmallInput.propTypes = {
+  children: PropTypes.string,
+  errorLabelName: PropTypes.string,
+};
+
+SmallInput.defaultProps = {
+  children: null,
+  errorLabelName: null,
+};

@@ -10,7 +10,7 @@ import { Formik, Form } from 'formik';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import AuthTemplate from 'templates/AuthTemplate';
 import Heading from 'components/atoms/Heading/Heading';
-import Input from 'components/atoms/Input/Input';
+import {Input} from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 
 const StyledForm = styled(Form)`
@@ -46,7 +46,6 @@ const StyledParagraph = styled(Paragraph)`
 
 const LoginPage = ({ authLogin, auth, register }) => {
   const [t] = useTranslation('translation');
-  //wyczyszczenie zmiennej po udanej rejestracji
   register.succesfull = false;
   return (
     <AuthTemplate>

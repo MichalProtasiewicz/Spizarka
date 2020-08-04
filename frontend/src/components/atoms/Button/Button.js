@@ -47,13 +47,12 @@ const Button = styled.button`
         }
       `}
 
-  ${({ secondary }) =>
-    secondary &&
+  ${({ small }) =>
+    small &&
     css`
-      background-color: hsl(0, 0%, 90%);
       width: 105px;
       height: 30px;
-      font-size: 10px;
+      font-size: 12px;
     `}
 `;
 

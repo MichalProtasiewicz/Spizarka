@@ -22,34 +22,39 @@ const LogoWrapper = styled.div`
   width: 400px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  @media (max-width: 500px) {
+  margin: 15px 0 10px 15px;
+  @media (max-width: 450px) {
+    width: 70%;
+  }
+  @media (max-width: 400px) {
     width: 80%;
+  }
+  @media (max-width: 350px) {
+    width: 90%;
   }
 `;
 
 const StyledLogo = styled.img`
-  width: 150px;
-  height: auto;
+  width: 100px;
+  height: 100px;
   @media (max-width: 450px) {
-    margin-left: 25%;
+    width: 80px;
+    height: 80px;
   }
 `;
 
 const StyledHeading = styled(Heading)`
-  margin-top: 60px;
+  margin-left: 15px;
   font-size: ${({ theme }) => theme.fontSize.xxl};
   font-family: cursive;
   @media (max-width: 450px) {
-    display:none;
+    font-size: ${({ theme }) => theme.fontSize.xl};
   }
 `;
 
 const StyledAuthCard = styled.div`
-  width: 550px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   background-color: ${({ theme }) => theme.white};
   border-radius: 10px;
   box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
