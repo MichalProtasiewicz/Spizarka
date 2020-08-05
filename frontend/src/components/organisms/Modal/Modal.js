@@ -7,7 +7,7 @@ const StyledWrapper = styled.div`
   z-index: 9999;
   position: fixed;
   display: flex;
-  padding: 10% 8%;
+  padding: 7vh 70px 0 70px;
   flex-direction: column;
   right: 0;
   top: 0;
@@ -19,7 +19,7 @@ const StyledWrapper = styled.div`
   transition: transform 0.25s ease-in-out;
   @media (max-width: 600px) {
     width: 100vw;
-    padding: 100px 40px;
+    padding: 10vh 40px 0 40px;
   }
 `;
 

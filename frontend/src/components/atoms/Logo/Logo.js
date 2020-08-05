@@ -15,6 +15,10 @@ const StyledLogoLink = styled(NavLink)`
   border: none;
 `;
 
-const Logo = () => <StyledLogoLink to={routes.home} />;
+const Logo = () => (
+  <>
+    <StyledLogoLink to={routes.home} />
+  </>
+);
 
 export default Logo;

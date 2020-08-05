@@ -11,6 +11,9 @@ import { connect } from 'react-redux';
 import { addItem as addItemAction, editItem as editItemAction } from 'actions';
 import { SelectField } from 'components/atoms/SelectField/SelectField';
 
+
+const StyledWrapper = styled.div``;
+
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
@@ -20,22 +23,22 @@ const StyledForm = styled(Form)`
 
 const StyledInput = styled(Input)`
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
 `;
 
 const StyledHeading = styled(Heading)`
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   font-size: ${({ theme }) => theme.fontSize.xl};
   @media (max-width: 475px) {
     font-size: ${({ theme }) => theme.fontSize.l};
-    margin-bottom: 25px;
+    margin-bottom: 35px;
   }
 `;
 
 const StyledButton = styled(Button)`
   align-self: center;
-  margin-top: 30px;
+  margin-top: -10px;
 `;
 
 const ProductSchema = Yup.object().shape({
@@ -52,8 +55,8 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
   }
   const [t] = useTranslation('translation');
   return (
-    <>
-      <StyledHeading >
+    <StyledWrapper>
+      <StyledHeading>
         {editedProduct ? t('modals.editProduct') : t('modals.newProduct')}
       </StyledHeading>
       <Formik
@@ -116,7 +119,7 @@ const ModalForm = ({ categories, addItem, editedProduct, editItem, handleClose }
           </StyledForm>
         )}
       </Formik>
-    </>
+    </StyledWrapper>
   );
 };
 
