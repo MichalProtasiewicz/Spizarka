@@ -37,7 +37,8 @@ export const registerFail = (error) => {
 };
 
 export const logout = () => {
-  localStorage.removeItem('user');
+  localStorage.removeItem('userID');
+  localStorage.removeItem('token');
   localStorage.removeItem('expirationDate');
   return {
     type: actionTypes.AUTH_LOGOUT,
@@ -94,7 +95,7 @@ export const authSignup = (username, email, password1, password2) => (dispatch) 
 export const authCheckState = () => (dispatch) => {
   const token = localStorage.getItem('token');
   const userID = localStorage.getItem('userID');
-  if (token === undefined) {
+  if (token === null) {
     dispatch(logout());
   } else {
     const expirationDate = new Date(localStorage.getItem('expirationDate'));
@@ -105,6 +106,24 @@ export const authCheckState = () => (dispatch) => {
       dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000));
     }
   }
+};
+
+export const fetchItems = () => (dispatch, getState) => {
+  dispatch({ type: actionTypes.FETCH_REQUEST });
+  if (getState().auth.userID === null) return null;
+  return axios
+    .get('http://127.0.0.1:8000/api/products', {
+      params: {
+        owner: getState().auth.userID,
+      },
+    })
+    .then((payload) => {
+      dispatch({ type: actionTypes.FETCH_SUCCESS, payload });
+    })
+    .catch((error) => {
+      console.log(error);
+      dispatch({ type: actionTypes.FETCH_FAILURE });
+    });
 };
 
 export const removeItem = (id) => (dispatch) => {
@@ -154,19 +173,6 @@ export const editItem = (id, itemContent) => (dispatch, getState) => {
     .catch((error) => {
       console.log(error);
       dispatch({ type: actionTypes.EDIT_ITEM_FAILURE });
-    });
-};
-
-export const fetchItems = () => (dispatch, getState) => {
-  dispatch({ type: actionTypes.FETCH_REQUEST });
-  return axios
-    .get('http://127.0.0.1:8000/api/products?owner=' + getState().auth.userID, {})
-    .then((payload) => {
-      dispatch({ type: actionTypes.FETCH_SUCCESS, payload });
-    })
-    .catch((error) => {
-      console.log(error);
-      dispatch({ type: actionTypes.FETCH_FAILURE });
     });
 };
 
