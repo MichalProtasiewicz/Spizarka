@@ -1,22 +1,20 @@
 import styled, { css } from 'styled-components';
 
 const CardButton = styled.button`
-  position: absolute;
-  border-radius: 6px;
-  background-color: ${({ theme }) => theme.white};
-  border: 3px solid ${({ theme }) => theme.black};
   width: 24px;
   height: 24px;
-  border-radius: 6px;
+  position: absolute;
   padding: 12px 12px 12px 12px;
+  background-color: ${({ theme }) => theme.white};
   background-image: url(${({ icon }) => icon});
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: 75% 75%;
-  outline: none;
+  border: 3px solid ${({ theme }) => theme.black};
+  border-radius: 6px;
   box-shadow: 0 2px ${({ theme }) => theme.grey100};
+  outline: none;
   cursor: pointer;
-
   &:active {
     box-shadow: 0 1px ${({ theme }) => theme.grey200};
     transform: translateY(1px);

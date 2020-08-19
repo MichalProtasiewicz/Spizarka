@@ -40,52 +40,50 @@ const StyledInput = styled.input`
 `;
 
 const InputLabel = styled.label`
-  pointer-events: none;
-  font-size: ${({ theme }) => theme.fontSize.s};
-  background-color: ${({ theme }) => theme.grey100};
-  color: ${({ theme }) => theme.grey300};
-  border-radius: 8px;
-  padding: 0 5px 0 5px;
-  position: absolute;
   top: 15px;
   left: 10px;
+  padding: 0 5px 0 5px;
+  position: absolute;
+  background-color: ${({ theme }) => theme.grey100};
+  color: ${({ theme }) => theme.grey300};
+  font-size: ${({ theme }) => theme.fontSize.s};
+  border-radius: 8px;
+  pointer-events: none;
   transition: 0.2s ease all;
   ${StyledInput}:focus ~ & {
-    background-color: ${({ theme }) => theme.white};
     top: -10px;
     left: 15px;
+    background-color: ${({ theme }) => theme.white};
   }
   ${StyledInput}:valid~ & {
-    background-color: ${({ theme }) => theme.white};
     top: -10px;
     left: 15px;
+    background-color: ${({ theme }) => theme.white};
   }
-
   ${({ small }) =>
     small &&
     css`
       top: 10px;
       left: 7px;
-
       ${StyledInput}:focus ~ & {
-        background-color: ${({ theme }) => theme.white};
         top: -10px;
         left: 10px;
+        background-color: ${({ theme }) => theme.white};
       }
       ${StyledInput}:valid~ & {
-        background-color: ${({ theme }) => theme.white};
         top: -10px;
         left: 10px;
+        background-color: ${({ theme }) => theme.white};
         `}
 `;
 
 const ErrorLabel = styled.span`
-  font-size: ${({ theme }) => theme.fontSize.s};
-  font-weight: ${({ theme }) => theme.regular};
-  color: ${({ theme }) => theme.danger};
   position: absolute;
   top: 55px;
   left: 20px;
+  color: ${({ theme }) => theme.danger};
+  font-size: ${({ theme }) => theme.fontSize.s};
+  font-weight: ${({ theme }) => theme.regular};
   ${({ small }) =>
     small &&
     css`

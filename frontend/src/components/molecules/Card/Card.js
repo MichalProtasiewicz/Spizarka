@@ -11,15 +11,15 @@ import withContext from 'hoc/withContext';
 import CardButton from 'components/atoms/CardButton/CardButton';
 
 const StyledWrapper = styled.div`
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 75% 25%;
   width: 200px;
   height: 200px;
   border: 4px solid ${({ theme }) => theme.blue};
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 75% 25%;
-  position: relative;
 `;
 
 const QuantityWrapper = styled.div`
@@ -44,7 +44,6 @@ const Card = ({
   categoryId,
   quantity,
   minQuantity,
-  removeItem,
   modalContext,
   editItem,
 }) => {
@@ -108,7 +107,6 @@ Card.propTypes = {
   categoryId: PropTypes.number.isRequired,
   quantity: PropTypes.number,
   minQuantity: PropTypes.number,
-  removeItem: PropTypes.func.isRequired,
   editItem: PropTypes.func.isRequired,
   modalContext: PropTypes.object.isRequired,
 };

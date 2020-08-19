@@ -25,24 +25,24 @@ const NavbarWrapper = styled.div`
 `;
 
 const StyledLinksList = styled.ul`
+  display: flex;
+  justify-content: space-between;
   margin: 0 2vw;
   padding: 0;
   list-style: none;
-  display: flex;
-  justify-content: space-between;
   @media (max-width: 800px) {
-    margin: 0;
-    border-left: 10px solid ${({ theme }) => theme.blue};
     z-index: 2;
     position: fixed;
     display: flex;
-    padding: 150px 50px;
     flex-direction: column;
     right: 0;
     top: 0;
     height: 100vh;
     width: 400px;
+    margin: 0;
+    padding: 150px 50px;
     background-color: ${({ theme }) => theme.white};
+    border-left: 10px solid ${({ theme }) => theme.blue};
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
     transform: translate(${({ isOpen }) => (isOpen ? '0' : '100%')});
     transition: transform 0.25s ease-in-out;
@@ -53,11 +53,11 @@ const StyledLinksList = styled.ul`
 `;
 
 const StyledNavLink = styled(NavLink)`
+  padding: 12px;
+  margin: 15px;
   text-decoration: none;
   color: ${({ theme }) => theme.white};
   font-size: ${({ theme }) => theme.fontSize.l};
-  padding: 12px;
-  margin: 15px;
   border-left: 1px ${({ theme }) => theme.raisinBlack} solid;
   border-right: 1px ${({ theme }) => theme.raisinBlack} solid;
   cursor: pointer;
@@ -102,9 +102,9 @@ const StyledButton = styled.button`
 
 const StyledButtonIcon = styled(ButtonIcon)`
   z-index: 9999;
-  background-color: transparent;
   display: none;
   margin-right: 20px;
+  background-color: transparent;
   font-size: 40;
   cursor: pointer;
   &:hover {

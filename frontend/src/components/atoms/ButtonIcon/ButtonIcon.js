@@ -1,16 +1,16 @@
 import styled, { css } from 'styled-components';
 
 const ButtonIcon = styled.button`
-  display: block;
   width: 60px;
   height: 60px;
-  border-radius: 30px;
+  display: block;
   background-color: ${({ theme }) => theme.blue};
   background-image: url(${({ icon }) => icon});
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: 75% 75%;
   border: none;
+  border-radius: 30px;
   outline: none;
   cursor: pointer;
 

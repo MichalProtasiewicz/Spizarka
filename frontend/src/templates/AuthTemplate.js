@@ -9,20 +9,20 @@ import PlFlag from 'assets/icons/plFlag.svg';
 import UkFlag from 'assets/icons/ukFlag.svg';
 
 const StyledWrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-  background-color: ${({ theme }) => theme.blue};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: ${({ theme }) => theme.blue};
 `;
 
 const LogoWrapper = styled.div`
-  width: 400px;
   display: flex;
   flex-direction: row;
   margin: 15px 0 10px 15px;
+  width: 400px;
   @media (max-width: 450px) {
     width: 70%;
   }
@@ -55,14 +55,14 @@ const StyledHeading = styled(Heading)`
 const StyledAuthCard = styled.div`
   width: 500px;
   height: 500px;
-  background-color: ${({ theme }) => theme.white};
-  border-radius: 10px;
-  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 35px;
+  background-color: ${({ theme }) => theme.white};
+  border-radius: 10px;
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
   @media (max-width: 600px) {
     width: 100%;
   }
@@ -72,11 +72,11 @@ const LangWrapper = styled.div`
   position: fixed;
   right: 0px;
   top: 0;
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr;
   width: 66px;
   height: 33px;
   background-color: ${({ theme }) => theme.blue};
-  display: grid;
-  grid-template-columns: 0.5fr 0.5fr;
 `;
 
 const StyledLanguageButton = styled(LanguageButton)`

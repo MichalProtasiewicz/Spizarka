@@ -27,8 +27,8 @@ const StyledInput = styled(Input)`
 `;
 
 const StyledHeading = styled(Heading)`
-  text-align: center;
   margin-bottom: 60px;
+  text-align: center;
   font-size: ${({ theme }) => theme.fontSize.xl};
   @media (max-width: 475px) {
     font-size: ${({ theme }) => theme.fontSize.l};

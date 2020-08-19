@@ -16,9 +16,9 @@ import NotificationWrapper from 'components/atoms/NotificationWrapper/Notificati
 
 const StyledForm = styled(Form)`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 `;
 
 const StyledInput = styled(SmallInput)`
@@ -31,11 +31,11 @@ const StyledInput = styled(SmallInput)`
 
 const StyledLink = styled(Link)`
   display: block;
+  margin: 20px 0 20px;
   font-weight: ${({ theme }) => theme.bold};
   font-size: ${({ theme }) => theme.fontSize.s};
   color: ${({ theme }) => theme.raisinBlack};
   text-transform: uppercase;
-  margin: 20px 0 20px;
 `;
 
 const StyledHeading = styled(Heading)`

@@ -15,9 +15,9 @@ import Button from 'components/atoms/Button/Button';
 
 const StyledForm = styled(Form)`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 `;
 
 const StyledInput = styled(Input)`
@@ -30,11 +30,11 @@ const StyledInput = styled(Input)`
 
 const StyledLink = styled(Link)`
   display: block;
+  margin: 40px 0 40px;
   font-weight: ${({ theme }) => theme.bold};
   font-size: ${({ theme }) => theme.fontSize.s};
   color: ${({ theme }) => theme.raisinBlack};
   text-transform: uppercase;
-  margin: 40px 0 40px;
 `;
 
 const StyledHeading = styled(Heading)`

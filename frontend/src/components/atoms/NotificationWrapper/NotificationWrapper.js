@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const NotificationWrapper = styled.div`
-  position: fixed;
   z-index: 99999;
+  position: fixed;
   width: 100%;
   padding: 20px;
   background: ${({ theme }) => theme.raisinBlack};

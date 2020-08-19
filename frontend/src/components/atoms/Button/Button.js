@@ -1,25 +1,24 @@
 import styled, { css } from 'styled-components';
 
 const Button = styled.button`
+  width: 220px;
+  height: 47px;
   display: flex;
+  padding: 0;
   justify-content: center;
   align-items: center;
   color: ${({ theme }) => theme.white};
-  text-decoration: none;
-  padding: 0;
   background-color: ${({ theme }) => theme.blue};
-  width: 220px;
-  height: 47px;
-  border: none;
-  border-radius: 50px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 16px;
   text-transform: uppercase;
+  text-decoration: none;
   outline: none;
+  border: none;
+  border-radius: 50px;
   box-shadow: 0 2px ${({ theme }) => theme.grey100};
   cursor: pointer;
-
   &:hover {
     background-color: ${({ theme }) => theme.darkBlue};
   }
@@ -28,7 +27,6 @@ const Button = styled.button`
     color: ${({ theme }) => theme.grey200};
     transform: translateY(1px);
   }
-
   ${({ danger }) =>
     danger &&
     css`
@@ -37,7 +35,6 @@ const Button = styled.button`
         background-color: ${({ theme }) => theme.darkDanger};
       }
     `}
-
     ${({ success }) =>
       success &&
       css`
@@ -46,7 +43,6 @@ const Button = styled.button`
           background-color: ${({ theme }) => theme.darkSuccess};
         }
       `}
-
   ${({ small }) =>
     small &&
     css`

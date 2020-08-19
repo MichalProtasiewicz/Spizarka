@@ -9,13 +9,13 @@ const StyledWrapper = styled.div`
   position: fixed;
   top: 30vh;
   left: 50vw;
+  height: 200px;
+  width: 550px;
   transform: translate(-50%, -50%);
   display: ${({ isVisible }) => (isVisible ? 'absolute' : 'none')};
   padding: 10px 30px 10px 30px;
   border: 5px solid ${({ theme }) => theme.blue};
   border-radius: 15px;
-  height: 200px;
-  width: 550px;
   background-color: white;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
   @media (max-width: 600px) {
